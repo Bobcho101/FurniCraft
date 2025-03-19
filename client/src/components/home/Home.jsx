@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const Home = () => {
 
   return (
@@ -22,18 +24,18 @@ const Home = () => {
               Find Your Perfect Furniture
             </h1>
             <p className="mt-8 text-lg font-medium sm:text-xl/8">
-              Discover a wide variety of furniture designs, tailored to your taste and space.
+              Discover a lot of furniture at FurniCraft.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="#"
+              <Link
+                to={'/catalog'}
                 className="rounded-md bg-indigo-600 px-6 py-3 text-lg font-semibold text-white hover:bg-indigo-500 focus:outline-none"
               >
                 Shop Now
-              </a>
-              <a href="#" className="text-sm font-semibold text-indigo-200">
+              </Link>
+              <Link to={'/about'} className="text-sm font-semibold text-indigo-200">
                 Learn more <span aria-hidden="true">→</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
