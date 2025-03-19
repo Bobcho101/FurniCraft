@@ -15,14 +15,15 @@ export default function Header() {
        <header className="absolute inset-x-0 top-0 z-50 w-full">
         <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8 bg-transparent text-white">
           <div className="flex lg:flex-1">
-            <Link to={'/'} className="-m-1.5 p-1.5">
-              <span className="sr-only">FurnitureHub</span>
+            <Link to={'/'} className="-m-1.5 p-1.5 flex flex-row gap-2 items-center">
               <img
                 alt="FurnitureHub"
                 src={'images/logo2.png'}
                 className="h-8 w-auto"
               />
+                 <span className="text-white">FurniCraft</span>
             </Link>
+
           </div>
           <div className="flex lg:hidden">
             <button type="button" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="rounded-md p-2.5 text-white">
