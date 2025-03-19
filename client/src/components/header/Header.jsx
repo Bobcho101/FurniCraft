@@ -1,13 +1,13 @@
 import {useState } from 'react';
+import { Link } from 'react-router';
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const navigation = [
-      { name: 'Home', href: '#home' },
-      { name: 'About', href: '#about' },
-      { name: 'Shop', href: '#shop' },
-      { name: 'Contact', href: '#contact' },
+      { name: 'Catalog', href: '/catalog' },
+      { name: 'About', href: '/about' },
+      { name: 'Contacts', href: '/contacts' },
     ];
   
    return (
@@ -15,11 +15,11 @@ export default function Header() {
        <header className="absolute inset-x-0 top-0 z-50 w-full">
         <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8 bg-transparent text-white">
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">FurnitureHub</span>
               <img
                 alt="FurnitureHub"
-                src="https://your-logo-url.png"
+                src={'images/logo2.png'}
                 className="h-8 w-auto"
               />
             </a>
@@ -39,10 +39,13 @@ export default function Header() {
               </a>
             ))}
           </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a>
+          <div className="hidden lg:flex lg:flex-1 gap-7 lg:justify-end">
+            <Link to={"/register"} className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
+              Register <span aria-hidden="true"></span>
+            </Link>
+            <Link to={"/login"} className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
+              Log in <span aria-hidden="true"></span>
+            </Link>
           </div>
         </nav>
 
@@ -57,7 +60,7 @@ export default function Header() {
                 <span className="sr-only">FurnitureHub</span>
                 <img
                   alt="FurnitureHub"
-                  src="https://your-logo-url.png"
+                  src={"images/logo2.png"}
                   className="h-8 w-auto"
                 />
               </a>
@@ -82,9 +85,12 @@ export default function Header() {
                   {item.name}
                 </a>
               ))}
-              <a href="#" className="block text-gray-900 hover:bg-gray-100 rounded-lg px-3 py-2.5 text-base font-semibold">
+               <Link onClick={() => setMobileMenuOpen(false)} to={"/register"} className="block text-gray-900 hover:bg-gray-100 rounded-lg px-3 py-2.5 text-base font-semibold">
+                Register
+              </Link>
+              <Link onClick={() => setMobileMenuOpen(false)} to={"/login"} className="block text-gray-900 hover:bg-gray-100 rounded-lg px-3 py-2.5 text-base font-semibold">
                 Log in
-              </a>
+              </Link>
             </div>
           </div>
         )}
