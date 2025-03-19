@@ -15,14 +15,14 @@ export default function Header() {
        <header className="absolute inset-x-0 top-0 z-50 w-full">
         <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8 bg-transparent text-white">
           <div className="flex lg:flex-1">
-            <a href="/" className="-m-1.5 p-1.5">
+            <Link to={'/'} className="-m-1.5 p-1.5">
               <span className="sr-only">FurnitureHub</span>
               <img
                 alt="FurnitureHub"
                 src={'images/logo2.png'}
                 className="h-8 w-auto"
               />
-            </a>
+            </Link>
           </div>
           <div className="flex lg:hidden">
             <button type="button" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="rounded-md p-2.5 text-white">
@@ -34,9 +34,9 @@ export default function Header() {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <a key={item.name} href={item.href} className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
+              <Link key={item.name} to={item.href} className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 gap-7 lg:justify-end">
@@ -77,13 +77,13 @@ export default function Header() {
             </div>
             <div className="mt-6 space-y-2">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className="block text-gray-900 hover:bg-gray-100 rounded-lg px-3 py-2 text-base font-semibold"
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
                <Link onClick={() => setMobileMenuOpen(false)} to={"/register"} className="block text-gray-900 hover:bg-gray-100 rounded-lg px-3 py-2.5 text-base font-semibold">
                 Register
