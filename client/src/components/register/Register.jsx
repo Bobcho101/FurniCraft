@@ -12,18 +12,25 @@ export default function Register() {
         'username': '',
         'email': '',
         'password': '',
-        're-password': '',
+        'rePassword': '',
     });
 
 
     const registerSubmitHandler = async (e) => {
         e.preventDefault();
-        const { username, email, password } = formValues;
+        const { username, email, password, rePassword } = formValues;
+
+        if(username.trim() === '' || 
+        email.trim() === '' || 
+        password.trim() === '' || 
+        rePassword === '') return alert('All fields are required!');
+
+        if(password !== rePassword) return alert('Passwords do not match!')
+
         const userData = await register(username, email, password);
-        console.log(userData);
-        
+
         if(userData.error){
-            setFormValues({ password: '' });
+            setFormValues({ password: '', rePassword: '' });
             return alert(userData.error);
         };
 
@@ -88,9 +95,9 @@ export default function Register() {
                 </label>
                 <input
                 type="password"
-                id="re-password"
-                name="re-password"
-                value={formValues['re-password']}
+                id="rePassword"
+                name="rePassword"
+                value={formValues.rePassword}
                 onChange={changeFormValues}
                 placeholder="Enter your password"
                 className="mt-2 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
