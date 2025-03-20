@@ -42,11 +42,11 @@ export default function Header() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 gap-7 lg:justify-end">
+          <Link to={"/login"} className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
+              Log in <span aria-hidden="true"></span>
+            </Link>
             <Link to={"/register"} className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
               Register <span aria-hidden="true"></span>
-            </Link>
-            <Link to={"/login"} className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
-              Log in <span aria-hidden="true"></span>
             </Link>
           </div>
         </nav>

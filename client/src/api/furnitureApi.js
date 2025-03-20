@@ -9,7 +9,5 @@ export const useFurniture = () => {
             .then(data => setFurniture(data))
     }, []);
 
-    
-
     return [furniture];
 }
