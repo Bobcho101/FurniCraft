@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { failedCreatingFurniture } from "../helpers/errorHandlingMsg";
+import { failedCreatingFurnitureMsg } from "../helpers/errorHandlingMsg";
 const baseUrl = 'http://localhost:3030/data/furniture';
 
 export const useFurniture = () => {
@@ -29,7 +29,7 @@ export const useCreateFurniture = () => {
             
             if(!response.ok){
                 return {
-                    error: failedCreatingFurniture, 
+                    error: failedCreatingFurnitureMsg, 
                 }
             }
             const data = await response.json();

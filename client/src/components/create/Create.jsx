@@ -3,6 +3,7 @@ import { useCreateFurniture } from "../../api/furnitureApi";
 import useForm from "../../hooks/useForm";
 import { UserContext } from "../../contexts/userContext";
 import { useNavigate } from "react-router";
+import { emptyFieldsMsg, invalidCategoryMsg } from "../../helpers/errorHandlingMsg";
 
 export default function Create() {
     const [ createFurniture ] = useCreateFurniture();
@@ -18,8 +19,23 @@ export default function Create() {
 
     const createSubmitHandler = async (e) => {
         e.preventDefault();
+
+        if(formValues.name.trim() === '' || formValues.category.trim() === '' ||
+            formValues.price.trim() === '' || formValues.description.trim() === '' || 
+            formValues.image.trim() === ''
+        ){
+            return alert(emptyFieldsMsg);
+        }
+
+        const validCategories = ["Living Room", "Dining Room", "Office", "Bedroom", "Kitchen"];
+
+        if(!validCategories.includes(formValues.category)){
+            return alert(invalidCategoryMsg);
+        }
+
         const response = await createFurniture(formValues, accessToken);
-        
+
+
         if(response.error){
             return alert(response.error);
         };
@@ -64,6 +80,7 @@ export default function Create() {
                             <option value="Dining Room">Dining Room</option>
                             <option value="Office">Office</option>
                             <option value="Bedroom">Bedroom</option>
+                            <option value="Kitchen">Kitchen</option>
                         </select>
                     </div>
 

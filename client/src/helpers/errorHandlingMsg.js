@@ -5,4 +5,5 @@ export const emailOrUsernameAlreadyExistsMsg = 'Email or username already exists
 export const guestCannotLogoutMsg = 'A guest cannot logout!';
 
 
-export const failedCreatingFurniture = 'Failed to create furniture!';
+export const failedCreatingFurnitureMsg = 'Failed to create furniture!';
+export const invalidCategoryMsg = 'Invalid category!';
