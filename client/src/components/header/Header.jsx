@@ -1,15 +1,28 @@
-import {useState } from 'react';
+import {useContext, useState } from 'react';
 import { Link } from 'react-router';
+import { UserContext } from '../../contexts/userContext';
 
 export default function Header() {
+    const { accessToken } = useContext(UserContext);
+    let navigation = [];
+
+    if(accessToken){
+        navigation = [
+            { name: 'Catalog', href: '/catalog' },
+            { name: 'Sell a Furniture', href: '/sell-furniture' },
+            { name: 'About', href: '/about' },
+            { name: 'Contacts', href: '/contacts' },
+        ];
+    } else{
+        navigation = [
+            { name: 'Catalog', href: '/catalog' },
+            { name: 'About', href: '/about' },
+            { name: 'Contacts', href: '/contacts' },
+        ];
+    }
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    const navigation = [
-      { name: 'Catalog', href: '/catalog' },
-      { name: 'Sell a Furniture', href: '/sell-furniture' },
-      { name: 'About', href: '/about' },
-      { name: 'Contacts', href: '/contacts' },
-    ];
+   
   
    return (
        <>
@@ -42,12 +55,22 @@ export default function Header() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 gap-7 lg:justify-end">
-          <Link to={"/login"} className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
-              Log in <span aria-hidden="true"></span>
-            </Link>
-            <Link to={"/register"} className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
-              Register <span aria-hidden="true"></span>
-            </Link>
+            {!accessToken ? ( 
+                <>
+                <Link to={"/login"} className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
+                    Log in <span aria-hidden="true"></span>
+                </Link> 
+                <Link to={"/register"} className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
+                    Register <span aria-hidden="true"></span>
+                </Link>
+            </>
+          ) : (
+                <Link to={"/logout"} className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
+                    Logout <span aria-hidden="true"></span>
+                </Link>
+          )}
+         
+            
           </div>
         </nav>
 
@@ -58,14 +81,14 @@ export default function Header() {
         {mobileMenuOpen && (
           <div className="fixed inset-0 z-50 lg:hidden bg-white py-6 px-6">
             <div className="flex justify-between items-center">
-              <a href="#" className="-m-1.5 p-1.5">
+              <Link to={'/'} onClick={() => setMobileMenuOpen(false)} className="-m-1.5 p-1.5">
                 <span className="sr-only">FurnitureHub</span>
                 <img
                   alt="FurnitureHub"
                   src={"images/logo2.png"}
                   className="h-8 w-auto"
                 />
-              </a>
+              </Link>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
@@ -87,12 +110,20 @@ export default function Header() {
                   {item.name}
                 </Link>
               ))}
-               <Link onClick={() => setMobileMenuOpen(false)} to={"/register"} className="block text-gray-900 hover:bg-gray-100 rounded-lg px-3 py-2.5 text-base font-semibold">
-                Register
-              </Link>
-              <Link onClick={() => setMobileMenuOpen(false)} to={"/login"} className="block text-gray-900 hover:bg-gray-100 rounded-lg px-3 py-2.5 text-base font-semibold">
-                Log in
-              </Link>
+              {!accessToken ? ( 
+                <>
+                    <Link onClick={() => setMobileMenuOpen(false)} to={"/register"} className="block text-gray-900 hover:bg-gray-100 rounded-lg px-3 py-2.5 text-base font-semibold">
+                        Register
+                    </Link>
+                    <Link onClick={() => setMobileMenuOpen(false)} to={"/login"} className="block text-gray-900 hover:bg-gray-100 rounded-lg px-3 py-2.5 text-base font-semibold">
+                        Log in
+                    </Link>
+                </>
+                ) : (
+                    <Link onClick={() => setMobileMenuOpen(false)} to={"/logout"} className="block text-gray-900 hover:bg-gray-100 rounded-lg px-3 py-2.5 text-base font-semibold">
+                        Log out
+                    </Link>
+                )}
             </div>
           </div>
         )}

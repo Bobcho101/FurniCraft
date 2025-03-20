@@ -1,7 +1,7 @@
 export default function Create() {
    return (
         <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center py-16">
-        <h2 className="text-4xl font-semibold mb-10 text-center">Sell Your Furniture</h2>
+        <h2 className="text-4xl font-semibold mb-10 text-center mt-15">Sell Your Furniture</h2>
 
         <div className="max-w-2xl w-full bg-gray-800 p-8 rounded-lg shadow-lg">
             <form>
