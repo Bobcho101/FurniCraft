@@ -10,7 +10,14 @@ const useForm = (initValues) => {
         }));
     };
 
-    return [values, changeHandler];
+    const setFormValues = (newValues) => {
+        setValues((curValues) => ({
+            ...curValues,
+            ...newValues,
+        }));
+    };
+
+    return [values, changeHandler, setFormValues];
 };
 
 
