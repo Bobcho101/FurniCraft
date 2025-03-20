@@ -1,7 +1,8 @@
 import { Link, useNavigate } from 'react-router';
 import useForm from '../../hooks/useForm';
 import { useLogin } from '../../api/authApi';
-import usePersistedState from '../../hooks/usePersistedState';
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/userContext';
 
 
 export default function Login() {
@@ -11,6 +12,7 @@ export default function Login() {
         'password': '',
     });
     const [ login ] = useLogin();
+    const { userLoginHandler } = useContext(UserContext);
 
     const loginSubmitHandler = async (e) => {
         e.preventDefault();
@@ -22,6 +24,8 @@ export default function Login() {
             setFormValues({ password: '' });
             return alert(userData.error);
         };
+
+        userLoginHandler(userData);
         
         return navigate('/');
     }

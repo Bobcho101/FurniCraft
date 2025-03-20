@@ -4,7 +4,7 @@ import { useFurniture } from '../../api/furnitureApi';
 export default function Catalog() {
     const [search, setSearch] = useState('');
     const [ furniture ] = useFurniture();
- 
+
     return (
         <div className="bg-gray-900 text-white min-h-screen py-16">
             <div className="max-w-7xl mx-auto px-6 mt-15">
