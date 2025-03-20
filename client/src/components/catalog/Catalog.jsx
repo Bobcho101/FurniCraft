@@ -1,10 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFurniture } from '../../api/furnitureApi';
 
 export default function Catalog() {
     const [searchQuery, setSearchQuery] = useState('');
+    const [loading, setLoading] = useState(true);
     const [ furniture ] = useFurniture();
-
+    
+    useEffect(() => {
+        if (furniture && furniture.length > 0) {
+            setLoading(false);
+        }
+    }, [furniture])
+    
     return (
         <div className="bg-gray-900 text-white min-h-screen py-16">
             <div className="max-w-7xl mx-auto px-6 mt-15">
@@ -32,9 +39,14 @@ export default function Catalog() {
                         </select>
                     </div>
                 </div>
-
+                {loading ? (
+                    <div className="flex justify-center items-center min-h-[200px]">
+                        <div className="w-12 h-12 border-4 border-gray-300 border-t-indigo-500 rounded-full animate-spin"></div>
+                    </div>
+                ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {furniture
+                    {furniture.length > 0
+                    ? furniture
                         .filter(item => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
                         .map((item) => (
                             <div
@@ -46,8 +58,10 @@ export default function Catalog() {
                                 <p className="text-center text-indigo-400">{item.category}</p>
                                 <p className="text-center text-xl mt-3">${item.price}</p>
                             </div>
-                        ))}
+                        ))
+                    : (<h1 className="text-2xl font-semibold text-center text-gray-400 mt-10">No Items</h1>) }
                 </div>
+                )}
             </div>
         </div>
     );
