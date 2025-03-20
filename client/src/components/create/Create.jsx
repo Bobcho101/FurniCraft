@@ -1,6 +1,13 @@
+import { useContext } from "react";
+import { useCreateFurniture } from "../../api/furnitureApi";
 import useForm from "../../hooks/useForm";
+import { UserContext } from "../../contexts/userContext";
+import { useNavigate } from "react-router";
 
 export default function Create() {
+    const [ createFurniture ] = useCreateFurniture();
+    const navigate = useNavigate();
+    const { accessToken } = useContext(UserContext);
     const [ formValues, changeFormValues ] = useForm({
         'name': '',
         'category': '',
@@ -9,9 +16,15 @@ export default function Create() {
         'image': '',
     });
 
-    const createSubmitHandler = (e) => {
+    const createSubmitHandler = async (e) => {
         e.preventDefault();
+        const response = await createFurniture(formValues, accessToken);
         
+        if(response.error){
+            return alert(response.error);
+        };
+
+        return navigate('/catalog');
     }
 
     return (

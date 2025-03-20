@@ -17,7 +17,6 @@ export const useFurniture = () => {
 
 export const useCreateFurniture = () => {
     const create = async (newData, accessToken) => {
-        
         try{
             const response = await fetch(baseUrl, {
                 method: 'POST',
@@ -33,6 +32,8 @@ export const useCreateFurniture = () => {
                     error: failedCreatingFurniture, 
                 }
             }
+            const data = await response.json();
+            return { data };
         } catch(err){
             console.log(err.message);
         }
