@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router';
 import useForm from '../../hooks/useForm';
 import { useLogin } from '../../api/authApi';
+import usePersistedState from '../../hooks/usePersistedState';
 
 
 export default function Login() {
@@ -10,6 +11,9 @@ export default function Login() {
         'password': '',
     });
     const [ login ] = useLogin();
+    const [persistedState, setPersistedState] = usePersistedState('user', {});
+
+
 
     const loginSubmitHandler = async (e) => {
         e.preventDefault();
@@ -22,6 +26,7 @@ export default function Login() {
             return alert(userData.error);
         };
         
+        setPersistedState(userData);
         return navigate('/');
     }
 
