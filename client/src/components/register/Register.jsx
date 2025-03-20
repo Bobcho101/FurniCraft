@@ -3,6 +3,7 @@ import useForm from '../../hooks/useForm';
 import { useRegister } from '../../api/authApi';
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/userContext';
+import { emptyFieldsMsg, missMatchedPasswordsMsg } from '../../helpers/errorHandlingMsg';
 
 export default function Register() {
     const [ register ] = useRegister();
@@ -23,9 +24,9 @@ export default function Register() {
         if(username.trim() === '' || 
         email.trim() === '' || 
         password.trim() === '' || 
-        rePassword === '') return alert('All fields are required!');
+        rePassword === '') return alert(emptyFieldsMsg);
 
-        if(password !== rePassword) return alert('Passwords do not match!')
+        if(password !== rePassword) return alert(missMatchedPasswordsMsg)
 
         const userData = await register(username, email, password);
 

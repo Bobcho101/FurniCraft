@@ -3,6 +3,7 @@ import useForm from '../../hooks/useForm';
 import { useLogin } from '../../api/authApi';
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/userContext';
+import { emptyFieldsMsg } from '../../helpers/errorHandlingMsg';
 
 
 export default function Login() {
@@ -17,6 +18,10 @@ export default function Login() {
     const loginSubmitHandler = async (e) => {
         e.preventDefault();
         const { email, password } = formValues;
+
+        if(email.trim() === '' || password.trim() === ''){
+            return alert(emptyFieldsMsg);
+        }
 
         const userData = await login(email, password);
         
