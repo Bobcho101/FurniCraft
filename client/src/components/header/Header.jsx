@@ -6,7 +6,7 @@ export default function Header() {
 
     const navigation = [
       { name: 'Catalog', href: '/catalog' },
-      { name: 'Sell a Furniture', href: '/create-post' },
+      { name: 'Sell a Furniture', href: '/sell-furniture' },
       { name: 'About', href: '/about' },
       { name: 'Contacts', href: '/contacts' },
     ];
