@@ -1,3 +1,5 @@
+import { emailOrUsernameAlreadyExistsMsg, guestCannotLogoutMsg, invalidEmailOrPasswordMsg } from "../helpers/errorHandlingMsg";
+
 export const useRegister = () => {
     const register = async (username, email, password) => {
         try{
@@ -14,7 +16,7 @@ export const useRegister = () => {
             });
             if(!response.ok){
                 return {
-                    error: 'Invalid email or password'
+                    error: emailOrUsernameAlreadyExistsMsg,
                 };
             }
             const userData = await response.json();
@@ -42,7 +44,7 @@ export const useLogin = () => {
             });
             if(!response.ok){
                 return {
-                    error: 'Invalid email or password'
+                    error: invalidEmailOrPasswordMsg,
                 };
             }
             const userData = await response.json();
@@ -72,7 +74,7 @@ export const useLogout = () => {
             });
             if(!response.ok){
                 return {
-                    error: 'A guest cannot logout!'
+                    error: guestCannotLogoutMsg,
                 };
             }
             const userData = await response.json();
