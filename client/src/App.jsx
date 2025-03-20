@@ -28,7 +28,7 @@ function App() {
           <Route path='/contacts' element={<Contacts />} />
           <Route path='*' element={<NotFound />} /> 
       </Routes>
-      </UserProvider>
+    </UserProvider>
     </>
   )
 }

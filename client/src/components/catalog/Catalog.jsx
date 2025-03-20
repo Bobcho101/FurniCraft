@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useFurniture } from '../../api/furnitureApi';
 
 export default function Catalog() {
-    const [search, setSearch] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
     const [ furniture ] = useFurniture();
 
     return (
@@ -16,8 +16,8 @@ export default function Catalog() {
                             type="text"
                             placeholder="Search products..."
                             className="w-full p-2 bg-gray-800 text-white rounded-md"
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
                         />
                     </div>
 
@@ -35,7 +35,7 @@ export default function Catalog() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {furniture
-                        .filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
+                        .filter(item => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
                         .map((item) => (
                             <div
                                 key={item._id}
