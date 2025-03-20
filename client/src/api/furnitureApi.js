@@ -6,8 +6,10 @@ export const useFurniture = () => {
     useEffect(() => {
         fetch('http://localhost:3030/data/furniture')
             .then(res => res.json())
-            .then(data => setFurniture(data.results))
+            .then(data => setFurniture(data))
     }, []);
+
+    
 
     return [furniture];
 }
