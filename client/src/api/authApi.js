@@ -1,5 +1,5 @@
 export const useLogin = () => {
-    const login =  async (email, password) => {
+    const login = async (email, password) => {
         try{
             const response = await fetch('http://localhost:3030/users/login', {
                 method: 'POST',
@@ -24,4 +24,33 @@ export const useLogin = () => {
     };
 
     return [login];
+}
+
+export const useLogout = () => {
+    const logout = async (accessToken) => {
+        if(!accessToken){
+            return {
+                error: 'A guest cannot logout!'
+            };
+        }
+        try{
+            const response = await fetch('http://localhost:3030/users/logout', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Authorization': accessToken
+                },
+            });
+            if(!response.ok){
+                return {
+                    error: 'A guest cannot logout!'
+                };
+            }
+            const userData = await response.json();
+            return userData;
+        } catch(err){
+            console.log(err.message)
+        }
+    };
+    return [ logout ];
 }
