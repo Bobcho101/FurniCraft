@@ -11,9 +11,6 @@ export default function Login() {
         'password': '',
     });
     const [ login ] = useLogin();
-    const [persistedState, setPersistedState] = usePersistedState('user', {});
-
-
 
     const loginSubmitHandler = async (e) => {
         e.preventDefault();
@@ -26,7 +23,6 @@ export default function Login() {
             return alert(userData.error);
         };
         
-        setPersistedState(userData);
         return navigate('/');
     }
 
