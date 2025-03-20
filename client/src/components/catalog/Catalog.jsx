@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { Link } from 'react-router';
 
 const catalogItems = [
     {
-        id: "1",
+        id: "dwfg-gwkd-2324-d213",
         name: "Modern Sofa",
         price: "799",
         description: "A comfortable and stylish modern sofa for your living room.",
@@ -12,7 +11,7 @@ const catalogItems = [
         category: "Living Room",  
     },
     {
-        id: "2",
+        id: "7341-g3kd-2fwd-d213",
         name: "Wooden Dining Table",
         price: "399",
         description: "A premium quality wooden dining table for family gatherings.",
@@ -21,7 +20,7 @@ const catalogItems = [
         category: "Dining Room",  
     },
     {
-        id: "3",
+        id: "dlpf-j85f-2id4-d932",
         name: "Ergonomic Office Chair",
         price: "349",
         description: "An adjustable ergonomic chair designed for long working hours.",
@@ -30,7 +29,7 @@ const catalogItems = [
         category: "Office",  
     },
     {
-        id: "4",
+        id: "d32g-w34d-3gl4-8dwa",
         name: "Minimalist Bed Frame",
         price: "599",
         description: "A sturdy and elegant bed frame with a sleek design.",
@@ -39,7 +38,7 @@ const catalogItems = [
         category: "Bedroom",    
     },
     {
-        id: "5",
+        id: "nffg-8fda-lgas-dd31",
         name: "Bookshelf Storage",
         price: "299",
         description: "A multi-level bookshelf for organizing your favorite reads.",
