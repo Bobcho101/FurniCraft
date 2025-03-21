@@ -10,7 +10,7 @@ function Catalog() {
     const [searchQuery, setSearchQuery] = useState('');
     const [sortOption, setSortOption] = useState('price-low-to-high');
     const [loading, setLoading] = useState(true);
-    const [ furniture, allFurnitureLength ] = useFurniture(sortOption, pageNum);
+    const [ furniture, allFurnitureLength ] = useFurniture(sortOption, pageNum, searchQuery);
 
     const totalPages = Math.ceil(allFurnitureLength / ITEMS_PER_PAGE); 
     const isLastPage = pageNum === totalPages;
@@ -25,8 +25,6 @@ function Catalog() {
         }
     }, [furniture])
     
-   
-
 
     return (
         <div className="bg-gray-900 text-white min-h-screen py-16">
@@ -44,7 +42,7 @@ function Catalog() {
                         />
                     </div>
 
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 items-center">
                         <select
                             className="p-2 bg-gray-800 text-white rounded-md"
                             onChange={(e) => setSortOption(e.target.value)}
@@ -64,7 +62,7 @@ function Catalog() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {furniture.length > 0
                     ? furniture
-                        .filter(item => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
+                        // .filter(item => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
                         .map((item) => (
                             <div
                                 key={item._id}
