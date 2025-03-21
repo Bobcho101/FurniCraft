@@ -40,7 +40,7 @@ export default function Create() {
             return alert(response.error);
         };
 
-        return navigate('/catalog');
+        return navigate('/catalog/1');
     }
 
     return (

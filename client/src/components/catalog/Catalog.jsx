@@ -62,7 +62,6 @@ function Catalog() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {furniture.length > 0
                     ? furniture
-                        // .filter(item => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
                         .map((item) => (
                             <div
                                 key={item._id}
@@ -82,11 +81,11 @@ function Catalog() {
                     <button onClick={() => {
                         if(pageNum === 1) return;
                         return navigate(`/catalog/${pageNum - 1}`)
-                    }} className={`${pageNum === 1 ? 'bg-gray-500 cursor-not-allowed' : 'bg-gray-700 text-white hover:bg-gray-600'} px-4 py-2 mx-1`}>
+                    }} className={`${pageNum === 1 ? 'bg-gray-500 cursor-not-allowed' : 'bg-indigo-700 text-white hover:bg-indigo-400 cursor-pointer'} px-4 py-2 mx-1`}>
                         Previous
                     </button>
                     <span className="px-4 py-2 mx-1 bg-gray-800 text-white rounded-md">{pageNum}</span>
-                    <button disabled={isLastPage} onClick={() => navigate(`/catalog/${pageNum + 1}`)} className={`${isLastPage ? 'bg-gray-500 cursor-not-allowed' : 'bg-gray-700 text-white hover:bg-gray-600'} px-4 py-2 mx-1`}>
+                    <button disabled={isLastPage} onClick={() => navigate(`/catalog/${pageNum + 1}`)} className={`${isLastPage ? 'bg-gray-500 cursor-not-allowed' : 'bg-indigo-700 text-white hover:bg-indigo-400 cursor-pointer'} px-4 py-2 mx-1`}>
                         Next
                     </button>
                 </div>
