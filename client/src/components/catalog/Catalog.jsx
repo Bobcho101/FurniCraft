@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useFurniture } from '../../api/furnitureApi';
 import { useNavigate, useParams } from 'react-router';
+import { ITEMS_PER_PAGE } from '../../utils/constants';
 
 function Catalog() {
     const navigate = useNavigate();
@@ -9,10 +10,14 @@ function Catalog() {
     const [searchQuery, setSearchQuery] = useState('');
     const [sortOption, setSortOption] = useState('price-low-to-high');
     const [loading, setLoading] = useState(true);
-    const [ furniture ] = useFurniture(sortOption, pageNum);
-   
+    const [ furniture, allFurnitureLength ] = useFurniture(sortOption, pageNum);
 
-    if(pageNum === 0) navigate('/catalog/1');
+    const totalPages = Math.ceil(allFurnitureLength / ITEMS_PER_PAGE); 
+    const isLastPage = pageNum === totalPages;
+
+    if (pageNum <= 0) {
+        navigate('/catalog/1'); 
+    } 
 
     useEffect(() => {
         if (furniture && furniture.length > 0) {
@@ -20,6 +25,9 @@ function Catalog() {
         }
     }, [furniture])
     
+   
+
+
     return (
         <div className="bg-gray-900 text-white min-h-screen py-16">
             <div className="max-w-7xl mx-auto px-6 mt-15">
@@ -76,11 +84,11 @@ function Catalog() {
                     <button onClick={() => {
                         if(pageNum === 1) return;
                         return navigate(`/catalog/${pageNum - 1}`)
-                    }} className="px-4 py-2 mx-1 bg-gray-700 text-white rounded-md hover:bg-gray-600">
+                    }} className={`${pageNum === 1 ? 'bg-gray-500 cursor-not-allowed' : 'bg-gray-700 text-white hover:bg-gray-600'} px-4 py-2 mx-1`}>
                         Previous
                     </button>
                     <span className="px-4 py-2 mx-1 bg-gray-800 text-white rounded-md">{pageNum}</span>
-                    <button onClick={() => navigate(`/catalog/${pageNum + 1}`)} className="px-4 py-2 mx-1 bg-gray-700 text-white rounded-md hover:bg-gray-600">
+                    <button disabled={isLastPage} onClick={() => navigate(`/catalog/${pageNum + 1}`)} className={`${isLastPage ? 'bg-gray-500 cursor-not-allowed' : 'bg-gray-700 text-white hover:bg-gray-600'} px-4 py-2 mx-1`}>
                         Next
                     </button>
                 </div>

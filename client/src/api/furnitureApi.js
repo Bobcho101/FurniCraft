@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { failedCreatingFurnitureMsg } from "../helpers/errorHandlingMsg";
+import { ITEMS_PER_PAGE } from "../utils/constants";
 const baseUrl = 'http://localhost:3030/data/furniture';
 
 const sortOptionsQueries = {
@@ -8,23 +9,26 @@ const sortOptionsQueries = {
     'name-a-to-z': '?sortBy=name',
     'name-z-to-a': '?sortBy=name%20desc',
 };
-const itemsPerPage = 2;
+
 
 export const useFurniture = (sortOption, currentPage) => {
     const [furniture, setFurniture] = useState([]);
-    const paginationQuery = `offset=${(currentPage - 1) * itemsPerPage }&pageSize=${itemsPerPage}`;
+    const [allFurnitureLength, setAllFurnitureLength] = useState(0);
+    const paginationQuery = `offset=${(currentPage - 1) * ITEMS_PER_PAGE }&pageSize=${ITEMS_PER_PAGE}`;
     useEffect(() => {
         const controller = new AbortController();
         fetch(baseUrl + sortOptionsQueries[sortOption] + '&' + paginationQuery , {signal: controller.signal})
             .then(res => res.json())
             .then(data => setFurniture(data))
 
-        return(() => {
-            controller.abort();
-        })
+        fetch(baseUrl)
+            .then(res => res.json())
+            .then(data => setAllFurnitureLength(data.length))
+
+       
     }, [sortOption, paginationQuery]);
 
-    return [furniture];
+    return [furniture, allFurnitureLength];
 }
 
 
