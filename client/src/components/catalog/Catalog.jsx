@@ -51,6 +51,8 @@ function Catalog() {
                             <option value="price-high-to-low">Price: High to Low</option>
                             <option value="name-a-to-z">Name: A to Z</option>
                             <option value="name-z-to-a">Name: Z to A</option>
+                            <option value="new-to-old">Created: New to Old</option>
+                            <option value="old-to-new">Created: Old to New</option>
                         </select>
                     </div>
                 </div>

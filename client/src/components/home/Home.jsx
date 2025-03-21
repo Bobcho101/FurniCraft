@@ -28,7 +28,7 @@ const Home = () => {
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
-                to={'/catalog'}
+                to={'/catalog/1'}
                 className="rounded-md bg-indigo-600 px-6 py-3 text-lg font-semibold text-white hover:bg-indigo-500 focus:outline-none"
               >
                 Shop Now

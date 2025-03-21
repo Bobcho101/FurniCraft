@@ -8,6 +8,8 @@ const sortOptionsQueries = {
     'price-high-to-low': 'sortBy=price%20desc',
     'name-a-to-z': 'sortBy=name',
     'name-z-to-a': 'sortBy=name%20desc',
+    'new-to-old': 'sortBy=_createdOn%20desc',
+    'old-to-new': 'sortBy=_createdOn',
 };
 
 
