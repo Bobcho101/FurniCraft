@@ -8,14 +8,14 @@ export default function Header() {
 
     if(accessToken){
         navigation = [
-            { name: 'Catalog', href: '/catalog' },
+            { name: 'Catalog', href: '/catalog/1' },
             { name: 'Sell a Furniture', href: '/sell-furniture' },
             { name: 'About', href: '/about' },
             { name: 'Contacts', href: '/contacts' },
         ];
     } else{
         navigation = [
-            { name: 'Catalog', href: '/catalog' },
+            { name: 'Catalog', href: '/catalog/1' },
             { name: 'About', href: '/about' },
             { name: 'Contacts', href: '/contacts' },
         ];
@@ -32,7 +32,7 @@ export default function Header() {
             <Link to={'/'} className="-m-1.5 p-1.5 flex flex-row gap-2 items-center">
               <img
                 alt="FurnitureHub"
-                src={'images/logo2.png'}
+                src={'/images/logo2.png'}
                 className="h-8 w-auto"
               />
                  <span className="text-white">FurniCraft</span>

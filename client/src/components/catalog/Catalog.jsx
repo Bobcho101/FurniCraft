@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useFurniture } from '../../api/furnitureApi';
+import { useNavigate, useParams } from 'react-router';
 
-export default function Catalog() {
+function Catalog() {
+    const navigate = useNavigate();
+    const { page } = useParams();
     const [searchQuery, setSearchQuery] = useState('');
     const [sortOption, setSortOption] = useState('price-low-to-high');
     const [loading, setLoading] = useState(true);
     const [ furniture ] = useFurniture(sortOption);
+    const pageNum = parseInt(page);
 
-    
+    if(pageNum === 0) navigate('/catalog/1');
+
     useEffect(() => {
         if (furniture && furniture.length > 0) {
             setLoading(false);
@@ -66,6 +71,21 @@ export default function Catalog() {
                 </div>
                 )}
             </div>
+            <div className="flex justify-center mt-8">
+                    <button onClick={() => {
+                        if(pageNum === 1) return;
+                        return navigate(`/catalog/${pageNum - 1}`)
+                    }} className="px-4 py-2 mx-1 bg-gray-700 text-white rounded-md hover:bg-gray-600">
+                        Previous
+                    </button>
+                    <span className="px-4 py-2 mx-1 bg-gray-800 text-white rounded-md">{pageNum}</span>
+                    <button onClick={() => navigate(`/catalog/${pageNum + 1}`)} className="px-4 py-2 mx-1 bg-gray-700 text-white rounded-md hover:bg-gray-600">
+                        Next
+                    </button>
+                </div>
         </div>
     );
 }
+
+
+export default Catalog;
