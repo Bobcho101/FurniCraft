@@ -3,8 +3,10 @@ import { useFurniture } from '../../api/furnitureApi';
 
 export default function Catalog() {
     const [searchQuery, setSearchQuery] = useState('');
+    const [sortOption, setSortOption] = useState('price-low-to-high');
     const [loading, setLoading] = useState(true);
-    const [ furniture ] = useFurniture();
+    const [ furniture ] = useFurniture(sortOption);
+
     
     useEffect(() => {
         if (furniture && furniture.length > 0) {
@@ -31,6 +33,7 @@ export default function Catalog() {
                     <div className="flex gap-4">
                         <select
                             className="p-2 bg-gray-800 text-white rounded-md"
+                            onChange={(e) => setSortOption(e.target.value)}
                         >
                             <option value="price-low-to-high">Price: Low to High</option>
                             <option value="price-high-to-low">Price: High to Low</option>

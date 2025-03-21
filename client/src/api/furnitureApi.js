@@ -2,20 +2,27 @@ import { useEffect, useState } from "react"
 import { failedCreatingFurnitureMsg } from "../helpers/errorHandlingMsg";
 const baseUrl = 'http://localhost:3030/data/furniture';
 
-export const useFurniture = () => {
+const sortOptionsQueries = {
+    'price-low-to-high': '?sortBy=price',
+    'price-high-to-low': '?sortBy=price%20desc',
+    'name-a-to-z': '?sortBy=name',
+    'name-z-to-a': '?sortBy=name%20desc',
+};
+
+export const useFurniture = (sortOption) => {
     const [furniture, setFurniture] = useState([]);
 
     useEffect(() => {
         const controller = new AbortController();
 
-        fetch(baseUrl, {signal: controller.signal})
+        fetch(baseUrl + sortOptionsQueries[sortOption], {signal: controller.signal})
             .then(res => res.json())
             .then(data => setFurniture(data))
 
         return(() => {
             controller.abort();
         })
-    }, []);
+    }, [sortOption]);
 
     return [furniture];
 }
