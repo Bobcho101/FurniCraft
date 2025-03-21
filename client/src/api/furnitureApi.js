@@ -6,9 +6,15 @@ export const useFurniture = () => {
     const [furniture, setFurniture] = useState([]);
 
     useEffect(() => {
-        fetch(baseUrl)
+        const controller = new AbortController();
+
+        fetch(baseUrl, {signal: controller.signal})
             .then(res => res.json())
             .then(data => setFurniture(data))
+
+        return(() => {
+            controller.abort();
+        })
     }, []);
 
     return [furniture];

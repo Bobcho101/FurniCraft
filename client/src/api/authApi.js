@@ -2,7 +2,6 @@ import { emailOrUsernameAlreadyExistsMsg, guestCannotLogoutMsg, invalidEmailOrPa
 
 export const useRegister = () => {
     const register = async (username, email, password) => {
-        const controller = new AbortController();
         try{
             const response = await fetch('http://localhost:3030/users/register', {
                 method: 'POST',
@@ -14,7 +13,6 @@ export const useRegister = () => {
                     email,
                     password,
                 }),
-                signal: controller.signal
             });
             if(!response.ok){
                 return {
@@ -33,7 +31,6 @@ export const useRegister = () => {
 
 export const useLogin = () => {
     const login = async (email, password) => {
-        const controller = new AbortController();
         try{
             const response = await fetch('http://localhost:3030/users/login', {
                 method: 'POST',
@@ -44,7 +41,6 @@ export const useLogin = () => {
                     email,
                     password
                 }),
-                signal: controller.signal
             });
             if(!response.ok){
                 return {
@@ -62,7 +58,6 @@ export const useLogin = () => {
 }
 
 export const useLogout = () => {
-    const controller = new AbortController();
     const logout = async (accessToken) => {
         if(!accessToken){
             return {
@@ -76,7 +71,6 @@ export const useLogout = () => {
                     'Content-Type': 'application/json',
                     'X-Authorization': accessToken
                 },
-                signal: controller.signal,
             });
             if(!response.ok){
                 return {
