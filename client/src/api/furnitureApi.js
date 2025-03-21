@@ -16,8 +16,8 @@ export const useFurniture = (sortOption, currentPage, searchOption) => {
     const [allFurnitureLength, setAllFurnitureLength] = useState(0);
     const paginationQuery = `offset=${(currentPage - 1) * ITEMS_PER_PAGE }&pageSize=${ITEMS_PER_PAGE}`;
     const searchQuery = `?where=name%20LIKE%20%22${searchOption}%22`;
-console.log(baseUrl + searchQuery + '&' + sortOptionsQueries[sortOption] + '&' + paginationQuery);
 
+    
     useEffect(() => {
         const controller = new AbortController();
         fetch(baseUrl + searchQuery + '&' + sortOptionsQueries[sortOption] + '&' + paginationQuery , {signal: controller.signal})
