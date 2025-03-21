@@ -5,11 +5,12 @@ import { useNavigate, useParams } from 'react-router';
 function Catalog() {
     const navigate = useNavigate();
     const { page } = useParams();
+    const pageNum = parseInt(page);
     const [searchQuery, setSearchQuery] = useState('');
     const [sortOption, setSortOption] = useState('price-low-to-high');
     const [loading, setLoading] = useState(true);
-    const [ furniture ] = useFurniture(sortOption);
-    const pageNum = parseInt(page);
+    const [ furniture ] = useFurniture(sortOption, pageNum);
+   
 
     if(pageNum === 0) navigate('/catalog/1');
 

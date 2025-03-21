@@ -8,21 +8,21 @@ const sortOptionsQueries = {
     'name-a-to-z': '?sortBy=name',
     'name-z-to-a': '?sortBy=name%20desc',
 };
+const itemsPerPage = 2;
 
-export const useFurniture = (sortOption) => {
+export const useFurniture = (sortOption, currentPage) => {
     const [furniture, setFurniture] = useState([]);
-
+    const paginationQuery = `offset=${(currentPage - 1) * itemsPerPage }&pageSize=${itemsPerPage}`;
     useEffect(() => {
         const controller = new AbortController();
-
-        fetch(baseUrl + sortOptionsQueries[sortOption], {signal: controller.signal})
+        fetch(baseUrl + sortOptionsQueries[sortOption] + '&' + paginationQuery , {signal: controller.signal})
             .then(res => res.json())
             .then(data => setFurniture(data))
 
         return(() => {
             controller.abort();
         })
-    }, [sortOption]);
+    }, [sortOption, paginationQuery]);
 
     return [furniture];
 }
