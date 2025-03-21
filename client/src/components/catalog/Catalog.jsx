@@ -9,7 +9,7 @@ function Catalog() {
     const pageNum = parseInt(page);
     const [searchQuery, setSearchQuery] = useState('');
     const [sortOption, setSortOption] = useState('price-low-to-high');
-    const [loading, setLoading] = useState(true);
+    const [ loading, setLoading ] = useState(true);
     const [ furniture, allFurnitureLength ] = useFurniture(sortOption, pageNum, searchQuery);
 
     const totalPages = Math.ceil(allFurnitureLength / ITEMS_PER_PAGE); 
@@ -18,6 +18,10 @@ function Catalog() {
     if (pageNum <= 0) {
         navigate('/catalog/1'); 
     } 
+
+    useEffect(() => {
+        setLoading(true); 
+    }, [searchQuery, sortOption, page]);
 
     useEffect(() => {
         if (furniture && furniture.length > 0) {
