@@ -35,6 +35,19 @@ export const useFurniture = (sortOption, currentPage, searchOption) => {
     return [furniture, allFurnitureLength];
 }
 
+export const useOneFurniture = (furnitureId) => {
+    const [furniture, setFurniture] = useState({});
+
+    useEffect(() => {
+        fetch(baseUrl + '/' + furnitureId)
+            .then(res => res.json())
+            .then(data => setFurniture(data))
+    }, [furnitureId]);
+
+
+    return [furniture];
+}
+
 
 export const useCreateFurniture = () => {
     const create = async (newData, accessToken) => {

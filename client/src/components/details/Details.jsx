@@ -1,39 +1,35 @@
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
+import { useOneFurniture } from "../../api/furnitureApi";
+
+
+const recommendations = [
+    {
+        id: 1,
+        name: "Luxury Leather Sofa",
+        category: "Living Room",
+        price: "$799",
+        image: "https://via.placeholder.com/300x200",
+    },
+    {
+        id: 2,
+        name: "Minimalist Wooden Chair",
+        category: "Living Room",
+        price: "$149",
+        image: "https://via.placeholder.com/300x200",
+    },
+    {
+        id: 3,
+        name: "Glass Coffee Table",
+        category: "Kitchen",
+        price: "$199",
+        image: "https://via.placeholder.com/300x200",
+    },
+];
 
 export default function Details() {
-    const product = {
-        name: "Modern Wooden Table",
-        category: "Table",
-        price: "$299",
-        description:
-            "A beautifully crafted wooden table made from high-quality oak. Perfect for any modern home or office space.",
-        ownerId: "user-12345",
-        image: "https://via.placeholder.com/600x400", 
-    };
+    const { itemId } = useParams();
+    const [ furniture ] = useOneFurniture(itemId);
 
-    const recommendations = [
-        {
-            id: 1,
-            name: "Luxury Leather Sofa",
-            category: "Living Room",
-            price: "$799",
-            image: "https://via.placeholder.com/300x200",
-        },
-        {
-            id: 2,
-            name: "Minimalist Wooden Chair",
-            category: "Living Room",
-            price: "$149",
-            image: "https://via.placeholder.com/300x200",
-        },
-        {
-            id: 3,
-            name: "Glass Coffee Table",
-            category: "Kitchen",
-            price: "$199",
-            image: "https://via.placeholder.com/300x200",
-        },
-    ];
 
     return (
         <>
@@ -41,19 +37,19 @@ export default function Details() {
             <div className="bg-gray-800 p-10 rounded-lg shadow-lg max-w-5xl w-full flex flex-col lg:flex-row gap-10 mt-20">
                 <div className="w-full lg:w-1/2">
                     <img
-                        src={product.image}
-                        alt={product.name}
+                        src={furniture.image}
+                        alt={furniture.name}
                         className="w-full h-auto rounded-lg"
                     />
                 </div>
 
                 <div className="w-full lg:w-1/2">
-                    <h2 className="text-4xl font-bold">{product.name}</h2>
-                    <p className="text-indigo-400 text-lg mt-2">{product.category}</p>
-                    <p className="text-gray-300 mt-4">{product.description}</p>
-                    <p className="text-2xl font-semibold text-green-400 mt-4">{product.price}</p>
+                    <h2 className="text-4xl font-bold">{furniture.name}</h2>
+                    <p className="text-indigo-400 text-lg mt-2">{furniture.category}</p>
+                    <p className="text-gray-300 mt-4">{furniture.description}</p>
+                    <p className="text-2xl font-semibold text-white mt-4">${furniture.price}</p>
 
-                    <button className="mt-6 w-full bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-500 focus:outline-none">
+                    <button className="mt-6 w-full bg-indigo-600 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-indigo-500 focus:outline-none">
                         Buy Now
                     </button>
 
