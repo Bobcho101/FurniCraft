@@ -11,6 +11,7 @@ import Create from './components/create/Create'
 import UserProvider from './providers/userProvider'
 import Logout from './components/logout/Logout'
 import Catalog  from './components/catalog/Catalog'
+import Details from './components/details/Details'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/catalog/:page" element={<Catalog />} />
+          <Route path='/catalog/:itemId/details' element={<Details />} />
           <Route path='/sell-furniture' element={<Create />} />
           <Route path='/about' element={<About />} />
           <Route path='/register' element={<Register />} />

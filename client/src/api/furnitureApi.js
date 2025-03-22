@@ -21,7 +21,7 @@ export const useFurniture = (sortOption, currentPage, searchOption) => {
 
     
     useEffect(() => {
-        fetch(baseUrl + searchQuery + '&' + sortOptionsQueries[sortOption] + '&' + paginationQuery )
+        fetch(baseUrl + searchQuery + '&' + sortOptionsQueries[sortOption] + '&' + paginationQuery)
             .then(res => res.json())
             .then(data => setFurniture(data))
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useFurniture } from '../../api/furnitureApi';
-import { useNavigate, useParams } from 'react-router';
+import { Link, useNavigate, useParams } from 'react-router';
 import { ITEMS_PER_PAGE } from '../../utils/constants';
 
 function Catalog() {
@@ -69,7 +69,7 @@ function Catalog() {
                     {furniture.length > 0
                     ? furniture
                         .map((item) => (
-                            <div
+                            <Link to={`/catalog/${item._id}/details`}
                                 key={item._id}
                                 className="bg-gray-800 p-6 rounded-lg shadow-lg cursor-pointer hover:bg-gray-700"
                             >
@@ -77,7 +77,7 @@ function Catalog() {
                                 <h3 className="text-2xl font-semibold text-center">{item.name}</h3>
                                 <p className="text-center text-indigo-400">{item.category}</p>
                                 <p className="text-center text-xl mt-3">${item.price}</p>
-                            </div>
+                            </Link>
                         ))
                     : (<h1 className="text-2xl font-semibold text-center text-gray-400 mt-10">No Items</h1>) }
                 </div>
