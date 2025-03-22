@@ -9,14 +9,13 @@ export default function Details() {
     const [ recommendedFurniture ] = useRecommendedFurniture(furniture.category, furniture._id);
     const [ loading, setLoading ] = useState(true);
 
-    
     useEffect(() => {
-        if (furniture && furniture._id && recommendedFurniture) {
+        if (furniture && furniture._id) {
             setLoading(false);
         }
-    }, [furniture, recommendedFurniture])
+    }, [furniture, recommendedFurniture]);
 
-    
+
     return (
         <>
         {loading && 
