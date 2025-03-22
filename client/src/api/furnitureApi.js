@@ -24,15 +24,35 @@ export const useFurniture = (sortOption, currentPage, searchOption) => {
         fetch(baseUrl + searchQuery + '&' + sortOptionsQueries[sortOption] + '&' + paginationQuery)
             .then(res => res.json())
             .then(data => setFurniture(data))
+            .catch(err => console.log(err))
 
         fetch(baseUrl + searchQuery)
             .then(res => res.json())
             .then(data => setAllFurnitureLength(data.length))
-
+            .catch(err => console.log(err))
        
     }, [sortOption, paginationQuery, searchQuery]);
 
     return [furniture, allFurnitureLength];
+}
+
+export const useRecommendedFurniture = (category, furnitureId) => {
+    const [recommendedFurniture, setRecommendedFurniture] = useState([]);
+
+    const categoryFilterQuery = `?where=category%20LIKE%20%22${category}%22`;
+
+    useEffect(() => {
+        fetch(baseUrl + categoryFilterQuery)
+            .then(res => res.json())
+            .then(data => setRecommendedFurniture(data))
+            .catch(err => console.log(err))
+
+    }, [categoryFilterQuery])
+
+    const filteredRecommendedFurniture = recommendedFurniture.filter(curItem => curItem._id !== furnitureId);
+    const result = filteredRecommendedFurniture.slice(0, 3);
+
+    return [result];
 }
 
 export const useOneFurniture = (furnitureId) => {
@@ -42,6 +62,8 @@ export const useOneFurniture = (furnitureId) => {
         fetch(baseUrl + '/' + furnitureId)
             .then(res => res.json())
             .then(data => setFurniture(data))
+            .catch(err => console.log(err))
+
     }, [furnitureId]);
 
 
