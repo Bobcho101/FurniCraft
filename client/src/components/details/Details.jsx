@@ -44,19 +44,20 @@ export default function Details() {
                     />
                 </div>
 
-                <div className="w-full lg:w-1/2 flex flex-col h-full">
+                <div className="w-full lg:w-1/2">
                     <h2 className="text-4xl font-bold">{furniture.name}</h2>
                     <p className="text-indigo-400 text-lg mt-2">{furniture.category}</p>
                     <p className="text-gray-300 mt-4">{furniture.description}</p>
                     <p className="text-2xl font-semibold text-white mt-4">${furniture.price}</p>
 
-                    <div className="mt-auto flex flex-col gap-4">
-                        <button className="w-full bg-indigo-600 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-indigo-500 focus:outline-none">
-                            Buy Now
-                        </button>
+                    <button className="mt-48 w-full bg-indigo-600 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-indigo-500 focus:outline-none">
+                        Buy Now
+                    </button>
+
+                    <div className="mt-5 text-center">
                         <Link
                             to="/catalog/1"
-                            className="text-indigo-400 hover:text-indigo-300 text-sm font-medium text-center"
+                            className="text-indigo-400 hover:text-indigo-300 text-sm font-medium"
                         >
                             Back to Catalog
                         </Link>
