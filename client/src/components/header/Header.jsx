@@ -84,7 +84,7 @@ export default function Header() {
                 <span className="sr-only">FurnitureHub</span>
                 <img
                   alt="FurnitureHub"
-                  src={"images/logo2.png"}
+                  src={"/images/logo2.png"}
                   className="h-8 w-auto"
                 />
               </Link>
@@ -102,6 +102,7 @@ export default function Header() {
             <div className="mt-6 space-y-2">
               {navigation.map((item) => (
                 <Link
+                  onClick={() => setMobileMenuOpen(false)}
                   key={item.name}
                   to={item.href}
                   className="block text-gray-900 hover:bg-gray-100 rounded-lg px-3 py-2 text-base font-semibold"
