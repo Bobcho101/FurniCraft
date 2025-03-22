@@ -68,7 +68,7 @@ export default function Details() {
                 <h3 className="text-3xl font-semibold mb-6 text-center">You May Also Like</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {recommendedFurniture.map((item) => (
-                        <div key={item._id} className="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-full">
+                        <Link to={`/catalog/${item._id}/details`} key={item._id} className="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-full">
                             <img
                                 src={item.image}
                                 alt={item.name}
@@ -77,7 +77,7 @@ export default function Details() {
                             <h4 className="text-2xl font-semibold">{item.name}</h4>
                             <p className="text-indigo-400">{item.category}</p>
                             <p className="text-lg text-white font-semibold mt-auto">${item.price}</p>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
