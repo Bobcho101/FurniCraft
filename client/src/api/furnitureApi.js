@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { failedCreatingFurnitureMsg } from "../helpers/errorHandlingMsg";
+import { failedCreatingFurnitureMsg, failedUpdatingFurnitureMsg } from "../helpers/errorHandlingMsg";
 import { ITEMS_PER_PAGE } from "../utils/constants";
 const baseUrl = 'http://localhost:3030/data/furniture';
 
@@ -55,20 +55,30 @@ export const useRecommendedFurniture = (category, furnitureId) => {
     return [result];
 }
 
-export const useOneFurniture = (furnitureId) => {
-    const [furniture, setFurniture] = useState({});
+// export const useOneFurniture = (furnitureId) => {
+//     const [furniture, setFurniture] = useState({});
 
-    useEffect(() => {
-        fetch(baseUrl + '/' + furnitureId)
-            .then(res => res.json())
-            .then(data => setFurniture(data))
-            .catch(err => console.log(err))
+//     useEffect(() => {
+//         fetch(baseUrl + '/' + furnitureId)
+//             .then(res => res.json())
+//             .then(data => setFurniture(data))
+//             .catch(err => console.log(err))
 
-    }, [furnitureId]);
+//     }, [furnitureId]);
 
 
-    return [furniture];
-}
+//     return [furniture];
+// }
+
+export const fetchOneFurniture = async (furnitureId) => {
+    try {
+        const response = await fetch(baseUrl + '/' + furnitureId);
+        const data = await response.json();
+        return data;
+    } catch (err) {
+        console.log(err.message); 
+    }
+};
 
 
 export const useCreateFurniture = () => {
@@ -97,3 +107,30 @@ export const useCreateFurniture = () => {
 
     return [ create ];
 }
+
+export const useEditFurniture = () => {
+    const edit = async (furnitureId, newData, accessToken) => {
+        try{
+            const response = await fetch(baseUrl + '/' + furnitureId, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Authorization': accessToken,
+                },
+                body: JSON.stringify(newData),
+            });
+            
+            if(!response.ok){
+                return {
+                    error: failedUpdatingFurnitureMsg, 
+                }
+            }
+            const data = await response.json();
+            return { data };
+        } catch(err){
+            console.log(err.message);
+        }
+    };
+
+    return [ edit ];
+};
