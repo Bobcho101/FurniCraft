@@ -40,7 +40,7 @@ export default function Details() {
         }
     }, [furniture, recommendedFurniture]);
 
-    const handleFurnitureEdit = () => {
+    const handleFurnitureEdit = () => {  //* This thing here is for re-rendering the component when the furniture is edited
         fetchFurniture(itemId);
     };
 
@@ -49,7 +49,7 @@ export default function Details() {
         <>
         {isEditActive && <Edit furniture={furniture} setIsActive={setIsEditActive} reRender={handleFurnitureEdit} />}
         {loading && 
-        <div className="fixed inset-0 flex items-center justify-center bg-opacity-75 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
             <div className="w-16 h-16 border-4 border-gray-300 border-t-indigo-500 rounded-full animate-spin"></div>
         </div>
         }
@@ -84,9 +84,6 @@ export default function Details() {
                         Buy Now
                     </button>
                 )}
-                
-
-                
 
                 <div className="mt-5 text-center">
                     <Link
@@ -102,7 +99,9 @@ export default function Details() {
         <div className="mt-12 max-w-5xl w-full">
                 <h3 className="text-3xl font-semibold mb-6 text-center">You May Also Like</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {recommendedFurniture.map((item) => (
+                    {recommendedFurniture.length > 0 
+                    ?
+                    recommendedFurniture.map((item) => (
                         <Link to={`/catalog/${item._id}/details`} key={item._id} className="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-full">
                             <img
                                 src={item.image}
@@ -113,7 +112,9 @@ export default function Details() {
                             <p className="text-indigo-400">{item.category}</p>
                             <p className="text-lg text-white font-semibold mt-auto">${item.price}</p>
                         </Link>
-                    ))}
+                    ))
+                    : <h1 className="text-center text-xl font-semibold text-gray-400 mt-10">No Recommended Furniture</h1>
+                    }
                 </div>
             </div>
         </div>

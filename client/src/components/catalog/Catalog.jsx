@@ -7,8 +7,8 @@ function Catalog() {
     const navigate = useNavigate();
     const { page } = useParams();
     const pageNum = parseInt(page);
-    const [searchQuery, setSearchQuery] = useState('');
-    const [sortOption, setSortOption] = useState('price-low-to-high');
+    const [ searchQuery, setSearchQuery ] = useState('');
+    const [ sortOption, setSortOption ] = useState('price-low-to-high');
     const [ loading, setLoading ] = useState(true);
     const [ furniture, allFurnitureLength ] = useFurniture(sortOption, pageNum, searchQuery);
 
@@ -27,8 +27,9 @@ function Catalog() {
         if (furniture && furniture.length > 0) {
             setLoading(false);
         }
-    }, [furniture])
-    
+    }, [furniture]);
+
+ 
 
     return (
         <div className="bg-gray-900 text-white min-h-screen py-16">
