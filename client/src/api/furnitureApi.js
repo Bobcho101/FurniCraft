@@ -21,7 +21,7 @@ export const useFurniture = (sortOption, currentPage, searchOption) => {
 
     let finalUrl = '';
     if(searchOption){
-        finalUrl = baseUrl + searchOption + '&' + sortOptionsQueries[sortOption] + '&' + paginationQuery;
+        finalUrl = baseUrl + searchQuery + '&' + sortOptionsQueries[sortOption] + '&' + paginationQuery;
     } else{
         finalUrl = baseUrl + '?' + sortOptionsQueries[sortOption] + '&' + paginationQuery;
     }
@@ -38,7 +38,7 @@ export const useFurniture = (sortOption, currentPage, searchOption) => {
             .then(data => setAllFurnitureLength(data.length))
             .catch(err => console.log(err))
        
-    }, [sortOption, paginationQuery, searchQuery]);
+    }, [finalUrl, searchQuery]);
 
     return [furniture, allFurnitureLength];
 }

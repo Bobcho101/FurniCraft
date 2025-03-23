@@ -16,12 +16,14 @@ function Catalog() {
     const isLastPage = pageNum === totalPages;
 
 
-    if (pageNum <= 0) {
-        navigate('/catalog/1'); 
-    } 
-    if(pageNum > totalPages){
-        navigate('/catalog/1');
-    }
+    useEffect(() => {
+        if (pageNum <= 0) {
+            navigate('/catalog/1'); 
+        } 
+        if(pageNum > totalPages){
+            navigate('/catalog/1');
+        }
+    }, [navigate, pageNum, totalPages])
 
     useEffect(() => {
         setLoading(true); 
