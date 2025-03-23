@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router";
 import { useOneFurniture, useRecommendedFurniture } from "../../api/furnitureApi";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../contexts/userContext";
 
 
 export default function Details() {
@@ -8,6 +9,18 @@ export default function Details() {
     const [ furniture ] = useOneFurniture(itemId);
     const [ recommendedFurniture ] = useRecommendedFurniture(furniture.category, furniture._id);
     const [ loading, setLoading ] = useState(true);
+    const { _id } = useContext(UserContext);
+
+
+    let isOwner;
+
+    if(_id !== undefined){
+        isOwner = furniture._ownerId === _id;
+    } else{
+        isOwner = false;
+    }
+    
+
 
     useEffect(() => {
         if (furniture && furniture._id) {
@@ -39,18 +52,24 @@ export default function Details() {
                 <p className="text-gray-300 mt-4">{furniture.description}</p>
                 <p className="text-2xl font-semibold text-white mt-4">${furniture.price}</p>
 
-                <button className="mt-30 w-full bg-indigo-600 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-indigo-500 focus:outline-none">
-                    Buy Now
-                </button>
 
-                <div className="mt-4 flex gap-4">
+                {isOwner 
+                ? (<div className="mt-4 flex gap-4">
                     <button className="w-1/2 bg-gray-700 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-yellow-400 focus:outline-none">
                         Edit
                     </button>
                     <button className="w-1/2 bg-red-700 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-red-500 focus:outline-none">
                         Delete
                     </button>
-                </div>
+                </div>) 
+                : (
+                    <button className="mt-30 w-full bg-indigo-600 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-indigo-500 focus:outline-none">
+                        Buy Now
+                    </button>
+                )}
+                
+
+                
 
                 <div className="mt-5 text-center">
                     <Link
