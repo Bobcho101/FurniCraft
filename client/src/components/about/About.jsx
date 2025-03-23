@@ -46,43 +46,6 @@ export default function About() {
                     </p>
                 </div>
             ))}
-            {/* <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-            <img
-                src="images/person1.jpg"
-                alt="CEO"
-                className="w-32 h-32 mx-auto rounded-full mb-4"
-            />
-            <h3 className="text-2xl font-semibold">John Doe</h3>
-            <p className="text-indigo-400">CEO & Founder</p>
-            <p className="mt-3 text-gray-300 text-sm">
-                
-            </p>
-            </div> */}
-
-            {/* <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-            <img
-                src="images/person2.jpg"
-                alt="Designer"
-                className="w-32 h-32 mx-auto rounded-full mb-4"
-            />
-            <h3 className="text-2xl font-semibold">Sarah Smith</h3>
-            <p className="text-indigo-400">Head of Design</p>
-            <p className="mt-3 text-gray-300 text-sm">
-                Sarah brings creativity and elegance to our furniture collections with her expertise.
-            </p>
-            </div> */}
-            {/* <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-            <img
-                src="images/person3.jpg"
-                alt="Operations"
-                className="w-32 h-32 mx-auto rounded-full mb-4"
-            />
-            <h3 className="text-2xl font-semibold">Michael Brown</h3>
-            <p className="text-indigo-400">Head of Operations</p>
-            <p className="mt-3 text-gray-300 text-sm">
-                Michael ensures everything runs smoothly, from manufacturing to customer service.
-            </p>
-            </div> */}
         </div>
 
         <div className="mt-10 text-center">

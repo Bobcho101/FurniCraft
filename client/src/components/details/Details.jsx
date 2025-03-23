@@ -3,6 +3,7 @@ import { useOneFurniture, useRecommendedFurniture } from "../../api/furnitureApi
 import { useContext, useEffect, useMemo, useState } from "react";
 import { UserContext } from "../../contexts/userContext";
 import { checkIsOwner } from "../../utils/miniAuthorizations";
+import Edit from "../edit/Edit";
 
 
 export default function Details() {
@@ -10,11 +11,10 @@ export default function Details() {
     const [ furniture ] = useOneFurniture(itemId);
     const [ recommendedFurniture ] = useRecommendedFurniture(furniture?.category, furniture?._id);
     const [ loading, setLoading ] = useState(true);
+    const [ isEditActive, setIsEditActive ] = useState(false);
     const { _id } = useContext(UserContext);
 
     const isOwner = useMemo(() => checkIsOwner(_id, furniture._ownerId), [furniture._ownerId, _id]);
-    console.log(isOwner);
-    
 
     useEffect(() => {
         if (furniture && furniture._id) {
@@ -25,8 +25,9 @@ export default function Details() {
 
     return (
         <>
+        {isEditActive && <Edit setIsActive={setIsEditActive} />}
         {loading && 
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-opacity-75 z-50">
             <div className="w-16 h-16 border-4 border-gray-300 border-t-indigo-500 rounded-full animate-spin"></div>
         </div>
         }
@@ -49,13 +50,13 @@ export default function Details() {
 
                 {isOwner 
                 ? (<div className="mt-4 flex gap-4">
-                    <button className="w-1/2 bg-gray-700 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-yellow-400 focus:outline-none">
+                    <button onClick={() => setIsEditActive(true)} className="w-1/2 bg-gray-700 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-yellow-400 focus:outline-none">
                         Edit
                     </button>
                     <button className="w-1/2 bg-red-700 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-red-500 focus:outline-none">
                         Delete
                     </button>
-                </div>) 
+                    </div>) 
                 : (
                     <button className="mt-30 w-full bg-indigo-600 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-indigo-500 focus:outline-none">
                         Buy Now
