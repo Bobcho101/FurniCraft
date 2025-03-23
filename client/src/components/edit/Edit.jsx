@@ -1,6 +1,6 @@
-
-
-export default function Edit({ setIsActive }) {
+export default function Edit({ furniture ,setIsActive }) {
+    console.log(furniture);
+    
     return(
         <>
         <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-30 z-50">
@@ -15,23 +15,24 @@ export default function Edit({ setIsActive }) {
                         name="name"
                         className="w-full p-2 bg-gray-700 text-white rounded-md"
                         placeholder="Enter item name"
-                        defaultValue="" 
+                        defaultValue={furniture.name}
                     />
                 </div>
 
                 <div className="mb-4">
                     <label htmlFor="itemCategory" className="block text-white font-medium mb-2">Category</label>
                     <select
+                        defaultValue={furniture.category}
                         id="itemCategory"
                         name="category"
                         className="w-full p-2 bg-gray-700 text-white rounded-md"
                     >
-                        <option value="">Select category</option>
-                        <option value="chairs">Chairs</option>
-                        <option value="tables">Tables</option>
-                        <option value="sofas">Sofas</option>
-                        <option value="beds">Beds</option>
-                        <option value="desks">Desks</option>
+                        <option value="">Select Category</option>
+                        <option value="Living Room">Living Room</option>
+                        <option value="Dining Room">Dining Room</option>
+                        <option value="Office">Office</option>
+                        <option value="Bedroom">Bedroom</option>
+                        <option value="Kitchen">Kitchen</option>
                     </select>
                 </div>
 
@@ -43,6 +44,7 @@ export default function Edit({ setIsActive }) {
                         className="w-full p-2 bg-gray-700 text-white rounded-md"
                         placeholder="Enter item description"
                         rows="4"
+                        defaultValue={furniture.description}
                     ></textarea>
                 </div>
 
@@ -54,7 +56,7 @@ export default function Edit({ setIsActive }) {
                         name="price"
                         className="w-full p-2 bg-gray-700 text-white rounded-md"
                         placeholder="Enter price"
-                        defaultValue=""
+                        defaultValue={furniture.price}
                     />
                 </div>
 
