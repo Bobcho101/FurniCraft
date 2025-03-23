@@ -1,26 +1,20 @@
 import { Link, useParams } from "react-router";
 import { useOneFurniture, useRecommendedFurniture } from "../../api/furnitureApi";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { UserContext } from "../../contexts/userContext";
+import { checkIsOwner } from "../../utils/miniAuthorizations";
 
 
 export default function Details() {
     const { itemId } = useParams();
     const [ furniture ] = useOneFurniture(itemId);
-    const [ recommendedFurniture ] = useRecommendedFurniture(furniture.category, furniture._id);
+    const [ recommendedFurniture ] = useRecommendedFurniture(furniture?.category, furniture?._id);
     const [ loading, setLoading ] = useState(true);
     const { _id } = useContext(UserContext);
 
-
-    let isOwner;
-
-    if(_id !== undefined){
-        isOwner = furniture._ownerId === _id;
-    } else{
-        isOwner = false;
-    }
+    const isOwner = useMemo(() => checkIsOwner(_id, furniture._ownerId), [furniture._ownerId, _id]);
+    console.log(isOwner);
     
-
 
     useEffect(() => {
         if (furniture && furniture._id) {
