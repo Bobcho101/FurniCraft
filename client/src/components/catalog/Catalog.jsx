@@ -46,6 +46,7 @@ function Catalog() {
                     <div className="w-1/3">
                         <input
                             type="text"
+                            id="search"
                             placeholder="Search products..."
                             className="w-full p-2 bg-gray-800 text-white rounded-md"
                             value={searchQuery}
@@ -55,6 +56,7 @@ function Catalog() {
 
                     <div className="flex gap-4 items-center">
                         <select
+                            id="sort"
                             className="p-2 bg-gray-800 text-white rounded-md"
                             onChange={(e) => setSortOption(e.target.value)}
                         >

@@ -118,7 +118,7 @@ export default function Create() {
                         <label htmlFor="image" className="block text-sm font-medium text-gray-300">
                             Image Url:
                         </label>
-                        <input type="text" onChange={changeFormValues} name="image" className="mt-2 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none text-white" />
+                        <input type="text" onChange={changeFormValues} id="image" name="image" className="mt-2 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none text-white" />
                     </div>
 
                     <button

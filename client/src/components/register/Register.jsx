@@ -91,7 +91,7 @@ export default function Register() {
             </div>
 
             <div className="mb-6">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-300">
+                <label htmlFor="rePassword" className="block text-sm font-medium text-gray-300">
                 Repeat Password
                 </label>
                 <input
@@ -100,7 +100,7 @@ export default function Register() {
                 name="rePassword"
                 value={formValues.rePassword}
                 onChange={changeFormValues}
-                placeholder="Enter your password"
+                placeholder="Repeat password"
                 className="mt-2 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
                 />
             </div>
