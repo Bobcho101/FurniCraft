@@ -4,6 +4,7 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { UserContext } from "../../contexts/userContext";
 import { checkIsOwner } from "../../utils/miniAuthorizations";
 import Edit from "../edit/Edit";
+import Delete from "../delete/Delete";
 
 
 export default function Details() {
@@ -12,6 +13,7 @@ export default function Details() {
     const [ recommendedFurniture ] = useRecommendedFurniture(furniture?.category, furniture?._id);
     const [ loading, setLoading ] = useState(true);
     const [ isEditActive, setIsEditActive ] = useState(false);
+    const [ isDeleteActive, setIsDeleteActive ] = useState(false);
     const { _id } = useContext(UserContext);
 
 
@@ -47,6 +49,7 @@ export default function Details() {
 
     return (
         <>
+        {isDeleteActive && <Delete itemName={furniture.name} itemId={furniture._id} setIsActive={setIsDeleteActive} />}
         {isEditActive && <Edit furniture={furniture} setIsActive={setIsEditActive} reRender={handleFurnitureEdit} />}
         {loading && 
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
@@ -75,7 +78,7 @@ export default function Details() {
                     <button onClick={() => setIsEditActive(true)} className="w-1/2 bg-gray-700 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-yellow-400 focus:outline-none">
                         Edit
                     </button>
-                    <button className="w-1/2 bg-red-700 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-red-500 focus:outline-none">
+                    <button onClick={() => setIsDeleteActive(true)} className="w-1/2 bg-red-700 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-red-500 focus:outline-none">
                         Delete
                     </button>
                     </div>) 
