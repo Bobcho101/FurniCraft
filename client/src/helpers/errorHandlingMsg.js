@@ -6,4 +6,5 @@ export const guestCannotLogoutMsg = 'A guest cannot logout!';
 
 
 export const failedCreatingFurnitureMsg = 'Failed to create furniture!';
+export const failedUpdatingFurnitureMsg = 'Failed to update furniture!';
 export const invalidCategoryMsg = 'Invalid category!';

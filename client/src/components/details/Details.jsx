@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router";
-import { useOneFurniture, useRecommendedFurniture } from "../../api/furnitureApi";
+import { fetchOneFurniture, useRecommendedFurniture } from "../../api/furnitureApi";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { UserContext } from "../../contexts/userContext";
 import { checkIsOwner } from "../../utils/miniAuthorizations";
@@ -8,11 +8,29 @@ import Edit from "../edit/Edit";
 
 export default function Details() {
     const { itemId } = useParams();
-    const [ furniture ] = useOneFurniture(itemId);
+    const [ furniture, setFurniture ] = useState({});
     const [ recommendedFurniture ] = useRecommendedFurniture(furniture?.category, furniture?._id);
     const [ loading, setLoading ] = useState(true);
     const [ isEditActive, setIsEditActive ] = useState(false);
     const { _id } = useContext(UserContext);
+
+
+    const fetchFurniture = async (furnitureId) => {
+        try {
+            const data = await fetchOneFurniture(furnitureId);;
+
+            setFurniture(data); 
+            setLoading(false); 
+        } catch (err) {
+            console.log(err.message);
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchFurniture(itemId);
+    }, [itemId]); 
+
 
     const isOwner = useMemo(() => checkIsOwner(_id, furniture._ownerId), [furniture._ownerId, _id]);
 
@@ -22,10 +40,14 @@ export default function Details() {
         }
     }, [furniture, recommendedFurniture]);
 
+    const handleFurnitureEdit = () => {
+        fetchFurniture(itemId);
+    };
+
 
     return (
         <>
-        {isEditActive && <Edit furniture={furniture} setIsActive={setIsEditActive} />}
+        {isEditActive && <Edit furniture={furniture} setIsActive={setIsEditActive} reRender={handleFurnitureEdit} />}
         {loading && 
         <div className="fixed inset-0 flex items-center justify-center bg-opacity-75 z-50">
             <div className="w-16 h-16 border-4 border-gray-300 border-t-indigo-500 rounded-full animate-spin"></div>

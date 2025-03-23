@@ -1,6 +1,11 @@
+import { useContext } from "react";
+import { useEditFurniture } from "../../api/furnitureApi";
 import useForm from "../../hooks/useForm";
+import { UserContext } from "../../contexts/userContext";
 
-export default function Edit({ furniture ,setIsActive }) {
+export default function Edit({ furniture, setIsActive, reRender }) {
+    const { accessToken } = useContext(UserContext);
+    const [ edit ] = useEditFurniture();
     const [ formValues, changeFormValues ] = useForm({
         name: furniture.name,
         price: furniture.price,
@@ -9,10 +14,19 @@ export default function Edit({ furniture ,setIsActive }) {
         description: furniture.description
     });
 
-    const editSubmitHandler = (e) => {
+    const editSubmitHandler = async (e) => {
         e.preventDefault();
-        
+        const response = await edit(furniture._id, formValues, accessToken);
+        console.log(response);
+        if(response.error){
+            return alert(response.error);
+        }
+
+        reRender();
+        setIsActive(false);
     }
+
+
 
     return(
         <>
