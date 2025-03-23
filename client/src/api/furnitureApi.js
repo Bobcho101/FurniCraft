@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { failedCreatingFurnitureMsg, failedUpdatingFurnitureMsg } from "../helpers/errorHandlingMsg";
+import { failedCreatingFurnitureMsg, failedDeletingFurnitureMsg, failedUpdatingFurnitureMsg } from "../helpers/errorHandlingMsg";
 import { ITEMS_PER_PAGE } from "../utils/constants";
 const baseUrl = 'http://localhost:3030/data/furniture';
 
@@ -19,9 +19,16 @@ export const useFurniture = (sortOption, currentPage, searchOption) => {
     const paginationQuery = `offset=${(currentPage - 1) * ITEMS_PER_PAGE }&pageSize=${ITEMS_PER_PAGE}`;
     const searchQuery = `?where=name%20LIKE%20%22${searchOption}%22`;
 
+    let finalUrl = '';
+    if(searchOption){
+        finalUrl = baseUrl + searchOption + '&' + sortOptionsQueries[sortOption] + '&' + paginationQuery;
+    } else{
+        finalUrl = baseUrl + '?' + sortOptionsQueries[sortOption] + '&' + paginationQuery;
+    }
     
+
     useEffect(() => {
-        fetch(baseUrl + searchQuery + '&' + sortOptionsQueries[sortOption] + '&' + paginationQuery)
+        fetch(finalUrl)
             .then(res => res.json())
             .then(data => setFurniture(data))
             .catch(err => console.log(err))
@@ -134,3 +141,30 @@ export const useEditFurniture = () => {
 
     return [ edit ];
 };
+
+
+export const useDeleteFurniture = () => {
+    const deleteFunction = async (furnitureId, accessToken) => {
+        try{
+            const response = await fetch(baseUrl + '/' + furnitureId, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Authorization': accessToken,
+                },
+            });
+            
+            if(!response.ok){
+                return {
+                    error: failedDeletingFurnitureMsg, 
+                }
+            }
+            const data = await response.json();
+            return { data };
+        } catch(err){
+            console.log(err.message);
+        }
+    };
+    return [ deleteFunction ];
+};
+
