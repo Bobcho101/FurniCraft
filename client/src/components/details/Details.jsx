@@ -39,9 +39,18 @@ export default function Details() {
                 <p className="text-gray-300 mt-4">{furniture.description}</p>
                 <p className="text-2xl font-semibold text-white mt-4">${furniture.price}</p>
 
-                <button className="mt-48 w-full bg-indigo-600 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-indigo-500 focus:outline-none">
+                <button className="mt-30 w-full bg-indigo-600 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-indigo-500 focus:outline-none">
                     Buy Now
                 </button>
+
+                <div className="mt-4 flex gap-4">
+                    <button className="w-1/2 bg-gray-700 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-yellow-400 focus:outline-none">
+                        Edit
+                    </button>
+                    <button className="w-1/2 bg-red-700 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-red-500 focus:outline-none">
+                        Delete
+                    </button>
+                </div>
 
                 <div className="mt-5 text-center">
                     <Link
