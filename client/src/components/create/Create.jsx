@@ -32,7 +32,7 @@ export default function Create() {
         if(!validCategories.includes(formValues.category)){
             return alert(invalidCategoryMsg);
         }
-
+        formValues.price = Number(formValues.price);
         const response = await createFurniture(formValues, accessToken);
 
 

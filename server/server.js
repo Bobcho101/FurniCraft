@@ -1489,7 +1489,7 @@
             "dwfg-gwkd-2324-d213": {
                 _id: "dwfg-gwkd-2324-d213",
                 name: "Modern Sofa",
-                price: "799",
+                price: 799,
                 description: "A comfortable and stylish modern sofa for your living room.",
                 image: "https://assets.wfcdn.com/im/883969/resize-h800-w800%5Ecompr-r85/2802/280230171/Light+Luxury+Simple+Modern+Sofa+82.68%27%27+Upholstered+Sofa.jpg",  // Add actual image path
                 _ownerId: "dw34-63fa-323g-kdwm-3217",
@@ -1499,7 +1499,7 @@
             "7341-g3kd-2fwd-d213":{
                 _id: "7341-g3kd-2fwd-d213",
                 name: "Wooden Dining Table",
-                price: "399",
+                price: 399,
                 description: "A premium quality wooden dining table for family gatherings.",
                 image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkeKOfavRHZAXYebx6yA7jx2oc_BAMZ1OeVA&s",  
                 _ownerId: "kd98-3hfg-92kd-asdq-9826",
@@ -1509,7 +1509,7 @@
             "dlpf-j85f-2id4-d932": {
                 _id: "dlpf-j85f-2id4-d932",
                 name: "Ergonomic Office Chair",
-                price: "349",
+                price: 349,
                 description: "An adjustable ergonomic chair designed for long working hours.",
                 image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUl32v9xmpyOlNUCqtWNnM6AxUZ9NBF5Gilg&s",  
                 _ownerId: "lm28-asd1-78fg-mzxc-4591",
@@ -1519,7 +1519,7 @@
             "d32g-w34d-3gl4-8dwa":{
                 _id: "d32g-w34d-3gl4-8dwa",
                 name: "Minimalist Bed Frame",
-                price: "599",
+                price: 599,
                 description: "A sturdy and elegant bed frame with a sleek design.",
                 image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7Hk5kTVXHjmCSu6MoCW6rGcgsNw-pyoPQqw&s", 
                 _ownerId: "dw34-63fa-323g-kdwm-3217",
@@ -1529,7 +1529,7 @@
             "nffg-8fda-lgas-dd31": {
                 _id: "nffg-8fda-lgas-dd31",
                 name: "Bookshelf Storage",
-                price: "299",
+                price: 299,
                 description: "A multi-level bookshelf for organizing your favorite reads.",
                 image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_MVnktahgSwEm8E6TE5n0zq05_Q8oXmH_AQ&s", 
                 _ownerId: "kd98-3hfg-92kd-asdq-9826",
@@ -1540,7 +1540,7 @@
                 "_ownerId": "31da38f7-2612-45b4-a8df-ef4e8dd74b23",
                 "name": "Cosmo Sofa",
                 "category": "Living Room",
-                "price": "399",
+                "price": 399,
                 "description": "Experience the Cosmo Sofa: a blend of modern design and ultimate comfort. Perfect for any living space, this sofa features premium materials and craftsmanship for lasting quality. Elevate your home with the stylish and luxurious Cosmo Sofa!",
                 "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqsw_gFgkDEy1kQ8xPVKCYyJSTKjEA_X_3mw&s",
                 "_createdOn": 1742494458554,
