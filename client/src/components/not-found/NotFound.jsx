@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 
 export default function NotFound() {
+    window.scrollTo(0, 0);
     const navigate = useNavigate();
 
     const goHome = () => {

@@ -35,8 +35,10 @@ function Catalog() {
         }
     }, [furniture]);
 
-    
- 
+    useEffect(() => {
+        console.log(pageNum);
+        window.scrollTo(0, 0);
+    }, [pageNum])
 
     return (
         <div className="bg-gray-900 text-white min-h-screen py-16">

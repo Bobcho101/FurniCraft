@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 
 export default function Contacts() {
+  window.scrollTo(0, 0);
   return (
     <div className="bg-gray-900 text-white min-h-screen flex items-center justify-center">
       <div className="w-full max-w-lg p-8 bg-gray-800 bg-opacity-90 rounded-lg shadow-lg">

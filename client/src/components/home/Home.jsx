@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 
 const Home = () => {
-
+  window.scrollTo(0, 0);
   return (
     <>
     <div className="bg-gray-900 text-white">

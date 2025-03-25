@@ -24,6 +24,7 @@ const people = [
 ];
 
 export default function About() {
+    window.scrollTo(0, 0);
     const [selectedPerson, setSelectedPerson] = useState(null);
 
 

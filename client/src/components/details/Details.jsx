@@ -8,6 +8,7 @@ import Delete from "../delete/Delete";
 
 
 export default function Details() {
+    window.scrollTo(0, 0);
     const { itemId } = useParams();
     const [ furniture, setFurniture ] = useState({});
     const [ recommendedFurniture ] = useRecommendedFurniture(furniture?.category, furniture?._id);
