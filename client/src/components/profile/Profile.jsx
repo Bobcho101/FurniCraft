@@ -1,11 +1,21 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router";
+import { UserContext } from "../../contexts/userContext";
+import { useGetUserInfo } from "../../api/userApi";
 
 export default function Profile() {
     const navigate = useNavigate();
+    const { accessToken } = useContext(UserContext);
+    const [ userData ] = useGetUserInfo(accessToken);
 
     const redirectToLogout = () => {
         navigate('/logout');
     }
+
+
+
+
+
     return (
         <div className="bg-gray-900 text-white min-h-screen flex justify-center py-12 px-6">
             <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-4xl w-full mt-20">
@@ -16,8 +26,8 @@ export default function Profile() {
                         alt="Profile" 
                         className="w-32 h-32 rounded-full border-4 border-indigo-500 shadow-md"
                     />
-                    <h2 className="text-3xl font-semibold mt-4">John Doe</h2>
-                    <p className="text-indigo-400 text-lg">johndoe@example.com</p>
+                    <h2 className="text-3xl font-semibold mt-4">{userData.username}</h2>
+                    <p className="text-indigo-400 text-lg">{userData.email}</p>
                 </div>
 
                 <div className="mt-8 border-t border-gray-700 pt-6">
@@ -25,11 +35,11 @@ export default function Profile() {
                     <div className="mt-4">
                         <div className="bg-gray-700 p-4 rounded-md shadow-md flex justify-between items-center">
                             <p>Wooden Chair - $120</p>
-                            <button className="text-indigo-400 hover:text-indigo-300">View</button>
+                            <button className="text-indigo-400 cursor-pointer hover:text-indigo-300">View</button>
                         </div>
                         <div className="bg-gray-700 p-4 rounded-md shadow-md flex justify-between items-center mt-3">
                             <p>Modern Sofa - $550</p>
-                            <button className="text-indigo-400 hover:text-indigo-300">View</button>
+                            <button className="text-indigo-400 cursor-pointer hover:text-indigo-300">View</button>
                         </div>
                     </div>
                 </div>
