@@ -53,7 +53,7 @@ export default function Header() {
               </Link>
             ))}
           </div>
-          <div className="hidden lg:flex lg:flex-1 gap-7 lg:justify-end">
+          <div className="hidden lg:flex lg:flex-1 gap-7 items-center lg:justify-end">
             {!accessToken ? ( 
                 <>
                 <Link to={"/login"} className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
@@ -64,9 +64,18 @@ export default function Header() {
                 </Link>
             </>
           ) : (
+            <>
                 <Link to={"/logout"} className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
                     Logout <span aria-hidden="true"></span>
                 </Link>
+                <Link to={"/profile"} className="flex items-center gap-2">
+                  <img
+                    src={"/images/user.png"}  
+                    alt="User Profile"
+                    className="w-10 h-10 rounded-full object-cover border-2 border-white"
+                  />
+                </Link>
+              </>
           )}
          
             
@@ -120,9 +129,14 @@ export default function Header() {
                     </Link>
                 </>
                 ) : (
+                  <>
+                    <Link onClick={() => setMobileMenuOpen(false)} to={"/profile"} className="block text-gray-900 hover:bg-gray-100 rounded-lg px-3 py-2.5 text-base font-semibold">
+                        Profile
+                    </Link>
                     <Link onClick={() => setMobileMenuOpen(false)} to={"/logout"} className="block text-gray-900 hover:bg-gray-100 rounded-lg px-3 py-2.5 text-base font-semibold">
                         Log out
                     </Link>
+                  </>
                 )}
             </div>
           </div>

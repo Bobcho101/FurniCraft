@@ -30,11 +30,12 @@ function Catalog() {
     }, [searchQuery, sortOption, page]);
 
     useEffect(() => {
-        if (furniture) {
+        if (furniture && furniture.length > 0) {
             setLoading(false);
         }
     }, [furniture]);
 
+    
  
 
     return (
@@ -69,13 +70,13 @@ function Catalog() {
                         </select>
                     </div>
                 </div>
-                {loading ? (
+                {loading && searchQuery === '' ? (
                     <div className="flex justify-center items-center min-h-[200px]">
                         <div className="w-12 h-12 border-4 border-gray-300 border-t-indigo-500 rounded-full animate-spin"></div>
                     </div>
                 ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {furniture.length > 0
+                    {furniture.length > 0 
                     ? furniture
                         .map((item) => (
                             <Link to={`/catalog/${item._id}/details`}
