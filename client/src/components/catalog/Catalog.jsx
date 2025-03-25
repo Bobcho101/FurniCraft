@@ -22,7 +22,7 @@ function Catalog() {
         } 
         if(pageNum > totalPages){
             navigate('/catalog/1');
-        }
+        }   
     }, [navigate, pageNum, totalPages])
 
     useEffect(() => {
@@ -30,7 +30,7 @@ function Catalog() {
     }, [searchQuery, sortOption, page]);
 
     useEffect(() => {
-        if (furniture && furniture.length > 0) {
+        if (furniture) {
             setLoading(false);
         }
     }, [furniture]);
@@ -100,7 +100,7 @@ function Catalog() {
                         Previous
                     </button>
                     <span className="px-4 py-2 mx-1 bg-gray-800 text-white rounded-md">{pageNum}</span>
-                    <button disabled={isLastPage} onClick={() => navigate(`/catalog/${pageNum + 1}`)} className={`${isLastPage ? 'bg-gray-500 cursor-not-allowed' : 'bg-indigo-700 text-white hover:bg-indigo-400 cursor-pointer'} px-4 py-2 mx-1`}>
+                    <button disabled={isLastPage || furniture.length === 0} onClick={() => navigate(`/catalog/${pageNum + 1}`)} className={`${isLastPage || furniture.length === 0 ? 'bg-gray-500 cursor-not-allowed' : 'bg-indigo-700 text-white hover:bg-indigo-400 cursor-pointer'} px-4 py-2 mx-1`}>
                         Next
                     </button>
                 </div>
