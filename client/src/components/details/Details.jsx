@@ -50,7 +50,7 @@ export default function Details() {
     return (
         <>
         {isDeleteActive && <Delete itemName={furniture.name} itemId={furniture._id} setIsActive={setIsDeleteActive} />}
-        {isEditActive && <Edit furniture={furniture} setIsActive={setIsEditActive} reRender={handleFurnitureEdit} />}
+        {isEditActive && <Edit furniture={furniture} setIsActive={setIsEditActive} reRender={handleFurnitureEdit} loading={loading} setLoading={setLoading} />}
         {loading && 
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
             <div className="w-16 h-16 border-4 border-gray-300 border-t-indigo-500 rounded-full animate-spin"></div>

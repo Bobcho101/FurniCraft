@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useEditFurniture } from "../../api/furnitureApi";
 import useForm from "../../hooks/useForm";
 import { UserContext } from "../../contexts/userContext";
 
-export default function Edit({ furniture, setIsActive, reRender }) {
+export default function Edit({ furniture, setIsActive, reRender}) {
     const { accessToken } = useContext(UserContext);
+    const [loading, setLoading] = useState(false);
     const [ edit ] = useEditFurniture();
     const [ formValues, changeFormValues ] = useForm({
         name: furniture.name,
@@ -16,21 +17,25 @@ export default function Edit({ furniture, setIsActive, reRender }) {
 
     const editSubmitHandler = async (e) => {
         e.preventDefault();
+        setLoading(true);
+        
         const response = await edit(furniture._id, formValues, accessToken);
-        console.log(response);
         if(response.error){
             return alert(response.error);
         }
 
+        setLoading(false);
         reRender();
         setIsActive(false);
     }
 
 
-
     return(
         <>
-        <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-30 z-50">
+        {loading ? 
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
+            <div className="w-16 h-16 border-4 border-gray-300 border-t-indigo-500 rounded-full animate-spin"></div>
+        </div> : <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-30 z-50">
             <div className="bg-gray-800 p-8 rounded-lg w-96 max-w-full">
                 <h2 className="text-2xl font-semibold text-white mb-6">Edit Item</h2>
                 <form onSubmit={editSubmitHandler}>
@@ -98,6 +103,7 @@ export default function Edit({ furniture, setIsActive, reRender }) {
                             Cancel
                         </button>
                         <button
+                            disabled={loading}
                             className="px-6 py-2 cursor-pointer bg-green-600 text-white rounded-md hover:bg-green-500"
                         >
                             Save
@@ -106,7 +112,8 @@ export default function Edit({ furniture, setIsActive, reRender }) {
                     </div>
                 </form>
             </div>
-        </div>
+        </div> }
+        
         </>
     )
 }
