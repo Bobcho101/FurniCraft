@@ -1,20 +1,30 @@
 import { Link, useNavigate } from 'react-router';
 import useForm from '../../hooks/useForm';
 import { useLogin } from '../../api/authApi';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { UserContext } from '../../contexts/userContext';
 import { emptyFieldsMsg } from '../../helpers/errorHandlingMsg';
 import { checkForEmptyField } from '../../utils/formUtils';
+import { useIsUser } from '../../guards/routeGuards';
 
 
 export default function Login() {
     const navigate = useNavigate();
+    const { accessToken } = useContext(UserContext);
     const [formValues, changeFormValues, setFormValues] = useForm({
         'email': '',
         'password': '',
     });
     const [ login ] = useLogin();
     const { userLoginHandler } = useContext(UserContext);
+
+    const isUser = useIsUser(accessToken);
+    
+    useEffect(() => {
+        if(isUser){
+            navigate('/');
+        }
+    }, [isUser, navigate]);
 
     const loginSubmitHandler = async (e) => {
         e.preventDefault();
