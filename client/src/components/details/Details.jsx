@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router";
 import { fetchOneFurniture, useRecommendedFurniture } from "../../api/furnitureApi";
 import { useContext, useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { UserContext } from "../../contexts/userContext";
 import { checkIsOwner } from "../../utils/miniAuthorizations";
 import Edit from "../edit/Edit";
@@ -105,7 +106,14 @@ export default function Details() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {recommendedFurniture.length > 0 
                     ?
-                    recommendedFurniture.map((item) => (
+                    recommendedFurniture.map((item, index) => (
+                        <motion.div
+                        key={item._id}
+                        initial={{ opacity: 0, x: -100 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1, duration: 0.5 }}
+                        exit={{ opacity: 0, x: 100 }}
+                    >
                         <Link to={`/catalog/${item._id}/details`} key={item._id} className="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-full">
                             <img
                                 src={item.image}
@@ -116,6 +124,7 @@ export default function Details() {
                             <p className="text-indigo-400">{item.category}</p>
                             <p className="text-lg text-white font-semibold mt-auto">${item.price}</p>
                         </Link>
+                        </motion.div>
                     ))
                     : <h1 className="text-center text-xl font-semibold text-gray-400 mt-10">No Recommended Furniture</h1>
                     }

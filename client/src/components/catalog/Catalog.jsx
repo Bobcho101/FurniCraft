@@ -80,6 +80,7 @@ function Catalog() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {furniture.length > 0 
                     ? furniture
+                    
                         .map((item) => (
                             <Link to={`/catalog/${item._id}/details`}
                                 key={item._id}
