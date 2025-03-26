@@ -11,6 +11,7 @@ export default function Register() {
     const navigate = useNavigate();
     const [formValues, changeFormValues, setFormValues ] = useForm({
         'username': '',
+        'image': '',
         'email': '',
         'password': '',
         'rePassword': '',
@@ -19,16 +20,17 @@ export default function Register() {
 
     const registerSubmitHandler = async (e) => {
         e.preventDefault();
-        const { username, email, password, rePassword } = formValues;
+        const { username, email, password, image, rePassword } = formValues;
 
         if(username.trim() === '' || 
+        image.trim() === '' ||
         email.trim() === '' || 
         password.trim() === '' || 
         rePassword === '') return alert(emptyFieldsMsg);
 
         if(password !== rePassword) return alert(missMatchedPasswordsMsg)
 
-        const userData = await register(username, email, password);
+        const userData = await register(username, image, email, password);
 
         if(userData.error){
             setFormValues({ password: '', rePassword: '' });
@@ -56,6 +58,21 @@ export default function Register() {
                 onChange={changeFormValues}
                 name="username"
                 placeholder="Enter your username"
+                className="mt-2 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
+                />
+            </div>
+
+            <div className="mb-6">
+                <label htmlFor="image" className="block text-sm font-medium text-gray-300">
+                Profile Image
+                </label>
+                <input
+                type="text"
+                id="image"
+                name="image"
+                value={formValues.image}
+                onChange={changeFormValues}
+                placeholder="Enter image URL"
                 className="mt-2 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
                 />
             </div>
@@ -104,6 +121,8 @@ export default function Register() {
                 className="mt-2 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
                 />
             </div>
+
+
 
             <button
                 type="submit"

@@ -6,14 +6,11 @@ import { useGetUserInfo } from "../../api/userApi";
 export default function Profile() {
     const navigate = useNavigate();
     const { accessToken } = useContext(UserContext);
-    const [ userData ] = useGetUserInfo(accessToken);
+    const [ userInfo ] = useGetUserInfo(accessToken);
 
     const redirectToLogout = () => {
         navigate('/logout');
     }
-
-
-
 
 
     return (
@@ -22,12 +19,12 @@ export default function Profile() {
                 
                 <div className="flex flex-col items-center">
                     <img 
-                        src={'/images/user.png'}
+                        src={userInfo.image}
                         alt="Profile" 
                         className="w-32 h-32 rounded-full border-4 border-indigo-500 shadow-md"
                     />
-                    <h2 className="text-3xl font-semibold mt-4">{userData.username}</h2>
-                    <p className="text-indigo-400 text-lg">{userData.email}</p>
+                    <h2 className="text-3xl font-semibold mt-4">{userInfo.username}</h2>
+                    <p className="text-indigo-400 text-lg">{userInfo.email}</p>
                 </div>
 
                 <div className="mt-8 border-t border-gray-700 pt-6">

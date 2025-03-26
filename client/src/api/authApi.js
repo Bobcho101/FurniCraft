@@ -1,7 +1,7 @@
 import { emailOrUsernameAlreadyExistsMsg, guestCannotLogoutMsg, invalidEmailOrPasswordMsg } from "../helpers/errorHandlingMsg";
 
 export const useRegister = () => {
-    const register = async (username, email, password) => {
+    const register = async (username, image, email, password) => {
         try{
             const response = await fetch('http://localhost:3030/users/register', {
                 method: 'POST',
@@ -10,6 +10,7 @@ export const useRegister = () => {
                 },
                 body: JSON.stringify({
                     username,
+                    image,
                     email,
                     password,
                 }),
