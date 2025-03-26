@@ -1,15 +1,26 @@
 import { Link, useNavigate } from 'react-router';
 import useForm from '../../hooks/useForm';
 import { useRegister } from '../../api/authApi';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { UserContext } from '../../contexts/userContext';
 import { emptyFieldsMsg, missMatchedPasswordsMsg } from '../../helpers/errorHandlingMsg';
 import { checkForEmptyField } from '../../utils/formUtils';
+import { useIsUser } from '../../guards/routeGuards';
 
 export default function Register() {
     const [ register ] = useRegister();
+    const { accessToken } = useContext(UserContext);
     const { userLoginHandler } = useContext(UserContext);
     const navigate = useNavigate();
+
+    const isUser = useIsUser(accessToken);
+
+    useEffect(() => {
+        if(isUser){
+            navigate('/');
+        }
+    }, [isUser, navigate]);
+    
     const [formValues, changeFormValues, setFormValues ] = useForm({
         'username': '',
         'image': '',
