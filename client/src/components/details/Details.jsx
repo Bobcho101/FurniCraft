@@ -7,7 +7,6 @@ import { checkIsOwner } from "../../utils/miniAuthorizations";
 import Edit from "../edit/Edit";
 import Delete from "../delete/Delete";
 
-
 export default function Details() {
     window.scrollTo(0, 0);
     const { itemId } = useParams();

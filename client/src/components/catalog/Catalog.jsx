@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useFurniture } from '../../api/furnitureApi';
 import { Link, useNavigate, useParams } from 'react-router';
 import { ITEMS_PER_PAGE } from '../../utils/constants';
+import { motion } from 'framer-motion';
 
 function Catalog() {
     const navigate = useNavigate();
@@ -80,17 +81,25 @@ function Catalog() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {furniture.length > 0 
                     ? furniture
-                    
-                        .map((item) => (
+                        .map((item, index) => (
+                        <motion.div
+                            className='bg-gray-800 p-6 rounded-lg shadow-lg cursor-pointer hover:bg-gray-700'
+                            key={item._id}
+                            initial={{ opacity: 0, x: -100 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 100 }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                        >
                             <Link to={`/catalog/${item._id}/details`}
                                 key={item._id}
-                                className="bg-gray-800 p-6 rounded-lg shadow-lg cursor-pointer hover:bg-gray-700"
+                                className=""
                             >
                                 <img src={item.image} alt={item.name} className="w-full h-48 object-contain rounded-md mb-4" />
                                 <h3 className="text-2xl font-semibold text-center">{item.name}</h3>
                                 <p className="text-center text-indigo-400">{item.category}</p>
                                 <p className="text-center text-xl mt-3">${item.price}</p>
                             </Link>
+                            </motion.div>
                         ))
                     : (<h1 className="text-2xl font-semibold text-center text-gray-400 mt-10">No Items</h1>) }
                 </div>
