@@ -8,7 +8,7 @@ import { checkForEmptyField } from '../../utils/formUtils';
 
 export default function Register() {
     const [ register ] = useRegister();
-    const { userLoginHandler }= useContext(UserContext);
+    const { userLoginHandler } = useContext(UserContext);
     const navigate = useNavigate();
     const [formValues, changeFormValues, setFormValues ] = useForm({
         'username': '',
@@ -23,14 +23,10 @@ export default function Register() {
         e.preventDefault();
         const { username, email, password, image, rePassword } = formValues;
 
-        if(username.trim() === '' || 
-        image.trim() === '' ||
-        email.trim() === '' || 
-        password.trim() === '' || 
-        rePassword === '') return alert(emptyFieldsMsg);
-
         const areEmptyFields = checkForEmptyField(formValues);
         if(areEmptyFields) return alert(emptyFieldsMsg);
+
+        if(password !== rePassword) return alert(missMatchedPasswordsMsg)
 
         const userData = await register(username, image, email, password);
 

@@ -13,25 +13,28 @@ import Logout from './components/logout/Logout'
 import Catalog  from './components/catalog/Catalog'
 import Details from './components/details/Details'
 import Profile from './components/profile/Profile'
+import { useContext } from 'react'
+import { UserContext } from './contexts/userContext'
 
 function App() {
+
   return (
     <>
     <UserProvider>
-      <Header />
-      <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='profile' element={<Profile />} />
-          <Route path="/catalog/:page" element={<Catalog />} />
-          <Route path='/catalog/:itemId/details' element={<Details />} />
-          <Route path='/sell-furniture' element={<Create />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/logout' element={<Logout />} />
-          <Route path='/contacts' element={<Contacts />} />
-          <Route path='*' element={<NotFound />} /> 
-      </Routes>
+        <Header />
+        <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='profile' element={<Profile />} />
+            <Route path="/catalog/:page" element={<Catalog />} />
+            <Route path='/catalog/:itemId/details' element={<Details />} />
+            <Route path='/sell-furniture' element={<Create />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/logout' element={<Logout />} />
+            <Route path='/contacts' element={<Contacts />} />
+            <Route path='*' element={<NotFound />} /> 
+        </Routes>
     </UserProvider>
     </>
   )

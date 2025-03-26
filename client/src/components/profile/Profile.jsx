@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { UserContext } from "../../contexts/userContext";
 import { useGetUserInfo, useGetUserPosts } from "../../api/userApi";
+import { useIsUser } from "../../guards/routeGuards";
 
 export default function Profile() {
     const navigate = useNavigate();
@@ -9,6 +10,14 @@ export default function Profile() {
     const [ userPosts, loading ] = useGetUserPosts(_id);
     const [ userInfo ] = useGetUserInfo(accessToken);
 
+    const isUser = useIsUser(accessToken);
+    
+    useEffect(() => {
+        if(!isUser) {
+            navigate('/login');
+        }
+    }, [isUser, navigate]);
+    
     const redirectToLogout = () => {
         navigate('/logout');
     }
