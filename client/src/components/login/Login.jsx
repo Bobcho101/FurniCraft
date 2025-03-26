@@ -20,11 +20,8 @@ export default function Login() {
 
     const isUser = useIsUser(accessToken);
     
-    useEffect(() => {
-        if(isUser){
-            navigate('/');
-        }
-    }, [isUser, navigate]);
+    useRouteGuard(isUser, navigate);
+    
 
     const loginSubmitHandler = async (e) => {
         e.preventDefault();
@@ -115,4 +112,13 @@ export default function Login() {
         </div>
     </>
     );
+}
+
+
+const useRouteGuard = (isUser, navigate) => {
+    useEffect(() => {
+        if(isUser){
+            navigate('/');
+        }
+    }, [isUser, navigate]);
 }

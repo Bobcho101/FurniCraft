@@ -15,11 +15,7 @@ export default function Register() {
 
     const isUser = useIsUser(accessToken);
 
-    useEffect(() => {
-        if(isUser){
-            navigate('/');
-        }
-    }, [isUser, navigate]);
+    useRouteGuard(isUser, navigate);
     
     const [formValues, changeFormValues, setFormValues ] = useForm({
         'username': '',
@@ -152,4 +148,13 @@ export default function Register() {
         </div>
         </div>
     );
+}
+
+
+const useRouteGuard = (isUser, navigate) => {
+    useEffect(() => {
+        if(isUser){
+            navigate('/');
+        }
+    }, [isUser, navigate]);
 }

@@ -12,11 +12,7 @@ export default function Profile() {
 
     const isUser = useIsUser(accessToken);
     
-    useEffect(() => {
-        if(!isUser) {
-            navigate('/login');
-        }
-    }, [isUser, navigate]);
+    useRouteGuard(isUser, navigate);
     
     const redirectToLogout = () => {
         navigate('/logout');
@@ -67,4 +63,13 @@ export default function Profile() {
             </div>
         </div>
     );
+}
+
+
+const useRouteGuard = (isUser, navigate) => {
+    useEffect(() => {
+        if(!isUser){
+            navigate('/login');
+        }
+    }, [isUser, navigate]);
 }
