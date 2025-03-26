@@ -9,3 +9,5 @@ export const failedCreatingFurnitureMsg = 'Failed to create furniture!';
 export const failedUpdatingFurnitureMsg = 'Failed to update furniture!';
 export const failedDeletingFurnitureMsg = 'Failed to delete furniture!';
 export const invalidCategoryMsg = 'Invalid category!';
+
+

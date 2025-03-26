@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { useEditFurniture } from "../../api/furnitureApi";
 import useForm from "../../hooks/useForm";
 import { UserContext } from "../../contexts/userContext";
+import { emptyFieldsMsg } from "../../helpers/errorHandlingMsg";
+import { checkForEmptyField } from "../../utils/formUtils";
 
 export default function Edit({ furniture, setIsActive, reRender}) {
     const { accessToken } = useContext(UserContext);
@@ -18,6 +20,15 @@ export default function Edit({ furniture, setIsActive, reRender}) {
     const editSubmitHandler = async (e) => {
         e.preventDefault();
         setLoading(true);
+
+        formValues.price = formValues.price.toString();
+        const areEmptyFields = checkForEmptyField(formValues);
+        if(areEmptyFields) {
+            alert(emptyFieldsMsg);
+            setLoading(false);
+            return;
+        }
+        formValues.price = parseInt(formValues.price);
         
         const response = await edit(furniture._id, formValues, accessToken);
         if(response.error){

@@ -4,6 +4,7 @@ import useForm from "../../hooks/useForm";
 import { UserContext } from "../../contexts/userContext";
 import { useNavigate } from "react-router";
 import { emptyFieldsMsg, invalidCategoryMsg } from "../../helpers/errorHandlingMsg";
+import { checkForEmptyField } from "../../utils/formUtils";
 
 export default function Create() {
     const [ createFurniture ] = useCreateFurniture();
@@ -20,12 +21,8 @@ export default function Create() {
     const createSubmitHandler = async (e) => {
         e.preventDefault();
 
-        if(formValues.name.trim() === '' || formValues.category.trim() === '' ||
-            formValues.price.trim() === '' || formValues.description.trim() === '' || 
-            formValues.image.trim() === ''
-        ){
-            return alert(emptyFieldsMsg);
-        }
+        const areEmptyFields = checkForEmptyField(formValues);
+        if(areEmptyFields) return alert(emptyFieldsMsg);
 
         const validCategories = ["Living Room", "Dining Room", "Office", "Bedroom", "Kitchen"];
 
