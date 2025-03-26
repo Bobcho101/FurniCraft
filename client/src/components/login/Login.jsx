@@ -4,6 +4,7 @@ import { useLogin } from '../../api/authApi';
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/userContext';
 import { emptyFieldsMsg } from '../../helpers/errorHandlingMsg';
+import { checkForEmptyField } from '../../utils/formUtils';
 
 
 export default function Login() {
@@ -19,10 +20,9 @@ export default function Login() {
         e.preventDefault();
         const { email, password } = formValues;
 
-        if(email.trim() === '' || password.trim() === ''){
-            return alert(emptyFieldsMsg);
-        }
-
+        const areEmptyFields = checkForEmptyField(formValues);
+        if(areEmptyFields) return alert(emptyFieldsMsg);
+        
         const userData = await login(email, password);
         
         if(userData.error){

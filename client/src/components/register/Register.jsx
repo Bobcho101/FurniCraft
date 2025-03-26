@@ -4,6 +4,7 @@ import { useRegister } from '../../api/authApi';
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/userContext';
 import { emptyFieldsMsg, missMatchedPasswordsMsg } from '../../helpers/errorHandlingMsg';
+import { checkForEmptyField } from '../../utils/formUtils';
 
 export default function Register() {
     const [ register ] = useRegister();
@@ -28,7 +29,8 @@ export default function Register() {
         password.trim() === '' || 
         rePassword === '') return alert(emptyFieldsMsg);
 
-        if(password !== rePassword) return alert(missMatchedPasswordsMsg)
+        const areEmptyFields = checkForEmptyField(formValues);
+        if(areEmptyFields) return alert(emptyFieldsMsg);
 
         const userData = await register(username, image, email, password);
 
