@@ -13,8 +13,6 @@ import Logout from './components/logout/Logout'
 import Catalog  from './components/catalog/Catalog'
 import Details from './components/details/Details'
 import Profile from './components/profile/Profile'
-import { useContext } from 'react'
-import { UserContext } from './contexts/userContext'
 
 function App() {
 

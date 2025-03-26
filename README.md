@@ -1,7 +1,7 @@
 # FurniCraft
 
 ## Overall Info
-- **This is my SoftUni project for the exam! This is an app for buying and selling furniture.**
+- **This is my SoftUni project for the exam! This is an app called FurniCraft for buying and selling furniture. The server i used is the SoftUni practice server not mine!**
 
 
 ## Run the Project
@@ -22,3 +22,18 @@ node server
 ```bash
 npm run dev
 ```
+
+## Tech Stack
+
+### **Frontend**
+- **React**
+- **React Router**
+- **Tailwind CSS + AI (this is for the design)**
+- **Motion Frame (this is for the animations)**
+
+### **Backend (not done by me)**
+- **Node.js**
+
+## Functionality 
+- **To be announced soon!**
+
