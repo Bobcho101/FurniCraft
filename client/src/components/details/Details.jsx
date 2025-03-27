@@ -18,7 +18,7 @@ export default function Details() {
     const [ isEditActive, setIsEditActive ] = useState(false);
     const [ isDeleteActive, setIsDeleteActive ] = useState(false);
     const [ furniturePrice, setFurniturePrice ] = useState(furniture.price);
-    const { _id} = useContext(UserContext);
+    const { _id } = useContext(UserContext);
 
 
     const getFurniture = async (furnitureId) => {

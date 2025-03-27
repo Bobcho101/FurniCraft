@@ -1,19 +1,23 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router";
 import { fetchOneFurniture } from "../../api/furnitureApi";
 import { useIsUser } from "../../guards/routeGuards";
+import { checkIsOwner } from "../../utils/miniAuthorizations";
+import { UserContext } from "../../contexts/userContext";
 
 export default function Order() {
     const { itemId } = useParams();
     const [ furniture, setFurniture ] = useState({});
     const [ loading, setLoading ] = useState(true);
+    const { _id, accessToken } = useContext(UserContext);
     const navigate = useNavigate();
     const location = useLocation();
     const furniturePrice = location.state?.furniturePrice;
 
-    const isUser = useIsUser();
+    const isUser = useIsUser(accessToken);
+    const isOwner = checkIsOwner(_id, furniture._ownerId);
 
-    useRouteGuard(isUser, navigate);
+    useRouteGuard(isUser, isOwner, navigate);
 
 
     const getFurniture = async (furnitureId) => {
@@ -81,10 +85,13 @@ export default function Order() {
     );
 };
 
-const useRouteGuard = (isUser, navigate) => {
+const useRouteGuard = (isUser, isOwner, navigate) => {
     useEffect(() => {
         if(!isUser){
             navigate('/login');
         }
-    }, [isUser, navigate]);
+        if(isOwner){
+            navigate('/');
+        }
+    }, [isUser, navigate, isOwner]);
 }
