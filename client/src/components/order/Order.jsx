@@ -1,13 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router";
 import { fetchOneFurniture } from "../../api/furnitureApi";
-import { UserContext } from "../../contexts/userContext";
 import { useIsUser } from "../../guards/routeGuards";
 
 export default function Order() {
     const { itemId } = useParams();
     const [ furniture, setFurniture ] = useState({});
-    const { accessToken } = useContext(UserContext);
     const [ loading, setLoading ] = useState(true);
     const navigate = useNavigate();
     const location = useLocation();

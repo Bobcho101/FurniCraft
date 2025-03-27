@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useCreateFurniture } from "../../api/furnitureApi";
 import useForm from "../../hooks/useForm";
 import { UserContext } from "../../contexts/userContext";
 import { useNavigate } from "react-router";
 import { emptyFieldsMsg, invalidCategoryMsg } from "../../helpers/errorHandlingMsg";
 import { checkForEmptyField } from "../../utils/formUtils";
+import { useIsUser } from "../../guards/routeGuards";
 
 export default function Create() {
     const [ createFurniture ] = useCreateFurniture();
@@ -17,6 +18,10 @@ export default function Create() {
         'description': '',
         'image': '',
     });
+
+    const isUser = useIsUser(accessToken);
+
+    useRouteGuard(isUser, navigate);
 
     const createSubmitHandler = async (e) => {
         e.preventDefault();
@@ -128,4 +133,13 @@ export default function Create() {
             </div>
         </div>
     );
+};
+
+
+const useRouteGuard = (isUser, navigate) => {
+    useEffect(() => {
+        if(!isUser){
+            navigate('/login');
+        }
+    }, [isUser, navigate]);
 }
