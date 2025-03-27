@@ -1,14 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router";
 import { fetchOneFurniture } from "../../api/furnitureApi";
+import { UserContext } from "../../contexts/userContext";
+import { useIsUser } from "../../guards/routeGuards";
 
 export default function Order() {
     const { itemId } = useParams();
     const [ furniture, setFurniture ] = useState({});
+    const { accessToken } = useContext(UserContext);
     const [ loading, setLoading ] = useState(true);
     const navigate = useNavigate();
     const location = useLocation();
     const furniturePrice = location.state?.furniturePrice;
+
+    const isUser = useIsUser();
+
+    useRouteGuard(isUser, navigate);
 
 
     const getFurniture = async (furnitureId) => {
@@ -28,7 +35,7 @@ export default function Order() {
 
     useEffect(() => {
         if(!furniturePrice && !loading){
-            navigate(`/catalog/${furniture._id}/details`)
+            navigate(`/catalog/${furniture._id}/details`)   
         }
     }, [furniturePrice, furniture._id, navigate, loading]);
 
@@ -74,4 +81,12 @@ export default function Order() {
         </div> }  
         </>
     );
+};
+
+const useRouteGuard = (isUser, navigate) => {
+    useEffect(() => {
+        if(!isUser){
+            navigate('/login');
+        }
+    }, [isUser, navigate]);
 }
