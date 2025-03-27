@@ -11,11 +11,13 @@ export default function Details() {
     window.scrollTo(0, 0);
     const navigate = useNavigate();
     const { itemId } = useParams();
+    const [ quantity, setQuantity ] = useState(1);
     const [ furniture, setFurniture ] = useState({});
     const [ recommendedFurniture ] = useRecommendedFurniture(furniture?.category, furniture?._id);
     const [ loading, setLoading ] = useState(true);
     const [ isEditActive, setIsEditActive ] = useState(false);
     const [ isDeleteActive, setIsDeleteActive ] = useState(false);
+    const [ furniturePrice, setFurniturePrice ] = useState(furniture.price);
     const { _id } = useContext(UserContext);
 
 
@@ -52,6 +54,19 @@ export default function Details() {
         navigate(`/catalog/${_id}/order`)
     }
 
+    const quantityManipulator = {
+        increase(){
+            setQuantity((prev) => prev + 1);
+        },
+        decrease(){
+            if(quantity === 1){
+                return;
+            } else{
+                setQuantity((prev) => prev - 1);
+            }
+        }
+    };
+
 
     return (
         <>
@@ -76,7 +91,7 @@ export default function Details() {
                 <h2 className="text-4xl font-bold">{furniture.name}</h2>
                 <p className="text-indigo-400 text-lg mt-2">{furniture.category}</p>
                 <p className="text-gray-300 mt-4">{furniture.description}</p>
-                <p className="text-2xl font-semibold text-white mt-4">${furniture.price}</p>
+                <p className="text-2xl font-semibold text-white mt-4">${furniturePrice}</p>
 
 
                 {isOwner 
@@ -90,17 +105,18 @@ export default function Details() {
                     </div>) 
                 : (
                     <div className="mt-4">
-                        <div className="flex items-center justify-between mb-4">
-                            <p className="text-lg text-white">Quantity</p>
+                        <div className="flex items-center mb-4">
                             <div className="flex items-center gap-4">
                                 <button
-                                    className="bg-gray-700 p-2 rounded-lg text-white hover:bg-gray-600"
+                                    onClick={() => quantityManipulator.decrease()}
+                                    className="bg-gray-700 cursor-pointer p-2 rounded-lg text-white hover:bg-gray-600"
                                 >
                                     -
                                 </button>
-                                <p className="text-lg text-white">5</p>
+                                <p className="text-lg text-white">{quantity}</p>
                                 <button
-                                    className="bg-gray-700 p-2 rounded-lg text-white hover:bg-gray-600"
+                                    onClick={() => quantityManipulator.increase()}
+                                    className="bg-gray-700 cursor-pointer p-2 rounded-lg text-white hover:bg-gray-600"
                                 >
                                     +
                                 </button>
@@ -130,12 +146,12 @@ export default function Details() {
                     ?
                     recommendedFurniture.map((item, index) => (
                         <motion.div
-                        key={item._id}
-                        initial={{ opacity: 0, x: -100 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1, duration: 0.5 }}
-                        exit={{ opacity: 0, x: 100 }}
-                    >
+                            key={item._id}
+                            initial={{ opacity: 0, x: -100 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.1, duration: 0.5 }}
+                            exit={{ opacity: 0, x: 100 }}
+                        >
                         <Link to={`/catalog/${item._id}/details`} key={item._id} className="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-full">
                             <img
                                 src={item.image}
