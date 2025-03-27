@@ -67,6 +67,13 @@ export default function Details() {
         }
     };
 
+    useEffect(() => {
+        if (furniture.price) {
+            const calculatedPrice = furniture.price * quantity;
+            setFurniturePrice(calculatedPrice.toFixed(2));
+        }
+    }, [quantity, furniture.price]);
+
 
     return (
         <>
