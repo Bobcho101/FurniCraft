@@ -30,7 +30,7 @@ export default function Profile() {
                     <img 
                         src={userInfo.image}
                         alt="Profile" 
-                        className="w-32 h-32 rounded-full border-4 border-indigo-500 shadow-md"
+                        className="w-32 h-32 rounded-full border-4 border-indigo-500 shadow-md object-cover"
                     />
                     <h2 className="text-3xl font-semibold mt-4">{userInfo.username}</h2>
                     <p className="text-indigo-400 text-lg">{userInfo.email}</p>
@@ -56,7 +56,7 @@ export default function Profile() {
                 </div>
 
                 <div className="mt-8 flex justify-center">
-                    <button onClick={redirectToLogout} className="px-6 py-2 bg-red-600 rounded-md hover:bg-red-500">
+                    <button onClick={redirectToLogout} className="px-6 py-2 cursor-pointer bg-red-600 rounded-md hover:bg-red-500">
                         Logout
                     </button>
                 </div>

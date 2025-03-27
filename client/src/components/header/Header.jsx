@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { UserContext } from '../../contexts/userContext';
 
 export default function Header() {
-    const { accessToken } = useContext(UserContext);
+    const { accessToken, image } = useContext(UserContext);
     let navigation = [];
 
     if(accessToken){
@@ -70,7 +70,7 @@ export default function Header() {
                 </Link>
                 <Link to={"/profile"} className="flex items-center gap-2">
                   <img
-                    src={"/images/user.png"}  
+                    src={image}  
                     alt="User Profile"
                     className="w-10 h-10 rounded-full object-cover border-2 border-white"
                   />

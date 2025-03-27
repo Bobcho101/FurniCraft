@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { fetchOneFurniture, useRecommendedFurniture } from "../../api/furnitureApi";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
@@ -9,6 +9,7 @@ import Delete from "../delete/Delete";
 
 export default function Details() {
     window.scrollTo(0, 0);
+    const navigate = useNavigate();
     const { itemId } = useParams();
     const [ furniture, setFurniture ] = useState({});
     const [ recommendedFurniture ] = useRecommendedFurniture(furniture?.category, furniture?._id);
@@ -18,7 +19,7 @@ export default function Details() {
     const { _id } = useContext(UserContext);
 
 
-    const fetchFurniture = async (furnitureId) => {
+    const getFurniture = async (furnitureId) => {
         try {
             const data = await fetchOneFurniture(furnitureId);;
 
@@ -31,7 +32,7 @@ export default function Details() {
     };
 
     useEffect(() => {
-        fetchFurniture(itemId);
+        getFurniture(itemId);
     }, [itemId]); 
 
 
@@ -44,8 +45,12 @@ export default function Details() {
     }, [furniture, recommendedFurniture]);
 
     const handleFurnitureEdit = () => {  //* This thing here is for re-rendering the component when the furniture is edited
-        fetchFurniture(itemId);
+        getFurniture(itemId);
     };
+
+    const navigateToOrder = () => {
+        navigate(`/catalog/${_id}/order`)
+    }
 
 
     return (
@@ -84,8 +89,8 @@ export default function Details() {
                     </button>
                     </div>) 
                 : (
-                    <button className="mt-30 w-full bg-indigo-600 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-indigo-500 focus:outline-none">
-                        Buy Now
+                    <button onClick={() => navigateToOrder()} className="mt-30 w-full bg-indigo-600 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-indigo-500 focus:outline-none">
+                        Order Now
                     </button>
                 )}
 

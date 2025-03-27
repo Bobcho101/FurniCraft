@@ -4,7 +4,7 @@ export default function Order() {
    return (
        <>
        <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center py-10">
-    <div className="bg-gray-800 p-10 rounded-lg shadow-lg max-w-3xl w-full">
+    <div className="bg-gray-800 p-10 rounded-lg shadow-lg max-w-3xl w-full mt-20">
         <h2 className="text-3xl font-bold mb-6 text-center">Confirm Your Order</h2>
         
         <div className="mb-6 flex flex-col items-center">
