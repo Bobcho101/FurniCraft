@@ -51,7 +51,7 @@ export default function Details() {
     };
 
     const navigateToOrder = () => {
-        navigate(`/catalog/${_id}/order`)
+        navigate(`/catalog/${furniture._id}/order`, { state: { furniturePrice } });
     }
 
     const quantityManipulator = {

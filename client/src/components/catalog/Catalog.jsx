@@ -92,7 +92,6 @@ function Catalog() {
                         >
                             <Link to={`/catalog/${item._id}/details`}
                                 key={item._id}
-                                className=""
                             >
                                 <img src={item.image} alt={item.name} className="w-full h-48 object-contain rounded-md mb-4" />
                                 <h3 className="text-2xl font-semibold text-center">{item.name}</h3>
