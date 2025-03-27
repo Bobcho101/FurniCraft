@@ -13,6 +13,7 @@ import Logout from './components/logout/Logout'
 import Catalog  from './components/catalog/Catalog'
 import Details from './components/details/Details'
 import Profile from './components/profile/Profile'
+import Order from './components/order/Order'
 
 function App() {
 
@@ -24,6 +25,8 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='profile' element={<Profile />} />
             <Route path="/catalog/:page" element={<Catalog />} />
+            {/* /:itemId */}
+            <Route path='/catalog/order' element={<Order />} />
             <Route path='/catalog/:itemId/details' element={<Details />} />
             <Route path='/sell-furniture' element={<Create />} />
             <Route path='/about' element={<About />} />
