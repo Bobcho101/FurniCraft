@@ -89,9 +89,27 @@ export default function Details() {
                     </button>
                     </div>) 
                 : (
-                    <button onClick={() => navigateToOrder()} className="mt-30 w-full bg-indigo-600 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-indigo-500 focus:outline-none">
-                        Order Now
-                    </button>
+                    <div className="mt-4">
+                        <div className="flex items-center justify-between mb-4">
+                            <p className="text-lg text-white">Quantity</p>
+                            <div className="flex items-center gap-4">
+                                <button
+                                    className="bg-gray-700 p-2 rounded-lg text-white hover:bg-gray-600"
+                                >
+                                    -
+                                </button>
+                                <p className="text-lg text-white">5</p>
+                                <button
+                                    className="bg-gray-700 p-2 rounded-lg text-white hover:bg-gray-600"
+                                >
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                        <button onClick={() => navigateToOrder()} className="mt-6 w-full bg-indigo-600 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-indigo-500 focus:outline-none">
+                            Order Now
+                        </button>
+                    </div>
                 )}
 
                 <div className="mt-5 text-center">
