@@ -48,6 +48,7 @@ export default function Order() {
         }
     }, [furniturePrice, furniture._id, navigate, loading]);
 
+    
 
     return (
         <>

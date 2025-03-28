@@ -1,8 +1,15 @@
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 import { motion } from 'framer-motion';
 
 const OrderSuccess = () => {
-    return(<>
+    const navigate = useNavigate();
+
+    const navigateToCatalog = () => {
+        navigate('/catalog/1');
+    }
+
+    return(
+    <>
     <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75">
         <motion.div 
             initial={{ opacity: 0, scale: 0.8 }} 
@@ -15,15 +22,11 @@ const OrderSuccess = () => {
         <p className="text-gray-300 mt-2">Thank you for your purchase.</p>
         <div className="mt-4">
             <button 
+                onClick={navigateToCatalog}
                 className="bg-indigo-600 cursor-pointer text-white px-4 py-2 rounded-lg hover:bg-indigo-500"
             >
-                Close
-            </button>
-        </div>
-        <div className="mt-3">
-            <Link to="/catalog/1" className="text-indigo-400 cursor-pointer hover:text-indigo-300 text-sm">
                 Back to Catalog
-            </Link>
+            </button>
         </div>
         </motion.div>
     </div>
