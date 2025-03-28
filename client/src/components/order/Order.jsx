@@ -4,9 +4,11 @@ import { fetchOneFurniture } from "../../api/furnitureApi";
 import { useIsUser } from "../../guards/routeGuards";
 import { checkIsOwner } from "../../utils/miniAuthorizations";
 import { UserContext } from "../../contexts/userContext";
+import OrderSuccess from "./OrderSuccess";
 
 export default function Order() {
     const { itemId } = useParams();
+    const [ isOrderSuccessActive, setIsOrderSuccessActive] = useState(false);
     const [ furniture, setFurniture ] = useState({});
     const [ loading, setLoading ] = useState(true);
     const { _id, accessToken } = useContext(UserContext);
@@ -31,6 +33,11 @@ export default function Order() {
         }
     };
 
+    const orderFormSubmit = (e) => {
+        e.preventDefault();
+        setIsOrderSuccessActive(true);
+    }
+
     useEffect(() => {
         getFurniture(itemId);
     }, [itemId]); 
@@ -44,7 +51,9 @@ export default function Order() {
 
     return (
         <>
-        { loading 
+        { isOrderSuccessActive ?
+        <OrderSuccess />
+        : loading 
             ? 
             <div className="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
                 <div className="w-16 h-16 border-4 border-gray-300 border-t-indigo-500 rounded-full animate-spin"></div>
@@ -60,7 +69,7 @@ export default function Order() {
                     <p className="text-xl font-bold text-white mt-2">${furniturePrice}</p>
                 </div>
 
-                <form className="flex flex-col gap-4">
+                <form onSubmit={orderFormSubmit} className="flex flex-col gap-4">
                     <input type="text" placeholder="Full Name" className="w-full p-3 rounded-lg bg-gray-700 text-white focus:outline-none" />
                     <input type="text" placeholder="Shipping Address" className="w-full p-3 rounded-lg bg-gray-700 text-white focus:outline-none" />
                     <input type="text" placeholder="Phone Number" className="w-full p-3 rounded-lg bg-gray-700 text-white focus:outline-none" />
@@ -69,7 +78,7 @@ export default function Order() {
                         <option>PayPal</option>
                         <option>Cash on Delivery</option>
                     </select>
-                    <button type="submit" className="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-500">
+                    <button type="submit" className="w-full bg-indigo-600 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-indigo-500">
                         Place Order
                     </button>
                 </form>
@@ -80,7 +89,8 @@ export default function Order() {
                     </Link>
                 </div>
             </div>
-        </div> }  
+        </div>  
+        }
         </>
     );
 };
