@@ -167,4 +167,3 @@ export const useDeleteFurniture = () => {
     };
     return [ deleteFunction ];
 };
-

@@ -37,21 +37,3 @@ export const useGetUserPosts = (userId) => {
 
     return [ userPosts, loading ];
 }
-
-export const useGetUserOrders = (userId) => {
-    const [ loading, setLoading ] = useState(true);                
-    const [ userOrders, setUserOrders ] = useState([]); 
-
-    useEffect(() => {
-        setLoading(true);
-        fetch(baseUrl + `/data/orders?where=_ownerId%3D%22${userId}%22`)
-        .then((res) => res.json())
-        .then((data) => {
-            setUserOrders(data);
-            setLoading(false);
-        })
-        .catch((err) => console.log(err))
-    }, [userId]);
-
-    return [userOrders, loading];
-}
