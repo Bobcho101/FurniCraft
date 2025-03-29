@@ -55,7 +55,7 @@ export default function Login() {
 
     return (
         <>
-        {error && <Error errorMsg={error} />}
+        {error && <Error errorMsg={error} />} {error && <Error errorMsg={error} />}
         
         <div className="bg-gray-900 text-white min-h-screen flex items-center justify-center relative">
             <div

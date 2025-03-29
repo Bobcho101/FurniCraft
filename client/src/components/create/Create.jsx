@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useCreateFurniture } from "../../api/furnitureApi";
 import useForm from "../../hooks/useForm";
 import { UserContext } from "../../contexts/userContext";
@@ -6,9 +6,11 @@ import { useNavigate } from "react-router";
 import { emptyFieldsMsg, invalidCategoryMsg } from "../../helpers/errorHandlingMsg";
 import { checkForEmptyField } from "../../utils/formUtils";
 import { useIsUser } from "../../guards/routeGuards";
+import Error from "../error/Error";
 
 export default function Create() {
     const [ createFurniture ] = useCreateFurniture();
+    const [ error, setError ] = useState('');
     const navigate = useNavigate();
     const { accessToken } = useContext(UserContext);
     const [ formValues, changeFormValues ] = useForm({
@@ -27,7 +29,7 @@ export default function Create() {
         e.preventDefault();
 
         const areEmptyFields = checkForEmptyField(formValues);
-        if(areEmptyFields) return alert(emptyFieldsMsg);
+        if(areEmptyFields) return setError(emptyFieldsMsg);
 
         const validCategories = ["Living Room", "Dining Room", "Office", "Bedroom", "Kitchen"];
 
@@ -39,13 +41,23 @@ export default function Create() {
 
 
         if(response.error){
-            return alert(response.error);
+            return setError(response.error);
         };
 
         return navigate('/catalog/1');
     }
 
+    useEffect(() => {
+        if(error){
+            setTimeout(() => {
+                setError('');
+            }, 3000)
+        }
+    }, [error]);
+
     return (
+        <>
+        {error && <Error errorMsg={error} />}
         <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center py-16">
             <h2 className="text-4xl font-semibold mb-10 text-center mt-15">Sell Your Furniture</h2>
 
@@ -132,6 +144,7 @@ export default function Create() {
                 </form>
             </div>
         </div>
+        </>
     );
 };
 
