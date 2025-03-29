@@ -9,11 +9,13 @@ import { checkForEmptyField } from "../../utils/formUtils";
 import { emptyFieldsMsg } from "../../helpers/errorHandlingMsg";
 import useForm from "../../hooks/useForm";
 import { useCreateFurnitureOrder } from "../../api/ordersApi";
+import Error from "../error/Error";
 
 export default function Order() {
     const { itemId } = useParams();
     const [ isOrderSuccessActive, setIsOrderSuccessActive] = useState(false);
     const [ furniture, setFurniture ] = useState({});
+    const [ error, setError ] = useState('');
     const [ createOrder ] = useCreateFurnitureOrder();
     const [ loading, setLoading ] = useState(true);
     const { _id, accessToken } = useContext(UserContext);
@@ -34,21 +36,20 @@ export default function Order() {
 
 
     const getFurniture = async (furnitureId) => {
-        try{
-            const data = await fetchOneFurniture(furnitureId);
-            setFurniture(data);
+        const data = await fetchOneFurniture(furnitureId);
+        if(data.error){
             setLoading(false);
-        } catch(err){
-            console.log(err.message);
-            setLoading(false);
+            setError(data.error);
         }
+        setFurniture(data);
+        setLoading(false);
     };
 
     const orderFormSubmit = async (e) => {
         e.preventDefault();
   
         if(checkForEmptyField(formValues)){
-            return alert(emptyFieldsMsg);
+            return setError(emptyFieldsMsg);
         }
 
         formValues.price = furniture.price;
@@ -58,7 +59,7 @@ export default function Order() {
         const response = await createOrder(formValues, accessToken);
 
         if(response.error){
-            return alert(response.error);
+            return setError(response.error);
         }
   
         setIsOrderSuccessActive(true);
@@ -74,10 +75,17 @@ export default function Order() {
         }
     }, [furniturePrice, furniture._id, navigate, loading]);
 
-    
+    useEffect(() => {
+        if(error){
+            setTimeout(() => {
+                setError('');
+            }, 3000)
+        }
+    }, [error]);
 
     return (
         <>
+        {error && <Error errorMsg={error} />} {error && <Error errorMsg={error} />}
         { isOrderSuccessActive ?
         <OrderSuccess />
         : loading 

@@ -69,6 +69,7 @@ export const fetchOneFurniture = async (furnitureId) => {
         return data;
     } catch (err) {
         console.log(err.message); 
+        return err.message;
     }
 };
 
