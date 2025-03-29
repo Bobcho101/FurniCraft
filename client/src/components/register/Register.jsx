@@ -1,15 +1,17 @@
 import { Link, useNavigate } from 'react-router';
 import useForm from '../../hooks/useForm';
 import { useRegister } from '../../api/authApi';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../contexts/userContext';
 import { emptyFieldsMsg, missMatchedPasswordsMsg } from '../../helpers/errorHandlingMsg';
 import { checkForEmptyField } from '../../utils/formUtils';
 import { useIsUser } from '../../guards/routeGuards';
+import Error from '../error/Error';
 
 export default function Register() {
     const [ register ] = useRegister();
     const { accessToken } = useContext(UserContext);
+    const [ error, setError ] = useState('');
     const { userLoginHandler } = useContext(UserContext);
     const navigate = useNavigate();
 
@@ -31,26 +33,38 @@ export default function Register() {
         const { username, email, password, image, rePassword } = formValues;
 
         const areEmptyFields = checkForEmptyField(formValues);
-        if(areEmptyFields) return alert(emptyFieldsMsg);
+        if(areEmptyFields) return setError(emptyFieldsMsg);
 
-        if(password !== rePassword) return alert(missMatchedPasswordsMsg)
+        if(password !== rePassword) return setError(missMatchedPasswordsMsg);
 
         const userData = await register(username, image, email, password);
 
         if(userData.error){
             setFormValues({ password: '', rePassword: '' });
-            return alert(userData.error);
+            return setError(userData.error); 
         };
 
         userLoginHandler(userData);
         return navigate('/');
-    }
+    } 
+
+    useEffect(() => {
+        if(error){
+            setTimeout(() => {
+                setError('');
+            }, 3000)
+        }
+    }, [error]);
+
+
 
     return (
+        <>
+        {error && <Error errorMsg={error} />}
+          
         <div className="bg-gray-900 text-white min-h-screen flex items-center justify-center">
         <div className="w-full max-w-md p-8 bg-gray-800 bg-opacity-90 rounded-lg shadow-lg">
             <h2 className="text-3xl font-semibold text-center">Register</h2>
-
             <form onSubmit={registerSubmitHandler} className="mt-6">
             <div className="mb-4">
                 <label htmlFor="username" className="block text-sm font-medium text-gray-300">
@@ -66,7 +80,6 @@ export default function Register() {
                 className="mt-2 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
                 />
             </div>
-
             <div className="mb-6">
                 <label htmlFor="image" className="block text-sm font-medium text-gray-300">
                 Profile Image
@@ -81,7 +94,6 @@ export default function Register() {
                 className="mt-2 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
                 />
             </div>
-
             <div className="mb-4">
                 <label htmlFor="email" className="block text-sm font-medium text-gray-300">
                 Email
@@ -96,7 +108,6 @@ export default function Register() {
                 className="mt-2 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
                 />
             </div>
-
             <div className="mb-6">
                 <label htmlFor="password" className="block text-sm font-medium text-gray-300">
                 Password
@@ -111,7 +122,6 @@ export default function Register() {
                 className="mt-2 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
                 />
             </div>
-
             <div className="mb-6">
                 <label htmlFor="rePassword" className="block text-sm font-medium text-gray-300">
                 Repeat Password
@@ -126,9 +136,6 @@ export default function Register() {
                 className="mt-2 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
                 />
             </div>
-
-
-
             <button
                 type="submit"
                 className="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -147,6 +154,7 @@ export default function Register() {
             </div>
         </div>
         </div>
+        </>
     );
 }
 

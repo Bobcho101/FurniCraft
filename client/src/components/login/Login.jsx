@@ -30,7 +30,7 @@ export default function Login() {
         const { email, password } = formValues;
 
         const areEmptyFields = checkForEmptyField(formValues);
-        if(areEmptyFields) return alert(emptyFieldsMsg);
+        if(areEmptyFields) return setError(emptyFieldsMsg);
         
         const userData = await login(email, password);
         
