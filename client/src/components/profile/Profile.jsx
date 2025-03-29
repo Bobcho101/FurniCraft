@@ -1,13 +1,14 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { UserContext } from "../../contexts/userContext";
-import { useGetUserInfo, useGetUserPosts } from "../../api/userApi";
+import { useGetUserInfo, useGetUserOrders, useGetUserPosts } from "../../api/userApi";
 import { useIsUser } from "../../guards/routeGuards";
 
 export default function Profile() {
     const navigate = useNavigate();
     const { accessToken, _id } = useContext(UserContext);
     const [ userPosts, loading ] = useGetUserPosts(_id);
+    const [ userOrders ] = useGetUserOrders(_id);
     const [ userInfo ] = useGetUserInfo(accessToken);
 
     const isUser = useIsUser(accessToken);
@@ -37,7 +38,7 @@ export default function Profile() {
                 </div>
 
                 <div className="mt-8 border-t border-gray-700 pt-6">
-                    <h3 className="text-xl font-semibold">Your Orders</h3>
+                    <h3 className="text-xl font-semibold">Your Posts</h3>
                     <div className="mt-4">   
                     {loading 
                     ? (<div className="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
@@ -45,6 +46,25 @@ export default function Profile() {
                     </div>)
                     : userPosts.length > 0 ? (
                         userPosts.map((post) => 
+                        <div key={post._id} className="bg-gray-700 p-4 rounded-md shadow-md flex justify-between items-center">
+                            <p>{post.name} - ${post.price}</p>
+                            <button onClick={() => navigateToPostDetails(post._id)} className="text-indigo-400 cursor-pointer hover:text-indigo-300">View</button>
+                        </div>)
+                    ) : (<p className="text-gray-400">No orders found.</p>)
+                }
+                   
+                    </div>
+                </div>
+
+                <div className="mt-8 border-t border-gray-700 pt-6">
+                    <h3 className="text-xl font-semibold">Your Orders</h3>
+                    <div className="mt-4">   
+                    {loading 
+                    ? (<div className="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
+                        <div className="w-16 h-16 border-4 border-gray-300 border-t-indigo-500 rounded-full animate-spin"></div>
+                    </div>)
+                    : userOrders.length > 0 ? (
+                        userOrders.map((post) => 
                         <div key={post._id} className="bg-gray-700 p-4 rounded-md shadow-md flex justify-between items-center">
                             <p>{post.name} - ${post.price}</p>
                             <button onClick={() => navigateToPostDetails(post._id)} className="text-indigo-400 cursor-pointer hover:text-indigo-300">View</button>
