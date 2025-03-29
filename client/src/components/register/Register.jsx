@@ -56,8 +56,6 @@ export default function Register() {
         }
     }, [error]);
 
-
-
     return (
         <>
         {error && <Error errorMsg={error} />}

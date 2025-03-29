@@ -1,13 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useEditFurniture } from "../../api/furnitureApi";
 import useForm from "../../hooks/useForm";
 import { UserContext } from "../../contexts/userContext";
 import { emptyFieldsMsg } from "../../helpers/errorHandlingMsg";
 import { checkForEmptyField } from "../../utils/formUtils";
+import Error from "../error/Error";
 
 export default function Edit({ furniture, setIsActive, reRender}) {
     const { accessToken } = useContext(UserContext);
     const [loading, setLoading] = useState(false);
+    const [ error, setError ] = useState('');
     const [ edit ] = useEditFurniture();
     const [ formValues, changeFormValues ] = useForm({
         name: furniture.name,
@@ -24,7 +26,7 @@ export default function Edit({ furniture, setIsActive, reRender}) {
         formValues.price = formValues.price.toString();
         const areEmptyFields = checkForEmptyField(formValues);
         if(areEmptyFields) {
-            alert(emptyFieldsMsg);
+            setError(emptyFieldsMsg);
             setLoading(false);
             return;
         }
@@ -32,7 +34,7 @@ export default function Edit({ furniture, setIsActive, reRender}) {
         
         const response = await edit(furniture._id, formValues, accessToken);
         if(response.error){
-            return alert(response.error);
+            return setError(response.error);
         }
 
         setLoading(false);
@@ -40,13 +42,25 @@ export default function Edit({ furniture, setIsActive, reRender}) {
         setIsActive(false);
     }
 
+    
+    useEffect(() => {
+        if(error){
+            setTimeout(() => {
+                setError('');
+            }, 3000)
+        }
+    }, [error]);
+    
 
     return(
         <>
         {loading ? 
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
             <div className="w-16 h-16 border-4 border-gray-300 border-t-indigo-500 rounded-full animate-spin"></div>
-        </div> : <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-30 z-50">
+        </div> : 
+        <>
+        <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-30 z-50">
+         {error && <Error errorMsg={error} />} {error && <Error errorMsg={error} />}
             <div className="bg-gray-800 p-8 rounded-lg w-96 max-w-full">
                 <h2 className="text-2xl font-semibold text-white mb-6">Edit Item</h2>
                 <form onSubmit={editSubmitHandler}>
@@ -123,8 +137,7 @@ export default function Edit({ furniture, setIsActive, reRender}) {
                     </div>
                 </form>
             </div>
-        </div> }
-        
+        </div> </> }
         </>
     )
 }
