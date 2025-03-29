@@ -44,10 +44,7 @@ export default function Order() {
 
     const orderFormSubmit = (e) => {
         e.preventDefault();
-
-        console.log(formValues);
-        
-
+  
         if(checkForEmptyField(formValues)){
             return alert(emptyFieldsMsg);
         }
