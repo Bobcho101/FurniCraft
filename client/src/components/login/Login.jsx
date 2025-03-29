@@ -1,16 +1,18 @@
 import { Link, useNavigate } from 'react-router';
 import useForm from '../../hooks/useForm';
 import { useLogin } from '../../api/authApi';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../contexts/userContext';
 import { emptyFieldsMsg } from '../../helpers/errorHandlingMsg';
 import { checkForEmptyField } from '../../utils/formUtils';
 import { useIsUser } from '../../guards/routeGuards';
+import Error from '../error/Error';
 
 
 export default function Login() {
     const navigate = useNavigate();
     const { accessToken } = useContext(UserContext);
+    const [ error, setError ] = useState('');
     const [formValues, changeFormValues, setFormValues] = useForm({
         'email': '',
         'password': '',
@@ -34,7 +36,7 @@ export default function Login() {
         
         if(userData.error){
             setFormValues({ password: '' });
-            return alert(userData.error);
+            return setError(userData.error); 
         };
 
         userLoginHandler(userData);
@@ -42,8 +44,19 @@ export default function Login() {
         return navigate('/');
     }
 
+    useEffect(() => {
+        if(error){
+            setTimeout(() => {
+                setError('');
+            }, 3000)
+        }
+    }, [error]);
+
+
     return (
         <>
+        {error && <Error errorMsg={error} />}
+        
         <div className="bg-gray-900 text-white min-h-screen flex items-center justify-center relative">
             <div
                 aria-hidden="true"

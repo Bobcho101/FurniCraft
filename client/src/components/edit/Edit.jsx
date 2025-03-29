@@ -11,7 +11,7 @@ export default function Edit({ furniture, setIsActive, reRender}) {
     const [ edit ] = useEditFurniture();
     const [ formValues, changeFormValues ] = useForm({
         name: furniture.name,
-        price: furniture.price,
+        price: furniture.price, 
         category: furniture.category,
         image: furniture.image,
         description: furniture.description
