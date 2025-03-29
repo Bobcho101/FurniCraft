@@ -62,21 +62,6 @@ export const useRecommendedFurniture = (category, furnitureId) => {
     return [result];
 }
 
-// export const useOneFurniture = (furnitureId) => {
-//     const [furniture, setFurniture] = useState({});
-
-//     useEffect(() => {
-//         fetch(baseUrl + '/' + furnitureId)
-//             .then(res => res.json())
-//             .then(data => setFurniture(data))
-//             .catch(err => console.log(err))
-
-//     }, [furnitureId]);
-
-
-//     return [furniture];
-// }
-
 export const fetchOneFurniture = async (furnitureId) => {
     try {
         const response = await fetch(baseUrl + '/' + furnitureId);
@@ -167,3 +152,22 @@ export const useDeleteFurniture = () => {
     };
     return [ deleteFunction ];
 };
+
+export const useGetUserPosts = (userId) => {
+    const [ loading, setLoading ] = useState(true);                
+    const [ userPosts, setUserPosts ] = useState([]); 
+
+    useEffect(() => {
+        setLoading(true);
+        fetch(`http://localhost:3030/data/furniture?where=_ownerId%3D%22${userId}%22`)
+        .then((res) => res.json())
+        .then((data) => {
+            setUserPosts(data);
+            setLoading(false);
+        })
+        .catch((err) => console.log(err))
+    }, [userId]);
+
+
+    return [ userPosts, loading ];
+}

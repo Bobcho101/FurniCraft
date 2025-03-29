@@ -1,9 +1,10 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { UserContext } from "../../contexts/userContext";
-import { useGetUserInfo, useGetUserPosts } from "../../api/userApi";
+import { useGetUserInfo } from "../../api/userApi";
 import { useIsUser } from "../../guards/routeGuards";
 import { useGetUserOrders } from "../../api/ordersApi";
+import { useGetUserPosts } from "../../api/furnitureApi";
 
 export default function Profile() {
     const navigate = useNavigate();
