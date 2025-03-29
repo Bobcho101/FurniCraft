@@ -5,6 +5,9 @@ import { useIsUser } from "../../guards/routeGuards";
 import { checkIsOwner } from "../../utils/miniAuthorizations";
 import { UserContext } from "../../contexts/userContext";
 import OrderSuccess from "./OrderSuccess";
+import { checkForEmptyField } from "../../utils/formUtils";
+import { emptyFieldsMsg } from "../../helpers/errorHandlingMsg";
+import useForm from "../../hooks/useForm";
 
 export default function Order() {
     const { itemId } = useParams();
@@ -15,6 +18,12 @@ export default function Order() {
     const navigate = useNavigate();
     const location = useLocation();
     const furniturePrice = location.state?.furniturePrice;
+    const [formValues, changeFormValues] = useForm({
+        'name': '',
+        'address': '',
+        'phoneNumber': '',
+        'payment': 'creditCard',
+    });
 
     const isUser = useIsUser(accessToken);
     const isOwner = checkIsOwner(_id, furniture._ownerId);
@@ -35,6 +44,14 @@ export default function Order() {
 
     const orderFormSubmit = (e) => {
         e.preventDefault();
+
+        console.log(formValues);
+        
+
+        if(checkForEmptyField(formValues)){
+            return alert(emptyFieldsMsg);
+        }
+        
         setIsOrderSuccessActive(true);
     }
 
@@ -71,13 +88,13 @@ export default function Order() {
                 </div>
 
                 <form onSubmit={orderFormSubmit} className="flex flex-col gap-4">
-                    <input type="text" placeholder="Full Name" className="w-full p-3 rounded-lg bg-gray-700 text-white focus:outline-none" />
-                    <input type="text" placeholder="Shipping Address" className="w-full p-3 rounded-lg bg-gray-700 text-white focus:outline-none" />
-                    <input type="text" placeholder="Phone Number" className="w-full p-3 rounded-lg bg-gray-700 text-white focus:outline-none" />
-                    <select className="w-full p-3 rounded-lg bg-gray-700 text-white focus:outline-none">
-                        <option>Credit Card</option>
-                        <option>PayPal</option>
-                        <option>Cash on Delivery</option>
+                    <input onChange={changeFormValues} value={formValues.name} type="text" name="name" placeholder="Full Name" className="w-full p-3 rounded-lg bg-gray-700 text-white focus:outline-none" />
+                    <input onChange={changeFormValues} value={formValues.address} type="text" name="address" placeholder="Shipping Address" className="w-full p-3 rounded-lg bg-gray-700 text-white focus:outline-none" />
+                    <input onChange={changeFormValues} value={formValues.phoneNumber} type="text" name="phoneNumber" placeholder="Phone Number" className="w-full p-3 rounded-lg bg-gray-700 text-white focus:outline-none" />
+                    <select onChange={changeFormValues} name="payment" className="w-full p-3 rounded-lg bg-gray-700 text-white focus:outline-none">
+                        <option value="creditCard">Credit Card</option>
+                        <option value="pay-pal">PayPal</option>
+                        <option value="cash">Cash on Delivery</option>
                     </select>
                     <button type="submit" className="w-full bg-indigo-600 cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-indigo-500">
                         Place Order
