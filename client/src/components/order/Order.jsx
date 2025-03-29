@@ -8,18 +8,20 @@ import OrderSuccess from "./OrderSuccess";
 import { checkForEmptyField } from "../../utils/formUtils";
 import { emptyFieldsMsg } from "../../helpers/errorHandlingMsg";
 import useForm from "../../hooks/useForm";
+import { useCreateFurnitureOrder } from "../../api/ordersApi";
 
 export default function Order() {
     const { itemId } = useParams();
     const [ isOrderSuccessActive, setIsOrderSuccessActive] = useState(false);
     const [ furniture, setFurniture ] = useState({});
+    const [ createOrder ] = useCreateFurnitureOrder();
     const [ loading, setLoading ] = useState(true);
     const { _id, accessToken } = useContext(UserContext);
     const navigate = useNavigate();
     const location = useLocation();
     const furniturePrice = location.state?.furniturePrice;
     const [formValues, changeFormValues] = useForm({
-        'name': '',
+        'pName': '',
         'address': '',
         'phoneNumber': '',
         'payment': 'creditCard',
@@ -42,13 +44,23 @@ export default function Order() {
         }
     };
 
-    const orderFormSubmit = (e) => {
+    const orderFormSubmit = async (e) => {
         e.preventDefault();
   
         if(checkForEmptyField(formValues)){
             return alert(emptyFieldsMsg);
         }
-        
+
+        formValues.price = furniture.price;
+        formValues.furnitureId = furniture._id;
+        formValues.count = furniturePrice / furniture.price;
+        formValues.name = furniture.name;
+        const response = await createOrder(formValues, accessToken);
+
+        if(response.error){
+            return alert(response.error);
+        }
+  
         setIsOrderSuccessActive(true);
     }
 
@@ -85,7 +97,7 @@ export default function Order() {
                 </div>
 
                 <form onSubmit={orderFormSubmit} className="flex flex-col gap-4">
-                    <input onChange={changeFormValues} value={formValues.name} type="text" name="name" placeholder="Full Name" className="w-full p-3 rounded-lg bg-gray-700 text-white focus:outline-none" />
+                    <input onChange={changeFormValues} value={formValues.name} type="text" name="pName" placeholder="Full Name" className="w-full p-3 rounded-lg bg-gray-700 text-white focus:outline-none" />
                     <input onChange={changeFormValues} value={formValues.address} type="text" name="address" placeholder="Shipping Address" className="w-full p-3 rounded-lg bg-gray-700 text-white focus:outline-none" />
                     <input onChange={changeFormValues} value={formValues.phoneNumber} type="text" name="phoneNumber" placeholder="Phone Number" className="w-full p-3 rounded-lg bg-gray-700 text-white focus:outline-none" />
                     <select onChange={changeFormValues} name="payment" className="w-full p-3 rounded-lg bg-gray-700 text-white focus:outline-none">

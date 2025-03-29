@@ -1548,18 +1548,8 @@
               },
     	},
     	orders: {
-            "1j311484-b8d6-441f-82ce-88762nda37a": {
-                "_ownerId": "439156d0-2cd1-4f1c-8229-4c08608c7cd5",
-                "name": "Cosmo Sofa",
-                "category": "Living Room",
-                "price": 399,
-                "count": 3,
-                "description": "Experience the Cosmo Sofa: a blend of modern design and ultimate comfort. Perfect for any living space, this sofa features premium materials and craftsmanship for lasting quality. Elevate your home with the stylish and luxurious Cosmo Sofa!",
-                "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqsw_gFgkDEy1kQ8xPVKCYyJSTKjEA_X_3mw&s",
-                "_createdOn": 1742494458554,
-                "_id": "1j311484-b8d6-441f-82ce-88762nda37a"
-            },
-    	},
+            
+        },
     	movies: {
     		"1240549d-f0e0-497e-ab99-eb8f703713d7": {
     			_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",

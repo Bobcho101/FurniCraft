@@ -1,8 +1,9 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { UserContext } from "../../contexts/userContext";
-import { useGetUserInfo, useGetUserOrders, useGetUserPosts } from "../../api/userApi";
+import { useGetUserInfo, useGetUserPosts } from "../../api/userApi";
 import { useIsUser } from "../../guards/routeGuards";
+import { useGetUserOrders } from "../../api/ordersApi";
 
 export default function Profile() {
     const navigate = useNavigate();
@@ -46,11 +47,11 @@ export default function Profile() {
                     </div>)
                     : userPosts.length > 0 ? (
                         userPosts.map((post) => 
-                        <div key={post._id} className="bg-gray-700 p-4 rounded-md shadow-md flex justify-between items-center">
+                        <div key={post._id} className="bg-gray-700 mt-1.5 p-4 rounded-md shadow-md flex justify-between items-center">
                             <p>{post.name} - ${post.price}</p>
                             <button onClick={() => navigateToPostDetails(post._id)} className="text-indigo-400 cursor-pointer hover:text-indigo-300">View</button>
                         </div>)
-                    ) : (<p className="text-gray-400">No orders found.</p>)
+                    ) : (<p className="text-gray-400">No posts found.</p>)
                 }
                    
                     </div>
@@ -65,9 +66,9 @@ export default function Profile() {
                     </div>)
                     : userOrders.length > 0 ? (
                         userOrders.map((post) => 
-                        <div key={post._id} className="bg-gray-700 p-4 rounded-md shadow-md flex justify-between items-center">
-                            <p>{post.name} - ${post.price}</p>
-                            <button onClick={() => navigateToPostDetails(post._id)} className="text-indigo-400 cursor-pointer hover:text-indigo-300">View</button>
+                        <div key={post._id} className="bg-gray-700 mt-1.5 p-4 rounded-md shadow-md flex justify-between items-center">
+                            <p>{post.name} - ${post.price} x {post.count} {`( $${post.price * post.count} )`}</p>
+                            <button onClick={() => navigateToPostDetails(post.furnitureId)} className="text-indigo-400 cursor-pointer hover:text-indigo-300">View</button>
                         </div>)
                     ) : (<p className="text-gray-400">No orders found.</p>)
                 }
