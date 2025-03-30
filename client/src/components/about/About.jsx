@@ -44,7 +44,6 @@ export default function About() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
             {people.map((person, index) => (
                 <motion.div onClick={() => setSelectedPerson(person)} key={person.id} className="bg-gray-800 p-6 rounded-lg shadow-lg text-center cursor-pointer"
-                    
                     initial={{ opacity: 0, x: -100 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 100 }}
