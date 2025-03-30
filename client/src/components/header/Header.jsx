@@ -1,6 +1,7 @@
 import {useContext, useState } from 'react';
 import { Link } from 'react-router';
 import { UserContext } from '../../contexts/userContext';
+import { motion } from 'framer-motion';
 
 export default function Header() {
     const { accessToken, image } = useContext(UserContext);
@@ -48,9 +49,9 @@ export default function Header() {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <Link key={item.name} to={item.href} className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
-                {item.name}
-              </Link>
+                <Link key={item.name} to={item.href} className="text-sm font-semibold text-white hover:text-yellow-400 transition duration-200">
+                    {item.name}
+                </Link>
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 gap-7 items-center lg:justify-end">
@@ -87,7 +88,13 @@ export default function Header() {
           <div className="fixed inset-0 z-50 bg-black bg-opacity-50 lg:hidden" onClick={() => setMobileMenuOpen(false)} />
         )}
         {mobileMenuOpen && (
-          <div className="fixed inset-0 z-50 lg:hidden bg-white py-6 px-6">
+            <motion.div
+            className="fixed inset-0 z-50 lg:hidden bg-white py-6 px-6"
+            initial={{ opacity: 0, x: +100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 100 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+        >
             <div className="flex justify-between items-center">
               <Link to={'/'} onClick={() => setMobileMenuOpen(false)} className="-m-1.5 p-1.5">
                 <span className="sr-only">FurnitureHub</span>
@@ -139,7 +146,7 @@ export default function Header() {
                   </>
                 )}
             </div>
-          </div>
+          </motion.div>
         )}
       </header>
        </>
