@@ -11,6 +11,7 @@ import useForm from "../../hooks/useForm";
 import { useCreateFurnitureOrder } from "../../api/ordersApi";
 import Error from "../error/Error";
 import { setDocumentTitle } from "../../utils/document";
+import { motion } from "framer-motion";
 
 export default function Order() {
     setDocumentTitle("Order Furniture");
@@ -96,7 +97,13 @@ export default function Order() {
                 <div className="w-16 h-16 border-4 border-gray-300 border-t-indigo-500 rounded-full animate-spin"></div>
             </div>
             : <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center py-10">
-                <div className="bg-gray-800 p-10 rounded-lg shadow-lg max-w-3xl w-full mt-20">
+                <motion.div 
+                    className="bg-gray-800 p-10 rounded-lg shadow-lg max-w-3xl w-full mt-20"
+                    initial={{ opacity: 0, x: -100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 100 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                >
                 <h2 className="text-3xl font-bold mb-6 text-center">Confirm Your Order</h2>
                 
                 <div className="mb-6 flex flex-col items-center">
@@ -125,7 +132,7 @@ export default function Order() {
                         Back to Catalog
                     </Link>
                 </div>
-            </div>
+            </motion.div>
         </div>  
         }
         </>

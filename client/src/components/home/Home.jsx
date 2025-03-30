@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { motion } from "framer-motion";
 import { setDocumentTitle } from "../../utils/document";
 
 const Home = () => {
@@ -6,9 +7,14 @@ const Home = () => {
   window.scrollTo(0, 0);
   return (
     <>
-    
     <div className="bg-gray-900 text-white min-h-screen">
-      <div className="relative isolate px-6 pt-14 lg:px-8 min-h-screen w-full">
+    <motion.div
+        className="relative isolate px-6 pt-14 lg:px-8 min-h-screen w-full"
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: 100 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+    >
         <div
           aria-hidden="true"
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -42,7 +48,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
     </>
   );

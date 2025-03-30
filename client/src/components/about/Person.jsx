@@ -1,8 +1,7 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function Person({ selectedPerson, setSelectedPerson }) {
    return (
-    <AnimatePresence>
         <motion.div
             className="fixed inset-0 bg-gray-900 bg-opacity-40 backdrop-blur-md flex items-center justify-center p-4"
             initial={{ opacity: 0, x: -100 }}
@@ -22,6 +21,5 @@ export default function Person({ selectedPerson, setSelectedPerson }) {
             <p className="text-gray-300 mt-3">{selectedPerson.description}</p>
             </div>
         </motion.div>
-        </AnimatePresence>
    );
 }
