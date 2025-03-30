@@ -26,6 +26,18 @@ export default function Contacts() {
           </div>
         </div>
 
+        <div className="mt-6">
+          <div className="rounded-lg overflow-hidden shadow-md border border-gray-700">
+            <iframe
+              className="w-full h-64 md:h-80 rounded-lg"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1466.4490025919176!2d23.317797638195586!3d42.68470280748646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbg!4v1743328503830!5m2!1sen!2sbg"
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </div>
+
         <div className="mt-6 text-center">
           <Link
             to="/"
