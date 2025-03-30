@@ -8,6 +8,7 @@ import { checkForEmptyField } from '../../utils/formUtils';
 import { useIsUser } from '../../guards/routeGuards';
 import Error from '../error/Error';
 import { setDocumentTitle } from '../../utils/document';
+import { motion } from 'framer-motion';
 
 export default function Register() {
     setDocumentTitle("Register")
@@ -63,7 +64,13 @@ export default function Register() {
         {error && <Error errorMsg={error} />}
           
         <div className="bg-gray-900 text-white min-h-screen flex items-center justify-center">
-        <div className="w-full max-w-md p-8 bg-gray-800 bg-opacity-90 rounded-lg shadow-lg">
+        <motion.div
+            className="w-full max-w-md p-8 bg-gray-800 bg-opacity-90 rounded-lg shadow-lg"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 100 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+        >
             <h2 className="text-3xl font-semibold text-center">Register</h2>
             <form onSubmit={registerSubmitHandler} className="mt-6">
             <div className="mb-4">
@@ -152,7 +159,7 @@ export default function Register() {
                 </Link>
             </p>
             </div>
-        </div>
+        </motion.div>
         </div>
         </>
     );

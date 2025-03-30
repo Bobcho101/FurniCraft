@@ -53,7 +53,7 @@ export default function Contacts() {
                     Back to Home
                 </Link>
                 </div>
-        </motion.div>
+            </motion.div>
         </div>
         </>
     );
