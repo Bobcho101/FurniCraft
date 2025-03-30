@@ -7,6 +7,7 @@ import { checkIsOwner } from "../../utils/miniAuthorizations";
 import Edit from "../edit/Edit";
 import Delete from "../delete/Delete";
 import { setDocumentTitle } from "../../utils/document";
+import Error from "../error/Error";
 
 export default function Details() {
     setDocumentTitle("Furniture Details");
@@ -14,6 +15,7 @@ export default function Details() {
     const navigate = useNavigate();
     const { itemId } = useParams();
     const [ quantity, setQuantity ] = useState(1);
+    const [ error, setError ] = useState('');
     const [ furniture, setFurniture ] = useState({});
     const [ recommendedFurniture ] = useRecommendedFurniture(furniture?.category, furniture?._id);
     const [ loading, setLoading ] = useState(true);
@@ -24,15 +26,16 @@ export default function Details() {
 
 
     const getFurniture = async (furnitureId) => {
-        try {
-            const data = await fetchOneFurniture(furnitureId);;
+        
+        const data = await fetchOneFurniture(furnitureId);
 
-            setFurniture(data); 
+        if(data.error){
             setLoading(false); 
-        } catch (err) {
-            console.log(err.message);
-            setLoading(false);
+            setError(data.error);
         }
+
+        setFurniture(data); 
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -76,8 +79,18 @@ export default function Details() {
     }, [quantity, furniture.price]);
 
 
+    useEffect(() => {
+        if(error){
+            setTimeout(() => {
+                setError('');
+                navigate('/catalog/1');
+            }, 3000)
+        }
+    }, [error, navigate]);
+
     return (
         <>
+        {error && <Error errorMsg={error} />}
         {isDeleteActive && <Delete itemName={furniture.name} itemId={furniture._id} setIsActive={setIsDeleteActive} />}
         {isEditActive && <Edit furniture={furniture} setIsActive={setIsEditActive} reRender={handleFurnitureEdit} loading={loading} setLoading={setLoading} />}
         {loading && 

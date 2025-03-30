@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { failedOrderingFurniture } from "../helpers/errorHandlingMsg";
+import { failedOrderingFurnitureMsg } from "../helpers/errorHandlingMsg";
 
 const baseUrl = 'http://localhost:3030/data/orders';
 
@@ -17,7 +17,7 @@ export const useCreateFurnitureOrder = () => {
             
             if(!response.ok){
                 return {
-                    error: failedOrderingFurniture, 
+                    error: failedOrderingFurnitureMsg, 
                 }
             }
             const data = await response.json();

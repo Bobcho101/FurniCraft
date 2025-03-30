@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { failedCreatingFurnitureMsg, failedDeletingFurnitureMsg, failedUpdatingFurnitureMsg } from "../helpers/errorHandlingMsg";
+import { failedCreatingFurnitureMsg, failedDeletingFurnitureMsg, failedLoadingTheFurnitureMsg, failedUpdatingFurnitureMsg } from "../helpers/errorHandlingMsg";
 import { ITEMS_PER_PAGE } from "../utils/constants";
 const baseUrl = 'http://localhost:3030/data/furniture';
 
@@ -65,11 +65,16 @@ export const useRecommendedFurniture = (category, furnitureId) => {
 export const fetchOneFurniture = async (furnitureId) => {
     try {
         const response = await fetch(baseUrl + '/' + furnitureId);
+        if(!response.ok){
+            throw new Error(failedLoadingTheFurnitureMsg);
+        }
         const data = await response.json();
         return data;
     } catch (err) {
         console.log(err.message); 
-        return err.message;
+        return {
+            error: failedLoadingTheFurnitureMsg,
+        };
     }
 };
 

@@ -60,7 +60,7 @@ export default function Edit({ furniture, setIsActive, reRender}) {
         </div> : 
         <>
         <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-30 z-50">
-         {error && <Error errorMsg={error} />} {error && <Error errorMsg={error} />}
+         {error && <Error errorMsg={error} />} 
             <div className="bg-gray-800 p-8 rounded-lg w-96 max-w-full">
                 <h2 className="text-2xl font-semibold text-white mb-6">Edit Item</h2>
                 <form onSubmit={editSubmitHandler}>
