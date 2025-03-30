@@ -36,9 +36,6 @@ export default function Details() {
         setLoading(false);
     };
 
-    const recommendHandler = () => {
-
-    };
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -120,12 +117,6 @@ export default function Details() {
                 <p className="text-indigo-400 text-lg mt-2">{furniture.category}</p>
                 <p className="text-gray-300 mt-4">{furniture.description}</p>
                 <p className="text-2xl font-semibold text-white mt-4">${furniturePrice}</p>
-
-                <div className="mt-4 flex gap-4">
-                    <button onClick={recommendHandler} className="flex cursor-pointer bg-indigo-500 items-center gap-2 bg text-white py-2 px-4 rounded-lg hover:bg-indigo-400">
-                        ⭐ Recommend <span className="text-indigo-100">{furniture.recommendedUsersList?.length || 0 }</span>
-                    </button>
-                </div>
 
                 {isOwner 
                 ? (<div className="mt-4 flex gap-4">

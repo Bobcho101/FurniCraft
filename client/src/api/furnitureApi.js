@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { failedAddingRecommendation, failedCreatingFurnitureMsg, failedDeletingFurnitureMsg, failedLoadingTheCatalogMsg, failedLoadingTheFurnitureMsg, failedUpdatingFurnitureMsg } from "../helpers/errorHandlingMsg";
+import { failedCreatingFurnitureMsg, failedDeletingFurnitureMsg, failedLoadingTheCatalogMsg, failedLoadingTheFurnitureMsg, failedUpdatingFurnitureMsg } from "../helpers/errorHandlingMsg";
 import { ITEMS_PER_PAGE } from "../utils/constants";
 const baseUrl = 'http://localhost:3030/data/furniture';
 
@@ -177,32 +177,4 @@ export const useGetUserPosts = (userId) => {
 
 
     return [ userPosts, loading ];
-}
-
-export const useRecommendation = () => {
-    const addRecommend = async (initUsersList, userId, itemId, accessToken) => {
-        initUsersList.push(userId);
-        try{
-            const response = await fetch(baseUrl + '/' + itemId, {
-                method: "PATCH",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Authorization': accessToken,
-                },
-                body: JSON.stringify({initUsersList})
-            });
-            if(!response.ok){
-                return {
-                    error: failedAddingRecommendation,
-                }
-            }
-        } catch(err){
-            console.log(err.message);
-        }
-    }
-    const removeRecommend = async () => {
-
-    }
-
-    return [addRecommend, removeRecommend];
 }
