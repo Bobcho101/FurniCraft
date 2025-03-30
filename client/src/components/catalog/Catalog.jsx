@@ -66,17 +66,38 @@ function Catalog() {
                 <h2 className="text-4xl font-semibold text-center mb-8">Catalog</h2>
 
                 <div className="flex justify-between items-center mb-6">
-                    <div className="w-1/3">
+                <form 
+                    className="w-1/3 flex items-center bg-gray-900 p-2 rounded-md relative" 
+                    onSubmit={(e) => e.preventDefault()}
+                >
+                    <div className="relative w-full">
                         <input
                             type="text"
                             id="search"
                             placeholder="Search products..."
-                            className="w-full p-2 bg-gray-800 text-white rounded-md"
+                            className="w-full p-2 bg-gray-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 pr-10"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
+                        
+                        {searchQuery && (
+                            <button 
+                                type="button" 
+                                onClick={() => setSearchQuery('')}
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-all"
+                            >
+                                ✕
+                            </button>
+                        )}
                     </div>
 
+                    <button 
+                        type="submit"
+                        className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-500 transition-all duration-300 ml-2"
+                    >
+                        Submit
+                    </button>
+                </form>
                     <div className="flex gap-4 items-center">
                         <select
                             id="sort"
