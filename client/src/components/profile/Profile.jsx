@@ -6,6 +6,7 @@ import { useIsUser } from "../../guards/routeGuards";
 import { useGetUserOrders } from "../../api/ordersApi";
 import { useGetUserPosts } from "../../api/furnitureApi";
 import { setDocumentTitle } from "../../utils/document";
+import { motion } from "framer-motion";
 
 export default function Profile() {
     setDocumentTitle("Profile");
@@ -29,7 +30,13 @@ export default function Profile() {
 
     return (
         <div className="bg-gray-900 text-white min-h-screen flex justify-center py-12 px-6">
-            <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-4xl w-full mt-20">
+            <motion.div 
+                className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-4xl w-full mt-20"
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 100 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+            >
                 
                 <div className="flex flex-col items-center">
                     <img 
@@ -84,7 +91,7 @@ export default function Profile() {
                         Logout
                     </button>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 }

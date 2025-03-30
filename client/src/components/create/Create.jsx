@@ -7,6 +7,7 @@ import { emptyFieldsMsg, invalidCategoryMsg } from "../../helpers/errorHandlingM
 import { checkForEmptyField } from "../../utils/formUtils";
 import { useIsUser } from "../../guards/routeGuards";
 import Error from "../error/Error";
+import { motion } from "framer-motion";
 import { setDocumentTitle } from "../../utils/document";
 
 export default function Create() {
@@ -63,7 +64,13 @@ export default function Create() {
         <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center py-16">
             <h2 className="text-4xl font-semibold mb-10 text-center mt-15">Sell Your Furniture</h2>
 
-            <div className="max-w-2xl w-full bg-gray-800 p-8 rounded-lg shadow-lg">
+            <motion.div 
+            className="max-w-2xl w-full bg-gray-800 p-8 rounded-lg shadow-lg"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 100 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            >
                 <form onSubmit={createSubmitHandler}>
                     <div className="mb-4">
                         <label htmlFor="name" className="block text-sm font-medium text-gray-300">
@@ -144,7 +151,7 @@ export default function Create() {
                         Add Product
                     </button>
                 </form>
-            </div>
+            </motion.div>
         </div>
         </>
     );
