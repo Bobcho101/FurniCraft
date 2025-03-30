@@ -5,8 +5,10 @@ import { useGetUserInfo } from "../../api/userApi";
 import { useIsUser } from "../../guards/routeGuards";
 import { useGetUserOrders } from "../../api/ordersApi";
 import { useGetUserPosts } from "../../api/furnitureApi";
+import { setDocumentTitle } from "../../utils/document";
 
 export default function Profile() {
+    setDocumentTitle("Profile");
     const navigate = useNavigate();
     const { accessToken, _id } = useContext(UserContext);
     const [ userPosts, loading ] = useGetUserPosts(_id);

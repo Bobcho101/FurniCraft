@@ -3,8 +3,10 @@ import { useFurniture } from '../../api/furnitureApi';
 import { Link, useNavigate, useParams } from 'react-router';
 import { ITEMS_PER_PAGE } from '../../utils/constants';
 import { motion } from 'framer-motion';
+import { setDocumentTitle } from '../../utils/document';
 
 function Catalog() {
+    setDocumentTitle("Catalog");
     const navigate = useNavigate();
     const { page } = useParams();
     const pageNum = parseInt(page);

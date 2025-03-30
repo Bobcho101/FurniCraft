@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router";
+import { setDocumentTitle } from "../../utils/document";
 
 export default function NotFound() {
+    setDocumentTitle("Not Found");
     window.scrollTo(0, 0);
     const navigate = useNavigate();
 

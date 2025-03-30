@@ -7,8 +7,10 @@ import { emptyFieldsMsg, missMatchedPasswordsMsg } from '../../helpers/errorHand
 import { checkForEmptyField } from '../../utils/formUtils';
 import { useIsUser } from '../../guards/routeGuards';
 import Error from '../error/Error';
+import { setDocumentTitle } from '../../utils/document';
 
 export default function Register() {
+    setDocumentTitle("Register")
     const [ register ] = useRegister();
     const { accessToken } = useContext(UserContext);
     const [ error, setError ] = useState('');

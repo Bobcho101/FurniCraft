@@ -7,8 +7,10 @@ import { emptyFieldsMsg, invalidCategoryMsg } from "../../helpers/errorHandlingM
 import { checkForEmptyField } from "../../utils/formUtils";
 import { useIsUser } from "../../guards/routeGuards";
 import Error from "../error/Error";
+import { setDocumentTitle } from "../../utils/document";
 
 export default function Create() {
+    setDocumentTitle("Create");
     const [ createFurniture ] = useCreateFurniture();
     const [ error, setError ] = useState('');
     const navigate = useNavigate();

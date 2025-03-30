@@ -7,9 +7,11 @@ import { emptyFieldsMsg } from '../../helpers/errorHandlingMsg';
 import { checkForEmptyField } from '../../utils/formUtils';
 import { useIsUser } from '../../guards/routeGuards';
 import Error from '../error/Error';
+import { setDocumentTitle } from '../../utils/document';
 
 
 export default function Login() {
+    setDocumentTitle("Login");
     const navigate = useNavigate();
     const { accessToken } = useContext(UserContext);
     const [ error, setError ] = useState('');

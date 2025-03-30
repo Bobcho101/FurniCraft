@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import Person from "./Person";
 import { useState } from "react";
+import { setDocumentTitle } from "../../utils/document";
 
 const people = [
     {
@@ -24,6 +25,7 @@ const people = [
 ];
 
 export default function About() {
+    setDocumentTitle("About");
     window.scrollTo(0, 0);
     const [selectedPerson, setSelectedPerson] = useState(null);
 

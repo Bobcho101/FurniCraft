@@ -6,8 +6,10 @@ import { UserContext } from "../../contexts/userContext";
 import { checkIsOwner } from "../../utils/miniAuthorizations";
 import Edit from "../edit/Edit";
 import Delete from "../delete/Delete";
+import { setDocumentTitle } from "../../utils/document";
 
 export default function Details() {
+    setDocumentTitle("Furniture Details");
     window.scrollTo(0, 0);
     const navigate = useNavigate();
     const { itemId } = useParams();

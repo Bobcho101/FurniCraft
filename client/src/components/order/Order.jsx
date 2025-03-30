@@ -10,8 +10,10 @@ import { emptyFieldsMsg } from "../../helpers/errorHandlingMsg";
 import useForm from "../../hooks/useForm";
 import { useCreateFurnitureOrder } from "../../api/ordersApi";
 import Error from "../error/Error";
+import { setDocumentTitle } from "../../utils/document";
 
 export default function Order() {
+    setDocumentTitle("Order Furniture");
     const { itemId } = useParams();
     const [ isOrderSuccessActive, setIsOrderSuccessActive] = useState(false);
     const [ furniture, setFurniture ] = useState({});

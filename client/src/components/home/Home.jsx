@@ -1,6 +1,8 @@
 import { Link } from "react-router";
+import { setDocumentTitle } from "../../utils/document";
 
 const Home = () => {
+  setDocumentTitle("Home");
   window.scrollTo(0, 0);
   return (
     <>

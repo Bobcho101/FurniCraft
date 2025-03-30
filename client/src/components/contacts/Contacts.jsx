@@ -1,6 +1,8 @@
 import { Link } from 'react-router';
+import { setDocumentTitle } from '../../utils/document';
 
 export default function Contacts() {
+  setDocumentTitle("Contacts")
   window.scrollTo(0, 0);
   return (
     <div className="bg-gray-900 text-white min-h-screen flex items-center justify-center">
