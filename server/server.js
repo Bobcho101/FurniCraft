@@ -1495,6 +1495,11 @@
                 _ownerId: "dw34-63fa-323g-kdwm-3217",
                 category: "Living Room",  
                 _createdOn: 1614760782277,
+                recommendedUsersList: [
+                    "efe43eb9-e7dd-4311-988c-b1d511f0bbc5",
+                    "kgasdwda-e7dd-4211-988c-b1ddwankd34k",
+                    "dwawdoad-e7dd-44js-956c-bdawdaa0bbc5",
+                ],
             },
             "7341-g3kd-2fwd-d213":{
                 _id: "7341-g3kd-2fwd-d213",
@@ -1505,6 +1510,10 @@
                 _ownerId: "kd98-3hfg-92kd-asdq-9826",
                 _createdOn: 1614935268135,
                 category: "Dining Room",  
+                recommendedUsersList: [
+                    "efe43eb9-e7dd-4311-988c-b1d511f0bbc5",
+                    "kgasdwda-e7dd-4211-988c-b1ddwankd34k",
+                ],
             },
             "dlpf-j85f-2id4-d932": {
                 _id: "dlpf-j85f-2id4-d932",
@@ -1515,6 +1524,9 @@
                 _ownerId: "lm28-asd1-78fg-mzxc-4591",
                 _createdOn: 1614935181470,
                 category: "Office",  
+                recommendedUsersList: [
+                    "efe43eb9-e7dd-4311-988c-b1d511f0bbc5",
+                ],
             },
             "d32g-w34d-3gl4-8dwa":{
                 _id: "d32g-w34d-3gl4-8dwa",
@@ -1525,6 +1537,9 @@
                 _ownerId: "dw34-63fa-323g-kdwm-3217",
                 _createdOn: 1615033452480,
                 category: "Bedroom",    
+                recommendedUsersList: [
+                    "efe43eb9-e7dd-4311-988c-b1d511f0bbc5",
+                ],
             },
             "nffg-8fda-lgas-dd31": {
                 _id: "nffg-8fda-lgas-dd31",
@@ -1535,6 +1550,8 @@
                 _ownerId: "kd98-3hfg-92kd-asdq-9826",
                 _createdOn: 1614935055353,
                 category: "Living Room", 
+                recommendedUsersList: [
+                ],
             },
             "8b311484-b8d6-441f-82ce-88b23690237a": {
                 "_ownerId": "31da38f7-2612-45b4-a8df-ef4e8dd74b23",
@@ -1544,7 +1561,11 @@
                 "description": "Experience the Cosmo Sofa: a blend of modern design and ultimate comfort. Perfect for any living space, this sofa features premium materials and craftsmanship for lasting quality. Elevate your home with the stylish and luxurious Cosmo Sofa!",
                 "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqsw_gFgkDEy1kQ8xPVKCYyJSTKjEA_X_3mw&s",
                 "_createdOn": 1742494458554,
-                "_id": "8b311484-b8d6-441f-82ce-88b23690237a"
+                "_id": "8b311484-b8d6-441f-82ce-88b23690237a",
+                recommendedUsersList: [
+                    "efe43eb9-e7dd-4311-988c-b1d511f0bbc5",
+                    "kgasdwda-e7dd-4211-988c-b1ddwankd34k",
+                ],
               },
     	},
     	orders: {
