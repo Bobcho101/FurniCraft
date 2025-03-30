@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import Person from "./Person";
 import { useState } from "react";
 import { setDocumentTitle } from "../../utils/document";
+import { motion } from "framer-motion";
 
 const people = [
     {
@@ -31,6 +32,7 @@ export default function About() {
 
 
     return (
+        <>
         <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center py-16">
         <h2 className="text-4xl font-semibold mb-10 text-center mt-17">About Us</h2>
 
@@ -40,14 +42,20 @@ export default function About() {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
-            {people.map((person) => (
-                <div onClick={() => setSelectedPerson(person)} key={person.id} className="bg-gray-800 p-6 rounded-lg shadow-lg text-center cursor-pointer">
-                    <h3 className="text-2xl font-semibold">{person.name}</h3>
-                    <p className="text-indigo-400">{person.role}</p>
-                    <p className="mt-3 text-gray-300 text-sm">
-                      {person.description}
-                    </p>
-                </div>
+            {people.map((person, index) => (
+                <motion.div onClick={() => setSelectedPerson(person)} key={person.id} className="bg-gray-800 p-6 rounded-lg shadow-lg text-center cursor-pointer"
+                    
+                    initial={{ opacity: 0, x: -100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 100 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                <h3 className="text-2xl font-semibold">{person.name}</h3>
+                <p className="text-indigo-400">{person.role}</p>
+                <p className="mt-3 text-gray-300 text-sm">
+                    {person.description}
+                </p>
+                </motion.div>
             ))}
         </div>
 
@@ -63,5 +71,6 @@ export default function About() {
                 <Person selectedPerson={selectedPerson} setSelectedPerson={setSelectedPerson} />
             )}
         </div>
+        </>
     );
 }

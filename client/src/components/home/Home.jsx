@@ -6,8 +6,9 @@ const Home = () => {
   window.scrollTo(0, 0);
   return (
     <>
-    <div className="bg-gray-900 text-white">
-      <div className="relative isolate px-6 pt-14 lg:px-8 h-screen w-full">
+    
+    <div className="bg-gray-900 text-white min-h-screen">
+      <div className="relative isolate px-6 pt-14 lg:px-8 min-h-screen w-full">
         <div
           aria-hidden="true"
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
