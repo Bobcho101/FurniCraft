@@ -28,26 +28,26 @@ npm run dev
 ### **Frontend**
 - **React**
 - **React Router**
-- **Tailwind CSS + AI (this is for the design)**
-- **Motion Frame (this is for the animations)**
+- **Tailwind CSS + AI (*this is for the design*)**
+- **Motion Frame (*this is for the animations*)**
 
-### **Backend (not done by me)**
+### **Backend (*not done by me*)**
 - **Node.js**
 
-## Functionality 
-1. **Authentication (register, login, logout)**
-2. **Dynamic navigation (guest, user)**
-3. **Home page (Access: guests, users)**
-4. **About page that you can see detailed info for every person (Access: guests, users)**
-5. **Contacts page (Access: guests, users)**
-6. **Catalog page with search, pagination and sorting (Access: guests, users)**
-7. **Details view page for every furniture with recommended furniture from the same category(Access: guests, users)**
-8. **Create furniture page (Access: users)**
-9. **Profile page that you can see your posts and orders (Access: users)**
-10. **Edit component that appears inside the details view (Access: post owners)**
-11. **Delete component that appears inside the details view (Access: post owners)**
-12. **Order page (Access: users that are not owners)**
-13. **Not found page (Access: guests, users)**
+## Functionality
+1. **Authentication (*register, login, logout*)**
+2. **Dynamic navigation (*guest, user*)**
+3. **Home page (*Access: guests, users*)**
+4. **About page that you can see detailed info for every person (*Access: guests, users*)**
+5. **Contacts page with iframe google maps api (*Access: guests, users*)**
+6. **Catalog page with search, pagination and sorting (*Access: guests, users*)**
+7. **Details view page for every furniture with recommended furniture from the same category(*Access: guests, users*)**
+8. **Create furniture page (*Access: users*)**
+9. **Profile page that you can see your posts and orders (*Access: users*)**
+10. **Edit component that appears inside the details view (*Access: post owners*)**
+11. **Delete component that appears inside the details view (*Access: post owners*)**
+12. **Order page (*Access: users that are not owners*)**
+13. **Not found page (*Access: guests, users*)**
 
 ## Notes
 - **I used 2 collections for this project - furniture, orders**
@@ -56,5 +56,5 @@ npm run dev
 - **Most of the pages got animations**
 - **Good error handling with a component appearing on the top of the screen**
 - **Error handling for empty forms**
-- **I used a provider that gives a context to the routes for the user info!**
+- **I used a provider that gives a context to the routes for the user info**
 - **Every page has a different document title**
