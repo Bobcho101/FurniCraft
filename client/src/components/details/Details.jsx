@@ -11,7 +11,6 @@ import Error from "../error/Error";
 
 export default function Details() {
     setDocumentTitle("Furniture Details");
-    window.scrollTo(0, 0);
     const navigate = useNavigate();
     const { itemId } = useParams();
     const [ quantity, setQuantity ] = useState(1);
@@ -23,7 +22,6 @@ export default function Details() {
     const [ isDeleteActive, setIsDeleteActive ] = useState(false);
     const [ furniturePrice, setFurniturePrice ] = useState(furniture.price);
     const { _id } = useContext(UserContext);
-
 
     const getFurniture = async (furnitureId) => {
         
@@ -39,6 +37,8 @@ export default function Details() {
     };
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+        setQuantity(1);
         getFurniture(itemId);
     }, [itemId]); 
 

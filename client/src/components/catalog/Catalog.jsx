@@ -111,7 +111,7 @@ function Catalog() {
                         type="submit"
                         className="bg-indigo-600 cursor-pointer text-white px-4 py-2 rounded-md hover:bg-indigo-500 transition-all duration-300 ml-2"
                     >
-                        Submit
+                        Search
                     </button>
                 </form>
                     <div className="flex gap-4 items-center">
