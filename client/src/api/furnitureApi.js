@@ -154,7 +154,10 @@ export const useDeleteFurniture = () => {
             const data = await response.json();
             return { data };
         } catch(err){
-            console.log(err.message);
+            console.log(err);
+            return {
+                error: failedDeletingFurnitureMsg,
+            }
         }
     };
     return [ deleteFunction ];

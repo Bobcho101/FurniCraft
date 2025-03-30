@@ -1,11 +1,13 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDeleteFurniture } from "../../api/furnitureApi";
 import { UserContext } from "../../contexts/userContext";
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
+import Error from "../error/Error";
 
 export default function Delete({ itemName, itemId, setIsActive }) {
     const [ deleteFunction ] = useDeleteFurniture(); 
+    const [ error, setError ] = useState('');
     const navigate = useNavigate();
     const { accessToken } = useContext(UserContext);
 
@@ -13,10 +15,19 @@ export default function Delete({ itemName, itemId, setIsActive }) {
         const res = await deleteFunction(itemId, accessToken);
 
         if(res.error){
-            return alert(res.error);
+            return setError(res.error);
         }
         return navigate("/catalog/1");
     }
+
+    useEffect(() => {
+        if(error){
+            setTimeout(() => {
+                setError('');
+                setIsActive(false);
+            }, 3000)
+        }
+    }, [error, setIsActive]);
 
     return (
         <>
@@ -27,6 +38,7 @@ export default function Delete({ itemName, itemId, setIsActive }) {
                 exit={{ opacity: 0, x: 100 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
             >
+                {error && <Error errorMsg={error} />} 
                 <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-sm w-full text-center">
                     <h3 className="text-xl font-semibold text-white">Are you sure you want to delete &quot;{itemName}&quot; ?</h3>
 

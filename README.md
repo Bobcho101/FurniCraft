@@ -57,3 +57,4 @@ npm run dev
 - **Good error handling with a component appearing on the top of the screen**
 - **Error handling for empty forms**
 - **I used a provider that gives a context to the routes for the user info!**
+- **Every page has a different document title**
