@@ -5,6 +5,7 @@ import { ITEMS_PER_PAGE } from '../../utils/constants';
 import { motion } from 'framer-motion';
 import { setDocumentTitle } from '../../utils/document';
 import Error from '../error/Error';
+import useForm from '../../hooks/useForm';
 
 function Catalog() {
     setDocumentTitle("Catalog");
@@ -17,8 +18,22 @@ function Catalog() {
     const [ loading, setLoading ] = useState(true);
     const [ furniture, allFurnitureLength, error ] = useFurniture(sortOption, pageNum, searchQuery);
 
+    const [formValues, changeFormValues, setFormValue] = useForm({
+        'search': '',
+    })
+
     const totalPages = Math.ceil(allFurnitureLength / ITEMS_PER_PAGE); 
     const isLastPage = pageNum === totalPages;
+
+    const searchSubmitHandler = (e) => {
+        e.preventDefault();
+        setSearchQuery(formValues.search);
+    }
+
+    const clearSearchHandler = () => {
+        setFormValue({'search': ''});
+        setSearchQuery('');
+    }
 
     useEffect(() => {
         if(error){
@@ -68,23 +83,24 @@ function Catalog() {
                 <div className="flex justify-between items-center mb-6">
                 <form 
                     className="w-1/3 flex items-center bg-gray-900 p-2 rounded-md relative" 
-                    onSubmit={(e) => e.preventDefault()}
+                    onSubmit={searchSubmitHandler}
                 >
                     <div className="relative w-full">
                         <input
                             type="text"
                             id="search"
+                            name="search"
                             placeholder="Search products..."
                             className="w-full p-2 bg-gray-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 pr-10"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
+                            value={formValues.search}
+                            onChange={changeFormValues}
                         />
                         
                         {searchQuery && (
                             <button 
                                 type="button" 
-                                onClick={() => setSearchQuery('')}
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-all"
+                                onClick={clearSearchHandler}
+                                className="absolute cursor-pointer right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-all"
                             >
                                 ✕
                             </button>
@@ -93,7 +109,7 @@ function Catalog() {
 
                     <button 
                         type="submit"
-                        className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-500 transition-all duration-300 ml-2"
+                        className="bg-indigo-600 cursor-pointer text-white px-4 py-2 rounded-md hover:bg-indigo-500 transition-all duration-300 ml-2"
                     >
                         Submit
                     </button>
