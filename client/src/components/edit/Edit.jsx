@@ -4,6 +4,7 @@ import useForm from "../../hooks/useForm";
 import { UserContext } from "../../contexts/userContext";
 import { emptyFieldsMsg } from "../../helpers/errorHandlingMsg";
 import { checkForEmptyField } from "../../utils/formUtils";
+import { motion } from "framer-motion";
 import Error from "../error/Error";
 
 export default function Edit({ furniture, setIsActive, reRender}) {
@@ -61,7 +62,13 @@ export default function Edit({ furniture, setIsActive, reRender}) {
         <>
         <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-30 z-50">
          {error && <Error errorMsg={error} />} 
-            <div className="bg-gray-800 p-8 rounded-lg w-96 max-w-full">
+            <motion.div 
+                className="bg-gray-800 p-8 rounded-lg w-96 max-w-full"
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 100 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+            >
                 <h2 className="text-2xl font-semibold text-white mb-6">Edit Item</h2>
                 <form onSubmit={editSubmitHandler}>
                     <div className="mb-4">
@@ -136,7 +143,7 @@ export default function Edit({ furniture, setIsActive, reRender}) {
                 
                     </div>
                 </form>
-            </div>
+            </motion.div>
         </div> </> }
         </>
     )

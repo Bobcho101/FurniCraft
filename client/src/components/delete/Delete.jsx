@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useDeleteFurniture } from "../../api/furnitureApi";
 import { UserContext } from "../../contexts/userContext";
 import { useNavigate } from "react-router";
+import { motion } from "framer-motion";
 
 export default function Delete({ itemName, itemId, setIsActive }) {
     const [ deleteFunction ] = useDeleteFurniture(); 
@@ -19,7 +20,13 @@ export default function Delete({ itemName, itemId, setIsActive }) {
 
     return (
         <>
-            <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-30 z-50">
+            <motion.div
+                className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-30 z-50"
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 100 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+            >
                 <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-sm w-full text-center">
                     <h3 className="text-xl font-semibold text-white">Are you sure you want to delete &quot;{itemName}&quot; ?</h3>
 
@@ -38,7 +45,7 @@ export default function Delete({ itemName, itemId, setIsActive }) {
                         </button>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </>
     );
 }

@@ -103,7 +103,13 @@ export default function Details() {
         </div>
         }
         <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center py-10">
-            <div className="bg-gray-800 p-10 rounded-lg shadow-lg max-w-5xl w-full flex flex-col lg:flex-row gap-10 mt-20">
+            <motion.div 
+                className="bg-gray-800 p-10 rounded-lg shadow-lg max-w-5xl w-full flex flex-col lg:flex-row gap-10 mt-20"
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 100 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+            >
             <div className="w-full lg:w-1/2">
                 <img
                     src={furniture.image}
@@ -161,7 +167,7 @@ export default function Details() {
                     </Link>
                 </div>
             </div>
-        </div>
+        </motion.div>
             
         <div className="mt-12 max-w-5xl w-full">
                 <h3 className="text-3xl font-semibold mb-6 text-center">You May Also Like</h3>
