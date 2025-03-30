@@ -14,3 +14,5 @@ export const failedOrderingFurnitureMsg = 'Failed to order furniture!';
 export const failedLoadingTheFurnitureMsg = 'Failed to load the furniture!';
 export const failedLoadingTheCatalogMsg = 'Failed to load the catalog! Try again later!';   
 
+export const failedAddingRecommendation = 'Failed to add a recommendation!';
+export const failedRemovingRecommendation = 'Failed to remove a recommendation!';

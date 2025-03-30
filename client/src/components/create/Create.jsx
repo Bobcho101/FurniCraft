@@ -39,8 +39,8 @@ export default function Create() {
             return alert(invalidCategoryMsg);
         }
         formValues.price = Number(formValues.price);
+        formValues.recommendedUsersList = [];
         const response = await createFurniture(formValues, accessToken);
-
 
         if(response.error){
             return setError(response.error);
