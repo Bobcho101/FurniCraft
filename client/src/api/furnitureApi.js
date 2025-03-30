@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { failedCreatingFurnitureMsg, failedDeletingFurnitureMsg, failedLoadingTheFurnitureMsg, failedUpdatingFurnitureMsg } from "../helpers/errorHandlingMsg";
+import { failedCreatingFurnitureMsg, failedDeletingFurnitureMsg, failedLoadingTheCatalogMsg, failedLoadingTheFurnitureMsg, failedUpdatingFurnitureMsg } from "../helpers/errorHandlingMsg";
 import { ITEMS_PER_PAGE } from "../utils/constants";
 const baseUrl = 'http://localhost:3030/data/furniture';
 
@@ -15,6 +15,7 @@ const sortOptionsQueries = {
 
 export const useFurniture = (sortOption, currentPage, searchOption) => {
     const [furniture, setFurniture] = useState([]);
+    const [ error, setError ] = useState('');
     const [allFurnitureLength, setAllFurnitureLength] = useState(0);
     const paginationQuery = `offset=${(currentPage - 1) * ITEMS_PER_PAGE }&pageSize=${ITEMS_PER_PAGE}`;
     const searchQuery = `?where=name%20LIKE%20%22${searchOption}%22`;
@@ -31,16 +32,16 @@ export const useFurniture = (sortOption, currentPage, searchOption) => {
         fetch(finalUrl)
             .then(res => res.json())
             .then(data => setFurniture(data))
-            .catch(err => console.log(err))
+            .catch(() => setError(failedLoadingTheCatalogMsg))
 
         fetch(baseUrl + searchQuery)
             .then(res => res.json())
             .then(data => setAllFurnitureLength(data.length))
-            .catch(err => console.log(err))
+            .catch(() => setError(failedLoadingTheCatalogMsg))
        
     }, [finalUrl, searchQuery]);
 
-    return [furniture, allFurnitureLength];
+    return [furniture, allFurnitureLength, error];
 }
 
 export const useRecommendedFurniture = (category, furnitureId) => {

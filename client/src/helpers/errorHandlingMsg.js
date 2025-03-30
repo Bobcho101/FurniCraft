@@ -12,4 +12,5 @@ export const invalidCategoryMsg = 'Invalid category!';
 export const failedOrderingFurnitureMsg = 'Failed to order furniture!';
 
 export const failedLoadingTheFurnitureMsg = 'Failed to load the furniture!';
+export const failedLoadingTheCatalogMsg = 'Failed to load the catalog! Try again later!';   
 

@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router';
 import { ITEMS_PER_PAGE } from '../../utils/constants';
 import { motion } from 'framer-motion';
 import { setDocumentTitle } from '../../utils/document';
+import Error from '../error/Error';
 
 function Catalog() {
     setDocumentTitle("Catalog");
@@ -11,13 +12,19 @@ function Catalog() {
     const { page } = useParams();
     const pageNum = parseInt(page);
     const [ searchQuery, setSearchQuery ] = useState('');
+    const [ errorCur, setErrorCur ] = useState('');
     const [ sortOption, setSortOption ] = useState('price-low-to-high');
     const [ loading, setLoading ] = useState(true);
-    const [ furniture, allFurnitureLength ] = useFurniture(sortOption, pageNum, searchQuery);
+    const [ furniture, allFurnitureLength, error ] = useFurniture(sortOption, pageNum, searchQuery);
 
     const totalPages = Math.ceil(allFurnitureLength / ITEMS_PER_PAGE); 
     const isLastPage = pageNum === totalPages;
 
+    useEffect(() => {
+        if(error){
+            setErrorCur(error);
+        }
+    }, [error]);
 
     useEffect(() => {
         if (pageNum <= 0) {
@@ -39,11 +46,21 @@ function Catalog() {
     }, [furniture]);
 
     useEffect(() => {
-        console.log(pageNum);
         window.scrollTo(0, 0);
-    }, [pageNum])
+    }, [pageNum]);
+
+    useEffect(() => {
+        if(errorCur){
+            setTimeout(() => {
+                setErrorCur('');
+                navigate('/');
+            }, 3000)
+        }
+    }, [errorCur, navigate]);
 
     return (
+        <>
+        {errorCur && <Error errorMsg={errorCur} />} 
         <div className="bg-gray-900 text-white min-h-screen py-16">
             <div className="max-w-7xl mx-auto px-6 mt-15">
                 <h2 className="text-4xl font-semibold text-center mb-8">Catalog</h2>
@@ -119,6 +136,7 @@ function Catalog() {
                     </button>
                 </div>
         </div>
+        </>
     );
 }
 
