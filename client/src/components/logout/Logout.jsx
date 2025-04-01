@@ -14,7 +14,6 @@ export default function Logout() {
     useEffect(() => {
         const logoutHandler = async () => {
             const response = await logout(accessToken);
-            userLogoutHandler();
             if(response.error){
                 setSuccessfulReq(false);
                 setError(response.error);
@@ -25,7 +24,7 @@ export default function Logout() {
     }, [accessToken, logout, userLogoutHandler]);
     
     
-
+    userLogoutHandler();
 
     useEffect(() => {
         if(error){

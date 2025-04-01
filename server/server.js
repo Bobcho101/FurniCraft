@@ -1495,11 +1495,6 @@
                 _ownerId: "dw34-63fa-323g-kdwm-3217",
                 category: "Living Room",  
                 _createdOn: 1614760782277,
-                recommendedUsersList: [
-                    "efe43eb9-e7dd-4311-988c-b1d511f0bbc5",
-                    "kgasdwda-e7dd-4211-988c-b1ddwankd34k",
-                    "dwawdoad-e7dd-44js-956c-bdawdaa0bbc5",
-                ],
             },
             "7341-g3kd-2fwd-d213":{
                 _id: "7341-g3kd-2fwd-d213",
@@ -1510,10 +1505,6 @@
                 _ownerId: "kd98-3hfg-92kd-asdq-9826",
                 _createdOn: 1614935268135,
                 category: "Dining Room",  
-                recommendedUsersList: [
-                    "efe43eb9-e7dd-4311-988c-b1d511f0bbc5",
-                    "kgasdwda-e7dd-4211-988c-b1ddwankd34k",
-                ],
             },
             "dlpf-j85f-2id4-d932": {
                 _id: "dlpf-j85f-2id4-d932",
@@ -1524,9 +1515,6 @@
                 _ownerId: "lm28-asd1-78fg-mzxc-4591",
                 _createdOn: 1614935181470,
                 category: "Office",  
-                recommendedUsersList: [
-                    "efe43eb9-e7dd-4311-988c-b1d511f0bbc5",
-                ],
             },
             "d32g-w34d-3gl4-8dwa":{
                 _id: "d32g-w34d-3gl4-8dwa",
@@ -1537,9 +1525,6 @@
                 _ownerId: "dw34-63fa-323g-kdwm-3217",
                 _createdOn: 1615033452480,
                 category: "Bedroom",    
-                recommendedUsersList: [
-                    "efe43eb9-e7dd-4311-988c-b1d511f0bbc5",
-                ],
             },
             "nffg-8fda-lgas-dd31": {
                 _id: "nffg-8fda-lgas-dd31",
@@ -1550,23 +1535,57 @@
                 _ownerId: "kd98-3hfg-92kd-asdq-9826",
                 _createdOn: 1614935055353,
                 category: "Living Room", 
-                recommendedUsersList: [
-                ],
             },
             "8b311484-b8d6-441f-82ce-88b23690237a": {
-                "_ownerId": "31da38f7-2612-45b4-a8df-ef4e8dd74b23",
-                "name": "Cosmo Sofa",
-                "category": "Living Room",
-                "price": 399,
-                "description": "Experience the Cosmo Sofa: a blend of modern design and ultimate comfort. Perfect for any living space, this sofa features premium materials and craftsmanship for lasting quality. Elevate your home with the stylish and luxurious Cosmo Sofa!",
-                "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqsw_gFgkDEy1kQ8xPVKCYyJSTKjEA_X_3mw&s",
-                "_createdOn": 1742494458554,
-                "_id": "8b311484-b8d6-441f-82ce-88b23690237a",
-                recommendedUsersList: [
-                    "efe43eb9-e7dd-4311-988c-b1d511f0bbc5",
-                    "kgasdwda-e7dd-4211-988c-b1ddwankd34k",
-                ],
-              },
+                _ownerId: "31da38f7-2612-45b4-a8df-ef4e8dd74b23",
+                name: "Cosmo Sofa",
+                category: "Living Room",
+                price: 399,
+                description: "Experience the Cosmo Sofa: a blend of modern design and ultimate comfort. Perfect for any living space, this sofa features premium materials and craftsmanship for lasting quality. Elevate your home with the stylish and luxurious Cosmo Sofa!",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqsw_gFgkDEy1kQ8xPVKCYyJSTKjEA_X_3mw&s",
+                _createdOn: 1742494458554,
+                _id: "8b311484-b8d6-441f-82ce-88b23690237a",
+            },
+            "7a02a24a-78a0-42ef-893b-947b62b35730" :{
+                "_ownerId": "8f031691-d24f-476c-a499-6b4a09ff087b",
+                "name": "Dining Table",
+                "category": "Dining Room",
+                "price": 799,
+                "description": "This dining table is ready to bring family and friends together to enjoy casual meals and lots of good company in your dining room or eat-in kitchen. It's crafted from engineered wood with a warm, rustic finish that highlights natural grain variation. A double pedestal base consists of two distinctively shaped legs that help support the rectangular table top. And it measures 63\" wide to seat up to six people for larger gatherings and get-togethers. ",
+                "image": "https://assets.wfcdn.com/im/41714095/compr-r85/2678/267823513/Rahn+Dining+Table.jpg",
+                "_createdOn": 1743494369296,
+                "_id": "7a02a24a-78a0-42ef-893b-947b62b35730"
+            },       
+            "9d2fe924-117f-4361-81bf-5863a2080f19": {
+                _ownerId: "d80db11e-0b28-40f6-8f92-bddf51ae64f0",
+                name: "Fridge",
+                category: "Kitchen",
+                price: 899,
+                description: "For homes or caravans, this under counter fridge freezer gives you space for chilled and frozen goods in a compact design.",
+                image: "https://www.igenix.co.uk/cdn/shop/files/IG347FF_A_73076e59-071f-4d02-8ca0-77c9156ac1c4.jpg?v=1730193163",
+                _createdOn: 1743498503072,
+                _id: "9d2fe924-117f-4361-81bf-5863a2080f19"
+            },
+            "da9b7548-1578-43a7-86b2-3c242ab40c93": {
+                _ownerId: "d80db11e-0b28-40f6-8f92-bddf51ae64f0",
+                name: "Kitchen Sink",
+                category: "Kitchen",
+                price: 349,
+                description: "Flexible swivel taps for double sinks use.",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROYlFzS_QR_ea4-X-gvh9IXEJwpaZr7kDo1A&s",
+                _createdOn: 1743498796979,
+                _id: "da9b7548-1578-43a7-86b2-3c242ab40c93",
+            },
+            "6092d40b-5e0d-414a-ad3a-699b042039e4": {
+                _ownerId: "a97cffe4-a9b9-4c1b-9740-a0936f9e9c12",
+                name: "Wardrobe ",
+                category: "Bedroom",
+                price: 729,
+                description: "A wardrobe with a lot of space for everything.",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsK9UgcoBHGTF0CSMKfrmp_hkvLyezc1GqwQ&s",
+                _createdOn: 1743499227406,
+                _id: "6092d40b-5e0d-414a-ad3a-699b042039e4",
+            }
     	},
     	orders: {
             
