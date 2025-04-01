@@ -1,9 +1,12 @@
 import { emailOrUsernameAlreadyExistsMsg, guestCannotLogoutMsg, invalidEmailOrPasswordMsg } from "../helpers/errorHandlingMsg";
+import { DOMAIN } from "../utils/constants";
+
+const baseUrl = DOMAIN + '/users';
 
 export const useRegister = () => {
     const register = async (username, image, email, password) => {
         try{
-            const response = await fetch('http://localhost:3030/users/register', {
+            const response = await fetch(baseUrl + '/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -33,7 +36,7 @@ export const useRegister = () => {
 export const useLogin = () => {
     const login = async (email, password) => {
         try{
-            const response = await fetch('http://localhost:3030/users/login', {
+            const response = await fetch(baseUrl + '/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -66,7 +69,7 @@ export const useLogout = () => {
             };
         }
         try{
-            const response = await fetch('http://localhost:3030/users/logout', {
+            const response = await fetch(baseUrl + '/logout', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

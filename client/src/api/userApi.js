@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-const baseUrl = 'http://localhost:3030';
+import { DOMAIN } from "../utils/constants";
+const baseUrl = DOMAIN;
 
 export const useGetUserInfo = (accessToken) => {
     const [ userData, setUserData ] = useState({}); 

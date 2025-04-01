@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { failedOrderingFurnitureMsg } from "../helpers/errorHandlingMsg";
+import { DOMAIN } from "../utils/constants";
 
-const baseUrl = 'http://localhost:3030/data/orders';
+const baseUrl = DOMAIN + '/data/orders';
 
 export const useCreateFurnitureOrder = () => {
     const create = async (newData, accessToken) => {

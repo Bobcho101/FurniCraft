@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { failedCreatingFurnitureMsg, failedDeletingFurnitureMsg, failedLoadingTheCatalogMsg, failedLoadingTheFurnitureMsg, failedUpdatingFurnitureMsg } from "../helpers/errorHandlingMsg";
-import { ITEMS_PER_PAGE } from "../utils/constants";
-const baseUrl = 'http://localhost:3030/data/furniture';
+import { DOMAIN, ITEMS_PER_PAGE } from "../utils/constants";
+const baseUrl = DOMAIN + '/data/furniture';
 
 const sortOptionsQueries = {
     'price-low-to-high': 'sortBy=price',
@@ -169,7 +169,7 @@ export const useGetUserPosts = (userId) => {
 
     useEffect(() => {
         setLoading(true);
-        fetch(`http://localhost:3030/data/furniture?where=_ownerId%3D%22${userId}%22`)
+        fetch(DOMAIN + `/data/furniture?where=_ownerId%3D%22${userId}%22`)
         .then((res) => res.json())
         .then((data) => {
             setUserPosts(data);
