@@ -1791,7 +1791,10 @@
 
     const server = http__default['default'].createServer(requestHandler(plugins, services));
 
-    const port = 3030;
+
+    const port = process.env.PORT || 3030;
+    console.log(process.env.PORT);
+    
 
     server.listen(port);
 
