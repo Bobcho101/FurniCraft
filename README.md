@@ -34,9 +34,11 @@ npm run dev
 - **React Router**
 - **Tailwind CSS + AI (*this is for the design*)**
 - **Motion Frame (*this is for the animations*)**
+- **Firebase (*for hosting the client*)**
 
 ### **Backend (*not done by me*)**
 - **Node.js**
+- **Render (*for hosting the server*)**
 
 ## Functionality
 1. **Authentication (*register, login, logout*)**
