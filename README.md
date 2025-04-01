@@ -6,6 +6,7 @@
 ## Hosting
 - **Here is the link for the app: https://furn1craf7.web.app/**
 - **Note that the server hosting is really bad so expect crashes from the server** (*usually throws cors error*)
+- **Usually server is asleep (*after not being used for a while*) and the items are gonna load a lot slower only on the first fetch**
 
 
 ## Run the Project
