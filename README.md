@@ -3,6 +3,10 @@
 ## Overall Info
 - **This is my SoftUni project for the exam! This is an app called FurniCraft for buying and selling furniture. The server i used is the SoftUni practice server not mine!**
 
+## Hosting
+- **Here is the link for the app: https://furn1craf7.web.app/**
+- **Note that the server hosting is really bad so expect crashes from the server** (*usually throws cors error*)
+
 
 ## Run the Project
 1. **Install the Dependencies**
