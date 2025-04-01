@@ -37,10 +37,9 @@ export default function Create() {
         const validCategories = ["Living Room", "Dining Room", "Office", "Bedroom", "Kitchen"];
 
         if(!validCategories.includes(formValues.category)){
-            return alert(invalidCategoryMsg);
+            return setError(invalidCategoryMsg);
         }
         formValues.price = Number(formValues.price);
-        formValues.recommendedUsersList = [];
         const response = await createFurniture(formValues, accessToken);
 
         if(response.error){
